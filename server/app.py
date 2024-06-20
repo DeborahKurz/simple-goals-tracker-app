@@ -14,8 +14,48 @@ class UserResource(Resource):
             return response_dict_list, 200
         except Exception as e:
             return {"error": f"Error: {e}"}, 400
+    def post(self):
+        try:
+            data = request.get_json()
+            username = data['username']
+            if not username:
+                return {"error": "Username required. Must be at least 1 character long."}, 400
+            existing_user = User.query.filter_by(username=username).first()
+            if existing_user:
+                return {"error": "Please choose a differnet username"}, 400
+            else:
+                user = User(username=username)
+                db.session.add(user)
+                db.session.commit()
 
+                response_dict = user.to_dict()
+                response = make_response(
+                    jsonify(response_dict),
+                    201,
+                )
+                return response
+        except Exception as e:
+            return {"error": f"Error: {e}"}, 400
 api.add_resource(UserResource, '/')
+
+class GoalResource(Resource):
+    def get(self, id):
+        try:
+            user = User.query.filter_by(id=id).first()
+            if not user:
+                return {"error": "User could not be found"}, 404
+            
+            goals = Goal.query.filter_by(user_id=user.id).all()
+            if len(goals) == 0:
+                return {"error": "Please add a goal for this user"}, 404
+
+            response_dict_list = [g.to_dict() for g in goals]
+            return response_dict_list, 200     
+        except Exception as e:
+            return {"error": f"Error: {e}"}, 400
+
+
+api.add_resource(GoalResource, '/goals/<int:id>')
 
 
 if __name__ == '__main__':
