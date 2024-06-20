@@ -18,7 +18,7 @@ class Goal(db.Model,SerializerMixin):
     __tablename__='goals'
 
     id = db.Column(db.Integer, primary_key=True)
-    goals = db.Column(db.String)
+    goal = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     user = db.relationship('User', back_populates='goals', cascade='all, delete')

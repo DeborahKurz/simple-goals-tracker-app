@@ -43,7 +43,7 @@ def create_goals(num_goals):
     
     for _ in range(num_goals):
         user = rc(users)
-        goal = Goal(goals=fake.sentence(), user_id=user.id)
+        goal = Goal(goal=fake.sentence(), user_id=user.id)
         goals.append(goal)
     return goals
 

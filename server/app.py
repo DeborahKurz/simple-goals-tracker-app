@@ -53,8 +53,22 @@ class GoalResource(Resource):
             return response_dict_list, 200     
         except Exception as e:
             return {"error": f"Error: {e}"}, 400
+    def post(self, id):
+        try:
+            data = request.get_json()
+            goal = User(user_id=id,goal=data['goal'])
+            db.session.add(goal)
+            db.session.commit()
 
+            response_dict = goal.to_dict()
+            response = make_response(
+                jsonify(response_dict),
+                201
+            )
+            return response
 
+        except Exception as e:
+            return {"error": f""}
 api.add_resource(GoalResource, '/goals/<int:id>')
 
 
