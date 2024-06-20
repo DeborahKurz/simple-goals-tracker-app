@@ -115,11 +115,25 @@ class TaskResource(Resource):
             return {"error": f"Error: {e}"}
         
     def patch(self,id):
-        #get data from user
+        # task = Task.query.filter_by(id=id).first()
+        # if task:
+        #     data = request.get_json()
+        #     task.task = data['task']
+        #     task.completed = data['completed']
+        #     try:
+        #         db.session.commit()
+        #         response_dict = task.to_dict()
+        #         return jsonify(response_dict), 202
+        #     except Exception as e:
+        #         return {"error": f"Error: {e}"}
+        # else:
+        #     return {"error": "No task found."}, 404
         pass
     def delete(self,id):
-        #use id to delete task
-        pass
+        task = Task.query.filter_by(id=id).first()
+        db.session.delete(task)
+        db.session.commit()
+        return {"message": "Task successfully deleted."}, 200
 api.add_resource(TaskResource, '/tasks/<int:id>')
 
 
