@@ -74,7 +74,6 @@ class GoalResource(Resource):
                 201
             )
             return response
-
         except Exception as e:
             return {"error": f"Error: {e}"}
 api.add_resource(GoalResource, '/goals/<int:id>')
@@ -82,21 +81,39 @@ api.add_resource(GoalResource, '/goals/<int:id>')
 class TaskResource(Resource):
     def get(self,id):
         try:
-            goal=Goal.query.filter_by(id=id).first()
+            goal = Goal.query.filter_by(id=id).first()
             if not goal:
                 return {"error": "Goal could not be found"}, 404
-            tasks=Task.query.filter_by(goals_id=goal.id).all()
+            tasks = Task.query.filter_by(goals_id=goal.id).all()
             if len(tasks) == 0:
                 return {"error": "Please add a task that is at least 1 character long"}, 404
             response_dict_list = [t.to_dict() for t in tasks]
             return response_dict_list, 200
         except Exception as e:
             return {"error": f"Error: {e}"}  
-
-
     def post(self,id):
-        #get data from user
-        pass
+        try:
+            data = request.get_json()
+            task = data.get('task')
+            if not task:
+                return {"erorr": "Task must be at least 1 character long."}, 400
+            goal = Goal.query.filter_by(id=id).first()
+            if not goal:
+                return {"error": "No goal found."}, 404
+            new_task = Task(task=task, completed=False, goals_id=id)
+
+            db.session.add(new_task)
+            db.session.commit()
+            
+            response_dict = new_task.to_dict()
+            response = make_response(
+                jsonify(response_dict),
+                201
+            )
+            return response
+        except Exception as e:
+            return {"error": f"Error: {e}"}
+        
     def patch(self,id):
         #get data from user
         pass
