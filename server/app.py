@@ -56,7 +56,15 @@ class GoalResource(Resource):
     def post(self, id):
         try:
             data = request.get_json()
-            goal = User(user_id=id,goal=data['goal'])
+            goal = data.get('goal') 
+            if not goal:
+                return {"error": "Goal must be at least 1 character long."}, 400
+            
+            user = User.query.filter_by(id=id).first()
+            if not user:
+                return {"error": "No user found."}, 404
+            
+            goal = Goal(user_id=id, goal=goal)
             db.session.add(goal)
             db.session.commit()
 
@@ -68,8 +76,9 @@ class GoalResource(Resource):
             return response
 
         except Exception as e:
-            return {"error": f""}
+            return {"error": f"Error: {e}"}
 api.add_resource(GoalResource, '/goals/<int:id>')
+
 
 
 if __name__ == '__main__':
