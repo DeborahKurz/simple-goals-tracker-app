@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 
-# Standard library imports
-
-# Remote library imports
-from flask import request
-from flask_restful import Resource
-
-# Local imports
+from flask import Flask, request, current_app, make_response, jsonify
+from flask_restful import Resource, Api
+from models import User, Goal, Task
 from config import app, db, api
-# Add your model imports
-from models import User, Goal, Task 
 
-# Views go here!
+class UserResource(Resource):
+    def get(self):
+        try:
+            users = User.query.all()
 
-@app.route('/')
-def index():
-    return '<h1>Project Server</h1>'
+            response_dict_list = [u.to_dict() for u in users]
+            return response_dict_list, 200
+        except Exception as e:
+            return {"error": f"Error: {e}"}, 400
+
+api.add_resource(UserResource, '/')
 
 
 if __name__ == '__main__':
