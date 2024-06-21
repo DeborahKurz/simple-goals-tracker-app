@@ -11,15 +11,15 @@ function App() {
       <h1>Simple Goals Tracker</h1>
       <br></br>
       <ExistingUserLogin />
-      <br></br>
       <CreateNewUser />
-      <br></br>
-      <br></br>
       <br></br>
       <br></br>
       <Header />
       <SignOut />
+      <br></br>
       <DisplayGoals />
+      <AddGoal />
+      <br></br>
     </div>
   )
 }
@@ -80,11 +80,26 @@ function SignOut(){
 function DisplayGoals(){
   return(
     <div>
+      <h2>Click on a goal to see it's tasks.</h2>
       <h4>Inside DisplayGoals()</h4>
     </div>
   )
 }
 
+function AddGoal(){
+  return(
+    <div>
+      <h2>Add A New Goal</h2>
+      <form>
+          <input type="text" placeholder={"Set A Measurable Goal"}></input>
+          <br></br>
+          <button>Add My Goal</button>
+          <br></br>
+        </form>
+    </div>
+  )
+}
 
 
 // >>>>>>>> '/tasks/id' route
+
