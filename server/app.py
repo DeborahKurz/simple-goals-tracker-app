@@ -14,6 +14,7 @@ class UserResource(Resource):
             return response_dict_list, 200
         except Exception as e:
             return {"error": f"Error: {e}"}, 400
+        
     def post(self):
         try:
             data = request.get_json()
@@ -53,6 +54,7 @@ class GoalResource(Resource):
             return response_dict_list, 200     
         except Exception as e:
             return {"error": f"Error: {e}"}, 400
+        
     def post(self, id):
         try:
             data = request.get_json()
@@ -90,7 +92,8 @@ class TaskResource(Resource):
             response_dict_list = [t.to_dict() for t in tasks]
             return response_dict_list, 200
         except Exception as e:
-            return {"error": f"Error: {e}"}  
+            return {"error": f"Error: {e}"} 
+             
     def post(self,id):
         try:
             data = request.get_json()
@@ -115,20 +118,23 @@ class TaskResource(Resource):
             return {"error": f"Error: {e}"}
         
     def patch(self,id):
-        # task = Task.query.filter_by(id=id).first()
-        # if task:
-        #     data = request.get_json()
-        #     task.task = data['task']
-        #     task.completed = data['completed']
-        #     try:
-        #         db.session.commit()
-        #         response_dict = task.to_dict()
-        #         return jsonify(response_dict), 202
-        #     except Exception as e:
-        #         return {"error": f"Error: {e}"}
-        # else:
-        #     return {"error": "No task found."}, 404
-        pass
+        task = Task.query.get(id)
+        if task:
+            data = request.get_json()
+            try:
+                task.task = data['task']
+                task.completed = data['completed']
+                task.goals_id = data['goals_id']
+
+                db.session.commit()
+
+                response_dict = task.to_dict()
+                return response_dict, 202
+            except Exception as e:
+                return {"error": f"Error: {e}"}
+        else:
+            return {"error": "No task found."}, 404
+
     def delete(self,id):
         task = Task.query.filter_by(id=id).first()
         db.session.delete(task)
