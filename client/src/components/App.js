@@ -14,12 +14,18 @@ function App() {
       <CreateNewUser />
       <br></br>
       <br></br>
-      <Header />
       <SignOut />
       <br></br>
+      <GoalsHeader />
       <DisplayGoals />
       <AddGoal />
       <br></br>
+      <br></br>
+      <TaskHeader />
+      <DisplayTasks />
+      <AddTask />
+      <CompleteTask />
+      <DeleteTask />
     </div>
   )
 }
@@ -27,6 +33,7 @@ function App() {
 // >>>>>>>> '/' route
 function ExistingUserLogin(){
 //For users who already have an account
+//GET reuqest
   return (
     <div>
       <h2>Returning User Login:</h2>
@@ -42,6 +49,7 @@ function ExistingUserLogin(){
 }
 
 function CreateNewUser(){
+//POST request
   return(
     <div>
       <h2>Create An Account:</h2>
@@ -60,14 +68,6 @@ export default App;
 
 
 // >>>>>>>> '/goals/id' & '/tasks/id' route headers
-function Header(){
-  return (
-    <div>
-      <h1>Your Goal's:</h1>
-    </div>
-  )
-}
-
 function SignOut(){
   return(
     <div>
@@ -76,8 +76,19 @@ function SignOut(){
   )
 }
 
+
 // >>>>>>>> '/goals/id' route
+function GoalsHeader(){
+//Hand user's name and interpolate h1
+  return (
+    <div>
+      <h1>Your Goals:</h1>
+    </div>
+  )
+}
+
 function DisplayGoals(){
+//GET request with user id
   return(
     <div>
       <h2>Click on a goal to see it's tasks.</h2>
@@ -87,6 +98,7 @@ function DisplayGoals(){
 }
 
 function AddGoal(){
+//POST request with user id
   return(
     <div>
       <h2>Add A New Goal</h2>
@@ -102,4 +114,53 @@ function AddGoal(){
 
 
 // >>>>>>>> '/tasks/id' route
+function TaskHeader(){
+//Hand goal's name and interpolate h1
+  return(
+    <div>
+      <h1>Your Tasks:</h1>
+    </div>
+  )
+}
+function DisplayTasks(){
+  //GET request using the goal's id
+  return(
+    <div>
+      <h4>Inside DisplayTasks()</h4>
+    </div>
+  )
+}
+
+function AddTask(){
+  //POST request
+  return(
+    <div>
+      <h2>Add A New Task</h2>
+      <form>
+          <input type="text" placeholder={"The Next Task To Do"}></input>
+          <br></br>
+          <button>Add My Task</button>
+          <br></br>
+        </form>
+    </div>
+  )
+}
+
+function CompleteTask(){
+//PATCH request using the task's id
+  return(
+    <div>
+      <button>Task Complete!</button>
+    </div>
+  )
+}
+
+function DeleteTask(){
+//Delete request using the task's id
+  return(
+    <div>
+      <button>Delete Task</button>
+    </div>
+  )
+}
 
