@@ -17,6 +17,9 @@ function App() {
       <br></br>
       <br></br>
       <br></br>
+      <Header />
+      <SignOut />
+      <DisplayGoals />
     </div>
   )
 }
@@ -56,6 +59,32 @@ function CreateNewUser(){
 export default App;
 
 
+// >>>>>>>> '/goals/id' & '/tasks/id' route headers
+function Header(){
+  return (
+    <div>
+      <h1>Your Goal's:</h1>
+    </div>
+  )
+}
+
+function SignOut(){
+  return(
+    <div>
+      <button>Sign Out</button>
+    </div>
+  )
+}
+
 // >>>>>>>> '/goals/id' route
+function DisplayGoals(){
+  return(
+    <div>
+      <h4>Inside DisplayGoals()</h4>
+    </div>
+  )
+}
+
+
 
 // >>>>>>>> '/tasks/id' route
