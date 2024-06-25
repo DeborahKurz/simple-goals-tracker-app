@@ -1,17 +1,34 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import {NavLink } from "react-router-dom/cjs/react-router-dom.min";
-import LoginRoute from "./LoginRoute.js";
-import GoalsRoute from "./GoalsRoute.js";
-import TasksRoute from "./TasksRoute.js";
+// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+// import {NavLink } from "react-router-dom/cjs/react-router-dom.min";
 // import { useFormik } from "formik";
 // import * as yup from "yup";
 
 
 function App() {
-  //Create basic styling
+  const [user, setUser] = useState([]);
+
+  useEffect(()=>{
+    fetch("http://127.0.0.1:5555/")
+    .then(r=>r.json())
+    .then(user => setUser(user))
+    .catch((error) => console.error(error));
+  }, [])
+
+
   return (
     <div>
+      <h1>Hello</h1>
+    </div>
+  )
+}
+
+export default App;
+
+
+
+
+
       {/* <header>
         <NavBar />
         <nav>
@@ -29,8 +46,3 @@ function App() {
           <Route path="/tasks/:id/*" element={<TasksRoute />}></Route>
         </Router>
       </main> */}
-    </div>
-  )
-}
-
-export default App;
