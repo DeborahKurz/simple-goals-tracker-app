@@ -1,15 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-// >>>>>>>> '/' route
 function ExistingUserLogin(){
 //For users who already have an account
 //GET reuqest
+  const [users, setUsers] = useState([]);
+  const [username, setUsername] = useState("");
+
+  useEffect(()=>{
+    fetch("http://127.0.0.1:5555/")
+    .then(r=>r.json())
+    .then((data) => setUsers(data))
+    .catch((error) => console.error(error));
+  }, [])
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const foundUser = users.find(user => user.username === username);
+    
+    if (foundUser) {
+      console.log("User found:", foundUser);
+    } else {
+      console.log("User not found");
+    }
+    setUsername("");
+  };
+
+  
   return (
     <div>
       <h2>Returning User Login:</h2>
       <h4>Type Your Username in the form below to create and access your goals.</h4>
-      <form onSubmit={(e) => { e.preventDefault();}}>
-        <input type="text" placeholder={"Username"}></input>
+      <form onSubmit={handleSubmit}>
+        <input type="text" placeholder={"Username"} value={username} onChange={(e) => setUsername(e.target.value)}></input>
         <br></br>
         <button type="submit">Log In</button>
         <br></br>

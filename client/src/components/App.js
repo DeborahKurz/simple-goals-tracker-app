@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 // import { useFormik } from "formik";
 // import * as yup from "yup";
 
+import { Outlet } from "react-router-dom"
+
 
 function App() {
   const [user, setUser] = useState([]);
@@ -19,6 +21,7 @@ function App() {
   return (
     <div>
       <h1>Hello</h1>
+      <Outlet />
     </div>
   )
 }
