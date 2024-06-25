@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import {NavLink } from "react-router-dom/cjs/react-router-dom.min";
-import LoginRoute from LoginRoute.js;
-import GoalsRoute from GoalsRoute.js;
-import TasksRoute from TasksRoute.js;
+import LoginRoute from "./LoginRoute.js";
+import GoalsRoute from "./GoalsRoute.js";
+import TasksRoute from "./TasksRoute.js";
 // import { useFormik } from "formik";
 // import * as yup from "yup";
 
@@ -12,7 +12,7 @@ function App() {
   //Create basic styling
   return (
     <div>
-      <header>
+      {/* <header>
         <NavBar />
         <nav>
           <ul>
@@ -28,7 +28,7 @@ function App() {
           <Route path="/goals/:id/*" element={<GoalsRoute />}></Route>
           <Route path="/tasks/:id/*" element={<TasksRoute />}></Route>
         </Router>
-      </main>
+      </main> */}
     </div>
   )
 }
