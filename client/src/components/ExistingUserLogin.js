@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function ExistingUserLogin(){
+function ExistingUserLogin({ handleUser, user}){
 //For users who already have an account
 //GET reuqest
   const navigate = useNavigate()
@@ -22,6 +22,7 @@ function ExistingUserLogin(){
     
     if (foundUser) {
       console.log("User found:", foundUser);
+      handleUser(foundUser);
       navigate("/goals");
     } else {
       console.log("User not found");
@@ -30,7 +31,6 @@ function ExistingUserLogin(){
     setUsername("");
   };
 
-  
   return (
     <div>
       <h2>Returning User Login:</h2>

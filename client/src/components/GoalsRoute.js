@@ -4,7 +4,8 @@ import GoalsHeader from "./GoalsHeader.js";
 import DisplayGoals from "./DisplayGoals.js";
 import AddGoal from "./AddGoal.js";
 
-function GoalsRoute(){
+function GoalsRoute({user}){
+  console.log(user)
   return(
     <>
       <SignOut />

@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
-// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 // import {NavLink } from "react-router-dom/cjs/react-router-dom.min";
 // import { useFormik } from "formik";
 // import * as yup from "yup";
 
-import { Outlet } from "react-router-dom"
-
+// import { Outlet } from "react-router-dom"
+import LoginRoute from "./LoginRoute.js";
+import ExistingUserLogin from "./ExistingUserLogin.js";
+import CreateNewUser from "./CreateNewUser";
+import GoalsRoute from "./GoalsRoute.js";
+import WelcomePage from "./WelcomePage.js";
 
 function App() {
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState(null);
 
   useEffect(()=>{
     fetch("http://127.0.0.1:5555/")
@@ -17,35 +21,21 @@ function App() {
     .catch((error) => console.error(error));
   }, [])
 
+  const handleUser = (user) => {
+    setUser(user);
+  }
+
 
   return (
     <div>
-      <h1>Hello</h1>
-      <Outlet />
+      <Routes>
+        <Route path="*" element={<WelcomePage /> } /> 
+        <Route path="/login" element={<ExistingUserLogin handleUser={handleUser} user={user} />} /> 
+        <Route path="/new" element={<CreateNewUser handleUser={handleUser} user={user} />} /> 
+        <Route path="/goals" element={<GoalsRoute user={user} />} />
+      </Routes>
     </div>
-  )
+  );
 }
 
 export default App;
-
-
-
-
-
-      {/* <header>
-        <NavBar />
-        <nav>
-          <ul>
-            <li><NavLink to="/">Login</NavLink></li>
-            <li><NavLink to="/goals/id">Goals</NavLink></li>
-            <li><NavLink to="/tasks/id">Tasks</NavLink></li>
-          </ul>
-        </nav>
-      </header>
-      <main>
-        <Router>
-          <Route path="/" element={<LoginRoute />}></Route>
-          <Route path="/goals/:id/*" element={<GoalsRoute />}></Route>
-          <Route path="/tasks/:id/*" element={<TasksRoute />}></Route>
-        </Router>
-      </main> */}
