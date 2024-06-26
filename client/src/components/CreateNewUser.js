@@ -1,40 +1,38 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function CreateNewUser({ handleUser }){
+function CreateNewUser({ handleUser, userList }){
 //POST request
-  const navigate = useNavigate()
-  const [username, setUsername] = useState("")
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [userStatus, setUserStatus] = useState("");
 
   function handleSubmit(e){
     e.preventDefault();
+    const foundUser = userList.find(user => user.username === username);
 
-    const configObj ={
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ username: username })
+    if (!foundUser) {
+      // handleUser(foundUser);
+
+      const configObj ={
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ username: username })
+      }
+      fetch("http://127.0.0.1:5555/", configObj)
+      .then(r=>r.json())
+      .then(userObj => {
+        handleUser(userObj);
+        // console.log("CreateNewUser: ", userObj)
+        navigate("/goals");
+      })
+      .catch(error=>{
+        console.error('Error: ', error);
+      })
+    } else {
+      setUserStatus("Already Used")
     }
-    fetch("http://127.0.0.1:5555/", configObj)
-    .then(r=>r.json())
-    .then(userObj => {
-      handleUser(userObj);
-      console.log("CreateNewUser: ", userObj)
-      navigate("/goals");
-    })
-    .catch(error=>{
-      console.error('Error: ', error);
-    })
-
   }
-
-  // useEffect(()=>{
-  //   fetch("http://127.0.0.1:5555/")
-  //   .then(r=>r.json())
-  //   .then((data) => {
-  //     console.log("CreateNewUser", data)
-  //   })
-  //   .catch((error) => console.error(error));
-  // }, [])
 
   return(
     <div>
@@ -44,6 +42,7 @@ function CreateNewUser({ handleUser }){
         <input type="text" value={username} placeholder={"Username"} onChange={(e)=> setUsername(e.target.value)}></input>
         <br></br>
         <button type="submit">Create Username</button>
+        <h3>{userStatus === "Already Used" ? "This username is already taken. Please create a different username." : ""}</h3>
         <br></br>
       </form>
     </div>
