@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ExistingUserLogin(){
 //For users who already have an account
 //GET reuqest
+  const navigate = useNavigate()
   const [users, setUsers] = useState([]);
   const [username, setUsername] = useState("");
+  const [userStatus, setUserStatus] = useState("Found");
 
   useEffect(()=>{
     fetch("http://127.0.0.1:5555/")
@@ -19,8 +22,10 @@ function ExistingUserLogin(){
     
     if (foundUser) {
       console.log("User found:", foundUser);
+      navigate("/goals");
     } else {
       console.log("User not found");
+      setUserStatus("Not Found");
     }
     setUsername("");
   };
@@ -34,6 +39,7 @@ function ExistingUserLogin(){
         <input type="text" placeholder={"Username"} value={username} onChange={(e) => setUsername(e.target.value)}></input>
         <br></br>
         <button type="submit">Log In</button>
+        <h3>{userStatus === "Not Found" ? "Username not found (case insensitive). Please try again or create a new account if you have not yet made one." : ""}</h3>
         <br></br>
       </form>
     </div>
