@@ -36,9 +36,6 @@ function App() {
         <Route path="/login" element={<ExistingUserLogin handleUser={handleUser} user={user} userList={userList}/>} /> 
         <Route path="/new" element={<CreateNewUser handleUser={handleUser} userList={userList}/>} /> 
         <Route path="/goals" element={<GoalsRoute user={user} />} />
-        <Route path="/goals" element={<SignOut handleUser={handleUser} />} />
-
-        <Route path="/tasks" element={<SignOut handleUser={handleUser} />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
