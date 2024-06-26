@@ -23,6 +23,7 @@ function CreateNewUser({ handleUser }){
     .then(userObj => {
       const user = userObj.username;
       handleUser(user);
+      console.log("CreateNewUser: ", user)
       navigate("/goals");
     })
     .catch(error=>{

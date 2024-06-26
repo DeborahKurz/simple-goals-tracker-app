@@ -21,8 +21,8 @@ function ExistingUserLogin({ handleUser }){
     const foundUser = users.find(user => user.username === username);
     
     if (foundUser) {
-      console.log("User found:", foundUser);
       handleUser(foundUser);
+      console.log("ExistingUserLogin: ", foundUser)
       navigate("/goals");
     } else {
       console.log("User not found");

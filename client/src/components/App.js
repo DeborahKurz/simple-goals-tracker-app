@@ -9,6 +9,7 @@ import ExistingUserLogin from "./ExistingUserLogin.js";
 import CreateNewUser from "./CreateNewUser";
 import GoalsRoute from "./GoalsRoute.js";
 import WelcomePage from "./WelcomePage.js";
+import SignOut from "./SignOut.js";
 import ErrorPage from "./ErrorPage.js";
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Route path="/login" element={<ExistingUserLogin handleUser={handleUser} user={user} />} /> 
         <Route path="/new" element={<CreateNewUser handleUser={handleUser} user={user} />} /> 
         <Route path="/goals" element={<GoalsRoute user={user} />} />
+        <Route path="/goals" element={<SignOut handleUser={handleUser} />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
