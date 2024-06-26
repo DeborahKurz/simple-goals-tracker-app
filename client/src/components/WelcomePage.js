@@ -8,7 +8,7 @@ function WelcomePage(){
         navigate("/login");
     }
     function handleNewUser(){
-        navigate("/login");
+        navigate("/new");
     }
 
     return(

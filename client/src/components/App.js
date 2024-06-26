@@ -5,11 +5,11 @@ import { Routes, Route } from "react-router-dom";
 // import * as yup from "yup";
 
 // import { Outlet } from "react-router-dom"
-import LoginRoute from "./LoginRoute.js";
 import ExistingUserLogin from "./ExistingUserLogin.js";
 import CreateNewUser from "./CreateNewUser";
 import GoalsRoute from "./GoalsRoute.js";
 import WelcomePage from "./WelcomePage.js";
+import ErrorPage from "./ErrorPage.js";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -29,10 +29,11 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="*" element={<WelcomePage /> } /> 
+        <Route path="/" element={<WelcomePage /> } /> 
         <Route path="/login" element={<ExistingUserLogin handleUser={handleUser} user={user} />} /> 
         <Route path="/new" element={<CreateNewUser handleUser={handleUser} user={user} />} /> 
         <Route path="/goals" element={<GoalsRoute user={user} />} />
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
   );

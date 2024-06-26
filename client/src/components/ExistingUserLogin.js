@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-function ExistingUserLogin({ handleUser, user}){
+function ExistingUserLogin({ handleUser }){
 //For users who already have an account
 //GET reuqest
   const navigate = useNavigate()
