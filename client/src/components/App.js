@@ -13,12 +13,15 @@ import SignOut from "./SignOut.js";
 import ErrorPage from "./ErrorPage.js";
 
 function App() {
+  const [userList, setUserList] = useState([])
   const [user, setUser] = useState([]);
 
   useEffect(()=>{
     fetch("http://127.0.0.1:5555/")
     .then(r=>r.json())
-    .then(user => setUser(user))
+    .then((users) => {
+      setUserList(users)
+    })
     .catch((error) => console.error(error));
   }, [])
 
@@ -26,14 +29,13 @@ function App() {
     setUser(user);
   }
 
-
   return (
     <div>
       <Routes>
         <Route path="/" element={<WelcomePage /> } /> 
-        <Route path="/login" element={<ExistingUserLogin handleUser={handleUser} user={user} />} /> 
-        <Route path="/new" element={<CreateNewUser handleUser={handleUser} />} /> 
-        <Route path="/goals" element={<GoalsRoute user={user}/>} />
+        <Route path="/login" element={<ExistingUserLogin handleUser={handleUser} user={user} userList={userList}/>} /> 
+        <Route path="/new" element={<CreateNewUser handleUser={handleUser} userList={userList}/>} /> 
+        <Route path="/goals" element={<GoalsRoute user={user} />} />
         <Route path="/goals" element={<SignOut handleUser={handleUser} />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
