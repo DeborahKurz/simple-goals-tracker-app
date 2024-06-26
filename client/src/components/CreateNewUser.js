@@ -12,18 +12,13 @@ function CreateNewUser({ handleUser }){
     const configObj ={
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(
-        {
-          username: username
-        }
-      )
+      body: JSON.stringify({ username: username })
     }
     fetch("http://127.0.0.1:5555/", configObj)
     .then(r=>r.json())
     .then(userObj => {
-      const user = userObj.username;
-      handleUser(user);
-      console.log("CreateNewUser: ", user)
+      handleUser(userObj);
+      console.log("CreateNewUser: ", userObj)
       navigate("/goals");
     })
     .catch(error=>{
@@ -32,15 +27,14 @@ function CreateNewUser({ handleUser }){
 
   }
 
-
-  useEffect(()=>{
-    fetch("http://127.0.0.1:5555/")
-    .then(r=>r.json())
-    .then((data) => {
-      console.log("CreateNewUser", data)
-    })
-    .catch((error) => console.error(error));
-  }, [])
+  // useEffect(()=>{
+  //   fetch("http://127.0.0.1:5555/")
+  //   .then(r=>r.json())
+  //   .then((data) => {
+  //     console.log("CreateNewUser", data)
+  //   })
+  //   .catch((error) => console.error(error));
+  // }, [])
 
   return(
     <div>

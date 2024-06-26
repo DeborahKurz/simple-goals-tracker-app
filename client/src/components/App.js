@@ -13,7 +13,7 @@ import SignOut from "./SignOut.js";
 import ErrorPage from "./ErrorPage.js";
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState([]);
 
   useEffect(()=>{
     fetch("http://127.0.0.1:5555/")
@@ -32,8 +32,8 @@ function App() {
       <Routes>
         <Route path="/" element={<WelcomePage /> } /> 
         <Route path="/login" element={<ExistingUserLogin handleUser={handleUser} user={user} />} /> 
-        <Route path="/new" element={<CreateNewUser handleUser={handleUser} user={user} />} /> 
-        <Route path="/goals" element={<GoalsRoute user={user} />} />
+        <Route path="/new" element={<CreateNewUser handleUser={handleUser} />} /> 
+        <Route path="/goals" element={<GoalsRoute user={user}/>} />
         <Route path="/goals" element={<SignOut handleUser={handleUser} />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
