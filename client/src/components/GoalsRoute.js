@@ -4,7 +4,7 @@ import GoalsHeader from "./GoalsHeader.js";
 import DisplayGoals from "./DisplayGoals.js";
 import AddGoal from "./AddGoal.js";
 
-function GoalsRoute({user, userList}){
+function GoalsRoute({ user }){
   // console.log("userList: ", userList)
   // console.log("GoalsRoute: ", user)
   return(
