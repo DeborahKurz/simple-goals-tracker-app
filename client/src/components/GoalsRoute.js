@@ -10,9 +10,9 @@ function GoalsRoute({ user }){
   return(
     <>
       <SignOut />
-      <GoalsHeader />
-      <DisplayGoals />
-      <AddGoal />
+      <GoalsHeader username={user.username}/>
+      <DisplayGoals userId={user.id}/>
+      <AddGoal userId={user.id}/>
     </>
   )
 }

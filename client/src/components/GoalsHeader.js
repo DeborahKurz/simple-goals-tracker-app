@@ -1,11 +1,9 @@
 import React from "react";
 
-// >>>>>>>> '/goals/id' route
-function GoalsHeader(){
-//Hand user's name and interpolate h1
+function GoalsHeader({ username }){
   return (
     <div>
-      <h1>Your Goals:</h1>
+      <h1>{username}'s Goals </h1>
     </div>
   )
 }
