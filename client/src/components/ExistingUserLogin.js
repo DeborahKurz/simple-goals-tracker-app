@@ -1,20 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function ExistingUserLogin({ handleUser, userList }){
-//For users who already have an account
-//GET reuqest
   const navigate = useNavigate()
-  // const [userList, setUserList] = useState([]);
+
   const [username, setUsername] = useState("");
   const [userStatus, setUserStatus] = useState("Found");
-
-  // useEffect(()=>{
-  //   fetch("http://127.0.0.1:5555/")
-  //   .then(r=>r.json())
-  //   .then((data) => setUserList(data))
-  //   .catch((error) => console.error(error));
-  // }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault();
