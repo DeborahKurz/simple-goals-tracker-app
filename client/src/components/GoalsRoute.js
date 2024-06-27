@@ -10,9 +10,6 @@ function GoalsRoute({ user }){
   useEffect(()=>{
     setUserGoals(user.goals);
   }, [user])
-  console.log("user: ", user);
-  console.log("userGoals: ", userGoals);
-
 
   return(
     <>
