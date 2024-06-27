@@ -1,13 +1,22 @@
-import React from "react";
+function DisplayGoals({ userGoals }) {
+  console.log("Display Goals: ", userGoals);
 
-function DisplayGoals({ userGoals }){
-  console.log("Display Goals: ", userGoals)
-  return(
+  // Add a conditional check to handle undefined or null userGoals
+  if (!userGoals) {
+    return <div>Loading...</div>; // or handle as appropriate for your application
+  }
+
+  return (
     <div>
-      <h2>Click on a goal to see it's tasks.</h2>
-      <h4>Inside DisplayGoals()</h4>
+      <h2>Click on a goal to see its tasks.</h2>
+      {userGoals.map((goal) => (
+        <div>
+          <li key={goal.id}>{goal.goal}</li>
+          <br></br>
+        </div>
+      ))}
     </div>
-  )
+  );
 }
 
 export default DisplayGoals

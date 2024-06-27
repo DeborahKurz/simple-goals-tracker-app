@@ -18,7 +18,7 @@ function GoalsRoute({ user }){
     <>
       <SignOut />
       <GoalsHeader username={user.username}/>
-      <DisplayGoals userId={userGoals}/>
+      <DisplayGoals userGoals={userGoals} />
       <AddGoal userId={user.id}/>
     </>
   )
