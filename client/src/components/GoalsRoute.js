@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import SignOut from "./SignOut.js";
 import GoalsHeader from "./GoalsHeader.js";
 import DisplayGoals from "./DisplayGoals.js";

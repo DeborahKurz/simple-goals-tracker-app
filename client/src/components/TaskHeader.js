@@ -1,10 +1,9 @@
 import React from "react";
 
-function TaskHeader(){
-//Hand goal's name and interpolate h1
+function TaskHeader({goal}){
     return(
         <div>
-            <h1>Your Tasks:</h1>
+            <h1>{goal}</h1>
         </div>
     )
 }

@@ -6,10 +6,7 @@ import CompleteTask from "./CompleteTask.js";
 import DeleteTask from "./DeleteTask.js";
 
 function TasksRoute({ goal }){
-  //move goal up to App.js from ExistingUserLogin
-  //***********
-  //pass goal down to TasksRoute.js
-  //use goalId to find the goal.
+
   //get the goal's tasks & put them in a state variable.
   //*********** 
   //pass goal.goal down to TaskHeader
@@ -18,8 +15,7 @@ function TasksRoute({ goal }){
   //pass task.id down to DeleteTask
   return(
     <>
-      <h1> You have made it to the /tasks route </h1>
-      <TaskHeader />
+      <TaskHeader goal={goal.goal}/>
       <DisplayTasks />
       <AddTask />
       <CompleteTask />

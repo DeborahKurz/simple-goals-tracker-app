@@ -10,12 +10,9 @@ import ErrorPage from "./ErrorPage.js";
 
 function App() {
   const [userList, setUserList] = useState([]);
-  const [user, setUser] = useState([]); //pass to GoalsRoute so we can find user.username and user.id to find goals
-  //handleGoal passes to GoalsRoute / CreateNewGoal so that /tasks can use goal.id
+  const [user, setUser] = useState([]); 
   const [userGoals, setUserGoals] = useState([]);
-  const [goal, setGoal] = useState([]); // Is the goal that will pass to goal.id. Should setGoal when a goal is clicked on in Display Goals.
-    //setGoal should be passed to DisplayGoals
-    //goal should be passed to TasksRoute
+  const [goal, setGoal] = useState([]); 
 
   useEffect(()=>{
     fetch("http://127.0.0.1:5555/")
@@ -28,7 +25,7 @@ function App() {
 
   const handleUser = (user) => { 
     setUser(user);
-    // setUserGoals(user.goals);
+    setUserGoals(user.goals);
   }
 
   const handleSetGoal = (newGoal) => {
