@@ -13,7 +13,6 @@ function ExistingUserLogin({ handleUser, userList }){
     
     if (foundUser) {
       handleUser(foundUser);
-      console.log("ExistingUserLogin: ", foundUser)
       navigate("/goals");
     } else {
       console.log("User not found");

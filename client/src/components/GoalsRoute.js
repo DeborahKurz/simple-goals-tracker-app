@@ -4,23 +4,13 @@ import GoalsHeader from "./GoalsHeader.js";
 import DisplayGoals from "./DisplayGoals.js";
 import AddGoal from "./AddGoal.js";
 
-function GoalsRoute({ user }){
-  const [ userGoals, setUserGoals ] = useState([])
-  
-  const handleNewGoal = (newGoal) => {
-      setUserGoals([...userGoals, newGoal]);
-  }
-
-  useEffect(()=>{
-    setUserGoals(user.goals);
-  }, [user])
-
+function GoalsRoute({ user, userGoals, handleSetGoal }){
   return(
     <>
       <SignOut />
       <GoalsHeader username={user?.username}/>
-      <DisplayGoals userGoals={userGoals} />
-      <AddGoal userId={user.id} handleNewGoal={handleNewGoal}/>
+      <DisplayGoals handleSetGoal={handleSetGoal} userGoals={userGoals} />
+      <AddGoal userId={user.id} handleSetGoal={handleSetGoal}/>
     </>
   )
 }

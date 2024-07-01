@@ -6,12 +6,16 @@ import CreateNewUser from "./CreateNewUser";
 import GoalsRoute from "./GoalsRoute.js";
 import WelcomePage from "./WelcomePage.js";
 import TasksRoute from "./TasksRoute.js";
-import SignOut from "./SignOut.js";
 import ErrorPage from "./ErrorPage.js";
 
 function App() {
-  const [userList, setUserList] = useState([])
-  const [user, setUser] = useState([]);
+  const [userList, setUserList] = useState([]);
+  const [user, setUser] = useState([]); //pass to GoalsRoute so we can find user.username and user.id to find goals
+  //handleGoal passes to GoalsRoute / CreateNewGoal so that /tasks can use goal.id
+  const [userGoals, setUserGoals] = useState([]);
+  const [goal, setGoal] = useState([]); // Is the goal that will pass to goal.id. Should setGoal when a goal is clicked on in Display Goals.
+    //setGoal should be passed to DisplayGoals
+    //goal should be passed to TasksRoute
 
   useEffect(()=>{
     fetch("http://127.0.0.1:5555/")
@@ -22,9 +26,15 @@ function App() {
     .catch((error) => console.error(error));
   }, [])
 
-  const handleUser = (user) => {
+  const handleUser = (user) => { 
     setUser(user);
+    // setUserGoals(user.goals);
   }
+
+  const handleSetGoal = (newGoal) => {
+    setUserGoals([...userGoals, newGoal]);
+    setGoal(newGoal)
+  };
 
   return (
     <div>
@@ -32,46 +42,15 @@ function App() {
         <Route path="/" element={<WelcomePage /> } /> 
         <Route path="/login" element={<ExistingUserLogin handleUser={handleUser} user={user} userList={userList}/>} /> 
         <Route path="/new" element={<CreateNewUser handleUser={handleUser} userList={userList}/>} /> 
-        <Route path="/goals" element={<GoalsRoute user={user} userList={userList} />} />
-        <Route path="/tasks" element={<TasksRoute />} />
+        <Route path="/goals" element={<GoalsRoute user={user} userGoals={userGoals} handleSetGoal={handleSetGoal} />} />
+        <Route path="/tasks" element={<TasksRoute goal={goal} />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
   );
 }
-
+//user needs the userlist and the ability to set the state username
+//goals needs to know what the user is & have the ability to set the state goal. From this info it can derive what the goals are.
+  //goals should set a app.py goal state variable for tasks route.
+//tasks needs to know what the goal is. From this info it can derive what the tasks are.
 export default App;
-
-
-
-
-
-
-// import React, { useEffect, useState } from "react";
-// import { Outlet } from "react-router-dom";
-
-// function App() {
-//   const [userList, setUserList] = useState([])
-//   const [user, setUser] = useState([]);
-
-//   useEffect(()=>{
-//     fetch("http://127.0.0.1:5555/")
-//     .then(r=>r.json())
-//     .then((users) => {
-//       setUserList(users)
-//     })
-//     .catch((error) => console.error(error));
-//   }, [])
-
-//   const handleUser = (user) => {
-//     setUser(user);
-//   }
-
-//   return (
-//     <div>
-//       <Outlet context={{userList: userList, user: user, handleUser: handleUser}} />
-//     </div>
-//   );
-// }
-
-// export default App;

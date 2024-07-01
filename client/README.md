@@ -1,7 +1,7 @@
 #To Do List:
-1. Make Goal clickable
 
-
+>fromik
+>Keep username and info from dissapearing when refreshing
 >Username Must be atleast 1 character long in CreateNewUser.js
 >Styling
 

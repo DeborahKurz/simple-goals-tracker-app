@@ -1,10 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function DisplayGoals({ userGoals = [] }) {
+function DisplayGoals({ handleSetGoal, userGoals = [] }) {
   const navigate = useNavigate();
 
-  function handleClick(){
+  function handleClick(goal){
+    handleSetGoal(goal.goal)
     navigate("/tasks")
   }
 
@@ -16,12 +17,13 @@ function DisplayGoals({ userGoals = [] }) {
     return (
       <div>
         <h4>Click on a goal to see it's associated tasks:</h4>
-        {userGoals.map((goal) => (
-          <div key={goal.id} onClick={handleClick}>
-            <li>{goal.goal}</li>
-            <br></br>
-          </div>
-        ))}
+        <ul>
+          {userGoals.map((goal) => (
+              <div key={goal.id}>
+                <li onClick={()=> handleClick(goal)}>{goal.goal}</li>
+              </div>
+          ))}
+        </ul>
       </div>
     );
   }
