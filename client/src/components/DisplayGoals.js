@@ -5,7 +5,7 @@ function DisplayGoals({ handleSetGoal, userGoals = [] }) {
   const navigate = useNavigate();
 
   function handleClick(goal){
-    handleSetGoal(goal.goal)
+    handleSetGoal(goal)
     navigate("/tasks")
   }
 

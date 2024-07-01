@@ -1,12 +1,16 @@
 import React from "react";
 
-function DisplayTasks(){
-    //GET request using the goal's id
-    return(
+function DisplayTasks({ goal }){
+    const tasks = goal.tasks;
+    return (
         <div>
-            <h4>Inside DisplayTasks()</h4>
+          <ul>
+            {tasks.map((task, id) => (
+                <li key={id}>{task.task}</li>
+            ))}
+          </ul>
         </div>
-    )
+      );
 }
 
 export default DisplayTasks;
