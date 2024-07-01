@@ -6,6 +6,7 @@ import CompleteTask from "./CompleteTask.js";
 import DeleteTask from "./DeleteTask.js";
 
 function TasksRoute({ goal }){
+  console.log(goal)
 
   //get the goal's tasks & put them in a state variable.
   //*********** 
@@ -15,7 +16,8 @@ function TasksRoute({ goal }){
   //pass task.id down to DeleteTask
   return(
     <>
-      <TaskHeader goal={goal.goal}/>
+      <h5>Tasks that belong to this goal:</h5>
+      <TaskHeader goal={goal}/>
       <DisplayTasks />
       <AddTask />
       <CompleteTask />
