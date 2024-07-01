@@ -1,3 +1,9 @@
+#To Do List:
+1. DisplayGoals -> Pause until can add goals (Then add useEffect?)
+2. AddGoals -> POST reuqest
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

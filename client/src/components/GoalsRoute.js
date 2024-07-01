@@ -6,6 +6,10 @@ import AddGoal from "./AddGoal.js";
 
 function GoalsRoute({ user }){
   const [ userGoals, setUserGoals ] = useState([])
+  
+  const handleNewGoal = (newGoal) => {
+      setUserGoals([...userGoals, newGoal]);
+  }
 
   useEffect(()=>{
     setUserGoals(user.goals);
@@ -14,9 +18,9 @@ function GoalsRoute({ user }){
   return(
     <>
       <SignOut />
-      <GoalsHeader username={user.username}/>
+      <GoalsHeader username={user?.username}/>
       <DisplayGoals userGoals={userGoals} />
-      <AddGoal userId={user.id}/>
+      <AddGoal userId={user.id} handleNewGoal={handleNewGoal}/>
     </>
   )
 }
