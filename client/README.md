@@ -1,6 +1,8 @@
 #To Do List:
-1. DisplayGoals -> Pause until can add goals (Then add useEffect?)
-2. AddGoals -> POST reuqest
+
+
+>Username Must be atleast 1 character long in CreateNewUser.js
+>Styling
 
 
 

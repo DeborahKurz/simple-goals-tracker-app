@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function CreateNewUser({ handleUser, userList }){
-//POST request
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [userStatus, setUserStatus] = useState("");
@@ -12,8 +11,6 @@ function CreateNewUser({ handleUser, userList }){
     const foundUser = userList.find(user => user.username === username);
 
     if (!foundUser) {
-      // handleUser(foundUser);
-
       const configObj ={
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -23,7 +20,6 @@ function CreateNewUser({ handleUser, userList }){
       .then(r=>r.json())
       .then(userObj => {
         handleUser(userObj);
-        // console.log("CreateNewUser: ", userObj)
         navigate("/goals");
       })
       .catch(error=>{

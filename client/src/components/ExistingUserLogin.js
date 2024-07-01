@@ -9,7 +9,7 @@ function ExistingUserLogin({ handleUser, userList }){
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const foundUser = userList.find(user => user.username === username);
+    const foundUser = userList.find(user => user.username.toLowerCase() === username.toLowerCase());
     
     if (foundUser) {
       handleUser(foundUser);
