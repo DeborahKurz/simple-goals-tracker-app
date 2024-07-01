@@ -5,6 +5,7 @@ import ExistingUserLogin from "./ExistingUserLogin.js";
 import CreateNewUser from "./CreateNewUser";
 import GoalsRoute from "./GoalsRoute.js";
 import WelcomePage from "./WelcomePage.js";
+import TasksRoute from "./TasksRoute.js";
 import SignOut from "./SignOut.js";
 import ErrorPage from "./ErrorPage.js";
 
@@ -32,6 +33,7 @@ function App() {
         <Route path="/login" element={<ExistingUserLogin handleUser={handleUser} user={user} userList={userList}/>} /> 
         <Route path="/new" element={<CreateNewUser handleUser={handleUser} userList={userList}/>} /> 
         <Route path="/goals" element={<GoalsRoute user={user} userList={userList} />} />
+        <Route path="/tasks" element={<TasksRoute />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>

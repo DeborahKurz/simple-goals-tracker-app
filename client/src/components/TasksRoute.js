@@ -1,19 +1,19 @@
 import React from "react";
-import TaskHeader from "./TaskHeader.js";
-import DisplayTasks from "./DisplayTasks.js";
-import AddTask from "./AddTask.js";
-import CompleteTask from "./CompleteTask.js";
-import DeleteTask from "./DeleteTask.js";
+// import TaskHeader from "./TaskHeader.js";
+// import DisplayTasks from "./DisplayTasks.js";
+// import AddTask from "./AddTask.js";
+// import CompleteTask from "./CompleteTask.js";
+// import DeleteTask from "./DeleteTask.js";
 
-// >>>>>>>> '/tasks/id' route
 function TasksRoute(){
   return(
     <>
-      <TaskHeader />
+      <h1> You have made it to the /tasks route </h1>
+      {/* <TaskHeader />
       <DisplayTasks />
       <AddTask />
       <CompleteTask />
-      <DeleteTask />
+      <DeleteTask /> */}
     </>
   )
 }

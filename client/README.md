@@ -1,4 +1,5 @@
 #To Do List:
+1. Make Goal clickable
 
 
 >Username Must be atleast 1 character long in CreateNewUser.js

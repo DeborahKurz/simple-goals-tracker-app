@@ -1,7 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function DisplayGoals({ userGoals = [] }) {
-  console.log(userGoals)
+  const navigate = useNavigate();
+
+  function handleClick(){
+    navigate("/tasks")
+  }
 
   if (userGoals.length === 0) {
     return (
@@ -10,8 +15,9 @@ function DisplayGoals({ userGoals = [] }) {
   } else{
     return (
       <div>
+        <h4>Click on a goal to see it's associated tasks:</h4>
         {userGoals.map((goal) => (
-          <div key={goal.id}>
+          <div key={goal.id} onClick={handleClick}>
             <li>{goal.goal}</li>
             <br></br>
           </div>
