@@ -137,12 +137,14 @@ class TaskResource(Resource):
 
     def delete(self,id):
         task = Task.query.filter_by(id=id).first()
-        db.session.delete(task)
-        db.session.commit()
-        return {"message": "Task successfully deleted."}, 200
+        if task:
+            db.session.delete(task)
+            db.session.commit()
+            return {"message": "Task successfully deleted."}, 200
+        else:
+            return {"error": "No task id found."}, 404
 api.add_resource(TaskResource, '/tasks/<int:id>')
 
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
-

@@ -46,8 +46,5 @@ function App() {
     </div>
   );
 }
-//user needs the userlist and the ability to set the state username
-//goals needs to know what the user is & have the ability to set the state goal. From this info it can derive what the goals are.
-  //goals should set a app.py goal state variable for tasks route.
-//tasks needs to know what the goal is. From this info it can derive what the tasks are.
+
 export default App;

@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
+import DeleteTask from "./DeleteTask.js"
 
 function DisplayTasks({ goal }){
-    const tasks = goal.tasks;
+    const [tasks, setTasks] = useState(goal.tasks);
+
+    const handleDelete = (taskId) => {
+        const updateTasks = tasks.filter(task => task.id !== taskId);
+        setTasks(updateTasks);
+    }
+
     return (
         <div>
           <ul>
-            {tasks.map((task, id) => (
-                <li key={id}>{task.task}</li>
+            {tasks.map((task) => (
+                <div key={task.id}>
+                    <li>{task.task}</li>
+                    <DeleteTask taskId={task.id} handleDelete={handleDelete}/>  
+                </div>
             ))}
           </ul>
         </div>
