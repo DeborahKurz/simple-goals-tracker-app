@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import WelcomeHeader from "./WelcomeHeader.js";
 import ListUsers from "./ListUsers.js";
-import CreateNewUser from "./CreateNewUser.js";
+import { CreateNewUser } from "./CreateNewUser.js";
 
 function WelcomePage({ userList, handleUser }){
     console.log(userList)
@@ -19,7 +19,7 @@ function WelcomePage({ userList, handleUser }){
             <br></br>
             <ListUsers userList={userList}/>
             <br></br>
-            <CreateNewUser userList={userList} handleUser={handleUser} />
+            <CreateNewUser handleUser={handleUser} />
         </>
     )
 }
