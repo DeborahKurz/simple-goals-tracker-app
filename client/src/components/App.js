@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import ExistingUserLogin from "./ExistingUserLogin.js";
 import CreateNewUser from "./CreateNewUser";
 
+import NavBar from "./NavBar.js";
 import GoalsView from "./GoalsView.js";
 import WelcomePage from "./WelcomePage.js";
 import TeamView from "./TeamView.js";
@@ -36,6 +37,7 @@ function App() {
 
   return (
     <div>
+      <NavBar />
       <Routes>
         <Route path="/" element={<WelcomePage /> } /> 
 

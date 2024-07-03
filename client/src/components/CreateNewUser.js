@@ -32,14 +32,13 @@ function CreateNewUser({ handleUser, userList }){
 
   return(
     <div>
-      <h2>Create An Account:</h2>
-      <h4>Create a Username to save your goals. (Usernames must be unique and case insensitive).</h4>
+      <h3>Create A New Username:</h3>
+      <h4>(Note: Usernames must be unique and case insensitive)</h4>
       <form onSubmit={handleSubmit}>
         <input type="text" value={username} placeholder={"Username"} onChange={(e)=> setUsername(e.target.value)}></input>
         <br></br>
         <button type="submit">Create Username</button>
         <h3>{userStatus === "Already Used" ? "This username is already taken. Please create a different username." : ""}</h3>
-        <br></br>
       </form>
     </div>
   )
