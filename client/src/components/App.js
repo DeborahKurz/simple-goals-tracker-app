@@ -9,11 +9,10 @@ import ErrorPage from "./ErrorPage.js";
 
 function App() {
   const [userList, setUserList] = useState([]); //all users
+  const [user, setUser] = useState([]);  //runs useEffect after CreateNewUser adds a username
+
 //get all goals.tasks
 //get all tasks.goals
-
-
-  const [user, setUser] = useState([]);  //sets 1 user
   const [userGoals, setUserGoals] = useState([]); //sets 1 user's goals
   const [goal, setGoal] = useState([]);  //sets 1 goal
 
@@ -24,11 +23,12 @@ function App() {
       setUserList(users)
     })
     .catch((error) => console.error(error));
-  }, [])
+  }, [user])
 
   const handleUser = (user) => { 
     setUser(user);
-    setUserGoals(user.goals);
+    // setUserList(user.goals);
+    console.log("App.js handleUser: ", user)
   }
 
   const handleSetGoal = (newGoal) => {
@@ -40,7 +40,7 @@ function App() {
     <div>
       <NavBar />
       <Routes>
-        <Route path="/" element={<WelcomePage userList={userList}/> } />     
+        <Route path="/" element={<WelcomePage userList={userList} handleUser={handleUser}/> } />     
         <Route path="/goals" element={<GoalsView user={user} userGoals={userGoals} handleSetGoal={handleSetGoal} />} />
         <Route path="/team" element={<TeamView goal={goal} />} />
         <Route path="*" element={<ErrorPage />} />

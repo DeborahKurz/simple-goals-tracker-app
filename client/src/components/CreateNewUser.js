@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function CreateNewUser({ handleUser, userList }){
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [userStatus, setUserStatus] = useState("");
 
@@ -20,7 +20,6 @@ function CreateNewUser({ handleUser, userList }){
       .then(r=>r.json())
       .then(userObj => {
         handleUser(userObj);
-        navigate("/goals");
       })
       .catch(error=>{
         console.error('Error: ', error);
