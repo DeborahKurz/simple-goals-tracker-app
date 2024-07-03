@@ -4,7 +4,7 @@ import GoalsHeader from "./GoalsHeader.js";
 import DisplayGoals from "./DisplayGoals.js";
 import AddGoal from "./AddGoal.js";
 
-function GoalsRoute({ user, userGoals, handleSetGoal }){
+function GoalsView({ user, userGoals, handleSetGoal }){
   return(
     <>
       <SignOut />
@@ -15,4 +15,4 @@ function GoalsRoute({ user, userGoals, handleSetGoal }){
   )
 }
 
-export default GoalsRoute
+export default GoalsView

@@ -1,8 +1,8 @@
 import App from "./components/App.js";
 import ExistingUserLogin from "./components/ExistingUserLogin.js";
 import CreateNewUser from "./components/CreateNewUser.js";
-import GoalsRoute from "./components/GoalsRoute.js";
-import TasksRoute from "./components/TasksRoute.js";
+import GoalsRoute from "./components/GoalsView.js";
+import TeamView from "./components/TeamView.js";
 import WelcomePage from "./components/WelcomePage.js";
 
 const routes = [
@@ -28,8 +28,8 @@ const routes = [
                 element: <GoalsRoute />,
             },
             {
-                path: "/tasks",
-                element: <TasksRoute />,
+                path: "/team",
+                element: <TeamView />,
             }
         ]
     },

@@ -42,8 +42,7 @@ def create_goals(num_goals):
     users = User.query.all()
     
     for _ in range(num_goals):
-        user = rc(users)
-        goal = Goal(goal=fake.sentence(), user_id=user.id)
+        goal = Goal(goal=fake.sentence())
         goals.append(goal)
     return goals
 
@@ -52,11 +51,13 @@ def create_tasks(num_tasks):
     fake = Faker()
 
     goals = Goal.query.all()
+    users = User.query.all()
 
     for _ in range(num_tasks):
         goal = rc(goals)
+        user = rc(users)
         is_completed = fake.boolean(chance_of_getting_true=50)
-        task = Task(task=fake.text(), completed=is_completed, goals_id=goal.id)
+        task = Task(task=fake.text(), completed=is_completed, goals_id=goal.id, users_id=user.id)
         tasks.append(task)
     
     return tasks

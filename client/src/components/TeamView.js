@@ -4,11 +4,9 @@ import TaskHeader from "./TaskHeader.js";
 import DisplayTasks from "./DisplayTasks.js";
 import AddTask from "./AddTask.js";
 import CompleteTask from "./CompleteTask.js";
-import DeleteTask from "./DeleteTask.js";
 
-function TasksRoute({ goal }){
+function TeamView({ goal }){
 
-  //pass goal.id & task.id down to AddTask
   return(
     <>
       <SignOut />
@@ -17,9 +15,8 @@ function TasksRoute({ goal }){
       <DisplayTasks goal={goal}/>
       <AddTask />
       <CompleteTask />
-      {/* <DeleteTask  goalId={goal.id}/> */}
     </>
   )
 }
 
-export default TasksRoute
+export default TeamView

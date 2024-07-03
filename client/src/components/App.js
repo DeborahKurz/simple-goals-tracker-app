@@ -3,9 +3,10 @@ import { Routes, Route } from "react-router-dom";
 
 import ExistingUserLogin from "./ExistingUserLogin.js";
 import CreateNewUser from "./CreateNewUser";
-import GoalsRoute from "./GoalsRoute.js";
+
+import GoalsView from "./GoalsView.js";
 import WelcomePage from "./WelcomePage.js";
-import TasksRoute from "./TasksRoute.js";
+import TeamView from "./TeamView.js";
 import ErrorPage from "./ErrorPage.js";
 
 function App() {
@@ -37,10 +38,12 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<WelcomePage /> } /> 
+
         <Route path="/login" element={<ExistingUserLogin handleUser={handleUser} user={user} userList={userList}/>} /> 
         <Route path="/new" element={<CreateNewUser handleUser={handleUser} userList={userList}/>} /> 
-        <Route path="/goals" element={<GoalsRoute user={user} userGoals={userGoals} handleSetGoal={handleSetGoal} />} />
-        <Route path="/tasks" element={<TasksRoute goal={goal} />} />
+        
+        <Route path="/goals" element={<GoalsView user={user} userGoals={userGoals} handleSetGoal={handleSetGoal} />} />
+        <Route path="/team" element={<TeamView goal={goal} />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>

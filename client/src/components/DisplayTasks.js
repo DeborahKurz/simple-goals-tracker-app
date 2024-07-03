@@ -3,6 +3,7 @@ import DeleteTask from "./DeleteTask.js"
 
 function DisplayTasks({ goal }){
     const [tasks, setTasks] = useState(goal.tasks);
+    console.log(tasks)
 
     const handleDelete = (taskId) => {
         const updateTasks = tasks.filter(task => task.id !== taskId);

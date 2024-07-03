@@ -45,9 +45,10 @@ class GoalResource(Resource):
             user = User.query.filter_by(id=id).first()
             if not user:
                 return {"error": "User could not be found"}, 404
-            
-            goals = Goal.query.filter_by(user_id=user.id).all()
-            if len(goals) == 0:
+            #query all tasks
+            #Then query all task associated with the goal task.goals_id
+            tasks = Task.query.filter_by(users_id=user.id).all()
+            if len(tasks) == 0:
                 return {"error": "Please add a goal for this user"}, 404
 
             response_dict_list = [g.to_dict() for g in goals]
@@ -140,9 +141,23 @@ class TaskResource(Resource):
         if task:
             db.session.delete(task)
             db.session.commit()
-            return {"message": "Task successfully deleted."}, 200
+            
+            response_dict = {"message": "Task successfully deleted."}
+            response = make_response(
+                response_dict,
+                204
+            )
+            return response
         else:
-            return {"error": "No task id found."}, 404
+            response_dict = {
+                {"error": "No task found."}
+            }
+
+            response = make_response(
+                jsonify(response_dict),
+                404
+            )
+            return response
 api.add_resource(TaskResource, '/tasks/<int:id>')
 
 
