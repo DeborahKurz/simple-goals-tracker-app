@@ -1,9 +1,7 @@
 from sqlalchemy_serializer import SerializerMixin
 from sqlalchemy.ext.associationproxy import association_proxy
-
 from config import db
 
-# Models go here!
 class User(db.Model, SerializerMixin):
     __tablename__='users'
 
@@ -12,7 +10,12 @@ class User(db.Model, SerializerMixin):
 
     tasks = db.relationship('Task', back_populates='user', cascade='all, delete-orphan')
 
+    goals = association_proxy('tasks', 'goal', creator=lambda goal_obj: Task(goal=goal_obj))
+
     serialize_rules = ('-tasks.user',)
+
+    def __repr__(self):
+        return f'<User {self.id}, {self.username}>'
 
 
 class Task(db.Model, SerializerMixin):
@@ -24,10 +27,13 @@ class Task(db.Model, SerializerMixin):
     users_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     goals_id = db.Column(db.Integer, db.ForeignKey('goals.id'))
 
-    goal = db.relationship('Goal', back_populates='tasks')
     user = db.relationship('User', back_populates='tasks')
+    goal = db.relationship('Goal', back_populates='tasks')
 
-    serialize_rules = ('-goal.tasks', '-user.tasks')
+    serialize_rules = ('-user.tasks', '-goal.tasks')
+
+    def __repr__(self):
+        return f'<Task {self.id}, {self.task}, {self.task}, {self.completed}, {self.user.username} {self.goal.goal}>'
 
 
 class Goal(db.Model,SerializerMixin):
@@ -38,4 +44,10 @@ class Goal(db.Model,SerializerMixin):
 
     tasks = db.relationship('Task', back_populates='goal', cascade='all, delete-orphan')
 
+    users = association_proxy('tasks', 'user', creator=lambda user_obj: Task(user=user_obj))
+
     serialize_rules = ('-tasks.goal',)
+
+    def __repr__(self):
+        return f'<Goal {self.id}, {self.goal}>'
+    
