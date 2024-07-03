@@ -23,7 +23,7 @@ class UserResource(Resource):
                 return {"error": "Username required. Must be at least 1 character long."}, 400
             existing_user = User.query.filter_by(username=username).first()
             if existing_user:
-                return {"error": "Please choose a differnet username"}, 400
+                return {"error": "Please choose a different username"}, 400
             else:
                 user = User(username=username)
                 db.session.add(user)

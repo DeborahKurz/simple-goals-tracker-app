@@ -19,7 +19,7 @@ function WelcomePage({ userList, handleUser }){
             <br></br>
             <ListUsers userList={userList}/>
             <br></br>
-            <CreateNewUser handleUser={handleUser} />
+            <CreateNewUser handleUser={handleUser} userList={userList}/>
         </>
     )
 }
