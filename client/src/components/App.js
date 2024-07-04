@@ -11,11 +11,8 @@ function App() {
   const [userList, setUserList] = useState([]); //all users
   const [user, setUser] = useState([]);  //runs useEffect after CreateNewUser adds a username
   const [allGoals, setAllGoals] = useState([]);
-
-//get all goals.tasks
-//get all tasks.goals
-  // const [userGoals, setUserGoals] = useState([]); //sets 1 user's goals
-  // const [goal, setGoal] = useState([]);  //sets 1 goal
+  const [allTasks, setAllTasks] = useState([])
+  const [task, setTask] = useState([]);
 
   useEffect(()=>{
     fetch("http://127.0.0.1:5555/")
@@ -30,19 +27,27 @@ function App() {
     .then((goals) => {
       setAllGoals(goals)
     })
-  }, [user])
 
-  console.log("allGoals ", allGoals)
+    fetch("http://127.0.0.1:5555/tasks")
+    .then(r=>r.json())
+    .then((tasks) => {
+      setAllTasks(tasks)
+    })
+  }, [user, task])
+
+  console.log("allTasks ", allTasks)
 
   const handleUser = (user) => { 
     setUser(user);
-    // setUserList(user.goals);
-    console.log("App.js handleUser: ", user)
   }
 
   const handleGoal = (goal) => {
     setAllGoals([...allGoals, goal]);
-    // setGoal(newGoal)
+  };
+
+  const handleTask = (task) => {
+    setAllTasks([...allTasks, task])
+    setTask(task)
   };
 
   return (
@@ -50,7 +55,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<WelcomePage userList={userList} handleUser={handleUser}/> } />  
-        <Route path="/goals" element={<GoalsView allGoals={allGoals} handleGoal={handleGoal} userList={userList}/>} />   
+        <Route path="/goals" element={<GoalsView allGoals={allGoals} handleGoal={handleGoal} userList={userList} handleTask={handleTask}/>} />   
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
@@ -59,5 +64,7 @@ function App() {
 
 export default App;
 
-        // {/* <Route path="/goals" element={<GoalsView user={user} userGoals={userGoals} handleSetGoal={handleSetGoal} />} /> */}
-        // {/* <Route path="/team" element={<TeamView goal={goal} />} /> */}
+  // {/* <Route path="/goals" element={<GoalsView user={user} userGoals={userGoals} handleSetGoal={handleSetGoal} />} /> */}
+  // {/* <Route path="/team" element={<TeamView goal={goal} />} /> */}
+    // const [userGoals, setUserGoals] = useState([]); //sets 1 user's goals
+  // const [goal, setGoal] = useState([]);  //sets 1 goal

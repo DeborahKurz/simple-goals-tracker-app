@@ -3,15 +3,13 @@ import { useNavigate } from "react-router-dom";
 import AddGoal from "./AddGoal.js";
 import AddTask from "./AddTask.js";
 
-function DisplayGoals({ allGoals, handleGoal, userList }) {
+function DisplayGoals({ allGoals, handleGoal, userList, handleTask }) {
   const navigate = useNavigate();
   const [displayAddTask, setDisplayAddTask] = useState("NoTask")
   // const [userId, setUserId] = useState(null)
 
-  function handleTask(){
-    // console.log("Inside handleTask", goalId)
+  function handleTaskForm(){
     displayAddTask === "NoTask" ? setDisplayAddTask("AddTask") : setDisplayAddTask("NoTask")
-    //POST to tasks with goalId
   }
 
   function handleDeleteTask(taskId){
@@ -26,7 +24,7 @@ function DisplayGoals({ allGoals, handleGoal, userList }) {
 
   if (allGoals.length === 0) {
     return (
-      <div>To get started, please add a new goal below.</div>
+      <div>To get started, please add a new goal.</div>
     )
   } else {
     return (
@@ -45,7 +43,7 @@ function DisplayGoals({ allGoals, handleGoal, userList }) {
                   </div>
                 ))}
                 <br></br>
-                {displayAddTask === "AddTask" ? <AddTask handleTask={handleTask} goalId={goal.id} userList={userList}/> : <button onClick={() => handleTask(goal.id)}>Add A New Task</button>}
+                {displayAddTask === "AddTask" ? <AddTask handleTask={handleTask} handleTaskForm={handleTaskForm} goalId={goal.id} userList={userList} /> : <button onClick={() => handleTaskForm(goal.id)}>Add A New Task</button>}
               </div>
           ))}
         </ul>

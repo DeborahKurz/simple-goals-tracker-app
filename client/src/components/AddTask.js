@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function AddTask({ handleTask, goalId, userList}){
+function AddTask({ handleTask, handleTaskForm, goalId, userList}){
     const [newTask, setNewTask] = useState("");
     const [user, setUser] = useState("");
     
@@ -29,6 +29,7 @@ function AddTask({ handleTask, goalId, userList}){
         .then(r=>r.json())
         .then(taskObj => {
             handleTask(taskObj);
+            handleTaskForm();
             setNewTask("");
         })
         .catch(error => console.error('Error:', error));
@@ -59,23 +60,3 @@ function AddTask({ handleTask, goalId, userList}){
 }
 
 export default AddTask
-
-
-// import React from "react";
-
-// function AddTask(){
-// //POST request
-//     return(
-//         <div>
-//             <h2>Add A New Task</h2>
-//             <form>
-//                 <input type="text" placeholder={"The Next Task To Do"}></input>
-//                 <br></br>
-//                 <button>Add My Task</button>
-//                 <br></br>
-//                 </form>
-//         </div>
-//     )
-// }
-
-// export default AddTask;

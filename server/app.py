@@ -76,18 +76,18 @@ api.add_resource(GoalResource, '/goals')
 
 
 class TaskResource(Resource):
-    def get(self,id):
+    def get(self):
         try:
-            goal = Goal.query.filter_by(id=id).first()
-            if not goal:
-                return {"error": "Goal could not be found"}, 404
-            tasks = Task.query.filter_by(goals_id=goal.id).all()
+            tasks = Task.query.all()
+
             if len(tasks) == 0:
                 return {"error": "Please add a task that is at least 1 character long"}, 404
+            
             response_dict_list = [t.to_dict() for t in tasks]
             return response_dict_list, 200
+        
         except Exception as e:
-            return {"error": f"Error: {e}"} 
+            return {"error": f"Error: {e}"}, 400
              
     def post(self):
         try:
