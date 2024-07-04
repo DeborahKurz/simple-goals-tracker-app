@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
+//Remove username from input
 export const CreateNewUser = ({handleUser, userList}) => {
   const [refreshPage, setRefreshPage] = useState(false);
   
@@ -22,11 +23,12 @@ export const CreateNewUser = ({handleUser, userList}) => {
       username: "",
     },
     validationSchema: formSchema,
+
     onSubmit: async (values, { setErrors, resetForm }) => {
       const foundUser = userList.find(user => user.username === values.username);
 
       if (foundUser){
-        setErrors({"username": "Username Already Exists"});
+        setErrors({"username": "This username already exists. Please choose a different one."});
         return;
       }
 
@@ -65,4 +67,3 @@ export const CreateNewUser = ({handleUser, userList}) => {
     </div>
   )
 }
-

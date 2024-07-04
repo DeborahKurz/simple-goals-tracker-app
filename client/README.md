@@ -1,8 +1,8 @@
 #To Do List:
 
->fromik
->Keep username and info from dissapearing when refreshing
->Username Must be atleast 1 character long in CreateNewUser.js
+>fromik -> clear inputs when done with them.
+>allGoals (get & set State)
+
 >Styling
 
 

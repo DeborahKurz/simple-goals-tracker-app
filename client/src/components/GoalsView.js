@@ -1,16 +1,22 @@
 import React from "react";
-import SignOut from "./SignOut.js";
-import GoalsHeader from "./GoalsHeader.js";
+// import SignOut from "./SignOut.js";
+// import GoalsHeader from "./GoalsHeader.js";
 import DisplayGoals from "./DisplayGoals.js";
 import AddGoal from "./AddGoal.js";
 
-function GoalsView({ user, userGoals, handleSetGoal }){
+function GoalsView({ allGoals, handleGoal }){
+//STRUCTURE:
+//h1
+//CreateNewGoal
+//DisplayGoals
+
   return(
     <>
-      <SignOut />
+      <h1>Goals View</h1>
+      {/* <SignOut />
       <GoalsHeader username={user?.username}/>
       <DisplayGoals handleSetGoal={handleSetGoal} userGoals={userGoals} />
-      <AddGoal userId={user.id} handleSetGoal={handleSetGoal}/>
+      <AddGoal userId={user.id} handleSetGoal={handleSetGoal}/> */}
     </>
   )
 }

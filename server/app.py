@@ -40,21 +40,29 @@ class UserResource(Resource):
 api.add_resource(UserResource, '/')
 
 class GoalResource(Resource):
-    def get(self, id):
+    def get(self):
         try:
-            user = User.query.filter_by(id=id).first()
-            if not user:
-                return {"error": "User could not be found"}, 404
-            #query all tasks
-            #Then query all task associated with the goal task.goals_id
-            tasks = Task.query.filter_by(users_id=user.id).all()
-            if len(tasks) == 0:
-                return {"error": "Please add a goal for this user"}, 404
+            goals = Goal.query.all()
 
             response_dict_list = [g.to_dict() for g in goals]
-            return response_dict_list, 200     
+
+            return response_dict_list, 200
+        
         except Exception as e:
             return {"error": f"Error: {e}"}, 400
+        #     user = User.query.filter_by(id=id).first()
+        #     if not user:
+        #         return {"error": "User could not be found"}, 404
+        #     #query all tasks
+        #     #Then query all task associated with the goal task.goals_id
+        #     tasks = Task.query.filter_by(users_id=user.id).all()
+        #     if len(tasks) == 0:
+        #         return {"error": "Please add a goal for this user"}, 404
+
+        #     response_dict_list = [g.to_dict() for g in goals]
+        #     return response_dict_list, 200     
+        # except Exception as e:
+        #     return {"error": f"Error: {e}"}, 400
         
     def post(self, id):
         try:
@@ -79,7 +87,7 @@ class GoalResource(Resource):
             return response
         except Exception as e:
             return {"error": f"Error: {e}"}
-api.add_resource(GoalResource, '/goals/<int:id>')
+api.add_resource(GoalResource, '/goals')
 
 class TaskResource(Resource):
     def get(self,id):

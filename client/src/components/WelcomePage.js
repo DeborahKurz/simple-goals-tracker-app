@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import WelcomeHeader from "./WelcomeHeader.js";
 import ListUsers from "./ListUsers.js";
 import { CreateNewUser } from "./CreateNewUser.js";
 
 function WelcomePage({ userList, handleUser }){
-    console.log(userList)
-  
     return(
         <>    
-            <WelcomeHeader />
+            <h1>Welcome</h1>
             <h3>Instructions:</h3>
             <h4>Get started by creating a username for yourself (each username needs to be unique).</h4>
             <h4>Then navigate to the "Goals View" using the navigation bar above. Here you will be able to see all the goals you and your team are working towards, and you can create new goals and tasks.</h4> 
