@@ -2,12 +2,16 @@ import React, { useState } from "react";
 
 function AddTask({ handleTask, handleTaskForm, goalId, userList}){
     const [newTask, setNewTask] = useState("");
+    const [userInput, setUserInput] = useState("");
     const [user, setUser] = useState("");
     
     function findUser(findThisUser){
-        const foundUser = userList.find(user => findThisUser === user.username);
-        const userId = foundUser.id;
-        setUser(userId)
+        const foundUser = userList.find(user => findThisUser.toLowerCase() === user.username.toLowerCase());
+        if(foundUser) {
+            setUser(foundUser.id)
+        } else {
+            setUser(null)
+        }
     }
 
     function handleSubmit(e){
@@ -47,9 +51,12 @@ function AddTask({ handleTask, handleTaskForm, goalId, userList}){
                 />
                 <input 
                     type="text" 
-                    value={userList.find(u=> u.id === user)?.username || ""}
+                    value={userInput}
                     placeholder = "User"
-                    onChange={(e)=> findUser(e.target.value)}
+                    onChange={(e) => {
+                        setUserInput(e.target.value);
+                        findUser(e.target.value);
+                    }}
                 />
                 <br />
                 <button type="submit">Add Task</button>
