@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AddGoal from "./AddGoal.js";
+import AddTask from "./AddTask.js";
 
-function DisplayGoals({ allGoals, handleGoal }) {
+function DisplayGoals({ allGoals, handleGoal, userList }) {
   const navigate = useNavigate();
+  const [displayAddTask, setDisplayAddTask] = useState("NoTask")
+  // const [userId, setUserId] = useState(null)
 
-  function handleAddTask(goalId){
-    console.log("Inside handleAddTask", goalId)
+  function handleTask(){
+    // console.log("Inside handleTask", goalId)
+    displayAddTask === "NoTask" ? setDisplayAddTask("AddTask") : setDisplayAddTask("NoTask")
     //POST to tasks with goalId
   }
 
@@ -41,7 +45,7 @@ function DisplayGoals({ allGoals, handleGoal }) {
                   </div>
                 ))}
                 <br></br>
-                <button onClick={() => handleAddTask(goal.id)}>Add Task</button>
+                {displayAddTask === "AddTask" ? <AddTask handleTask={handleTask} goalId={goal.id} userList={userList}/> : <button onClick={() => handleTask(goal.id)}>Add A New Task</button>}
               </div>
           ))}
         </ul>
@@ -52,10 +56,11 @@ function DisplayGoals({ allGoals, handleGoal }) {
 
 export default DisplayGoals
 
+  // {/* <button onClick={() => handleTask(goal.id)}>Add Task</button> */}
   // {/* <li onClick={()=> handleClick(goal)}>{goal.goal}</li> */}
   // {/* <button onClick={() => handleAddGoal()}>Add Goal</button> */}
   // {/* {displayAddGoal === "AddGoal" ? <AddGoal handleGoal={handleGoal}/> :  <br></br>} */}
-  // const [displayAddGoal, setDisplayAddGoal] = useState("NoGoal")
+
 
   // function handleAddGoal(){
   //   console.log("Inside handleAddGoal")

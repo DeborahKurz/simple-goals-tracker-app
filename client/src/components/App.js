@@ -50,7 +50,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<WelcomePage userList={userList} handleUser={handleUser}/> } />  
-        <Route path="/goals" element={<GoalsView allGoals={allGoals} handleGoal={handleGoal}/>} />   
+        <Route path="/goals" element={<GoalsView allGoals={allGoals} handleGoal={handleGoal} userList={userList}/>} />   
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>

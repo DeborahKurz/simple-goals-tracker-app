@@ -2,7 +2,7 @@ import React from "react";
 import DisplayGoals from "./DisplayGoals.js";
 import AddGoal from "./AddGoal.js";
 
-function GoalsView({ allGoals, handleGoal }){
+function GoalsView({ allGoals, handleGoal, userList }){
 //STRUCTURE:
 //h1
 //AddGoal
@@ -14,7 +14,7 @@ function GoalsView({ allGoals, handleGoal }){
     <>
       <h1>Goals View</h1>
 
-      <DisplayGoals allGoals={allGoals} handleGoal={handleGoal}/>
+      <DisplayGoals allGoals={allGoals} handleGoal={handleGoal} userList={userList}/>
     </>
   )
 }

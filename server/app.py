@@ -89,16 +89,25 @@ class TaskResource(Resource):
         except Exception as e:
             return {"error": f"Error: {e}"} 
              
-    def post(self,id):
+    def post(self):
         try:
             data = request.get_json()
             task = data.get('task')
             if not task:
                 return {"erorr": "Task must be at least 1 character long."}, 400
-            goal = Goal.query.filter_by(id=id).first()
+
+            goals_id = data.get('goals_id')
+            users_id = data.get('users_id')
+
+            goal = Goal.query.filter_by(id=goals_id).first()
             if not goal:
                 return {"error": "No goal found."}, 404
-            new_task = Task(task=task, completed=False, goals_id=id)
+            
+            user = User.query.filter_by(id=users_id).first()
+            if not user:
+                return {"error":"No user found."}, 404
+            
+            new_task = Task(task=task, completed=False, goals_id=goal.id, users_id=user.id)
 
             db.session.add(new_task)
             db.session.commit()
@@ -110,8 +119,10 @@ class TaskResource(Resource):
             )
             return response
         except Exception as e:
-            return {"error": f"Error: {e}"}
+            return {"error": f"Error: {e}"}     
+api.add_resource(TaskResource, '/tasks')
         
+class TaskByIdResource(Resource):
     def patch(self,id):
         task = Task.query.get(id)
         if task:
@@ -152,7 +163,7 @@ class TaskResource(Resource):
                 404
             )
             return response
-api.add_resource(TaskResource, '/tasks/<int:id>')
+api.add_resource(TaskByIdResource, '/tasks/<int:id>')
 
 
 if __name__ == '__main__':
