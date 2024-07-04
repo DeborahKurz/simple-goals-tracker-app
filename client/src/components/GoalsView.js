@@ -7,18 +7,24 @@ import AddGoal from "./AddGoal.js";
 function GoalsView({ allGoals, handleGoal }){
 //STRUCTURE:
 //h1
-//CreateNewGoal
+//AddGoal
 //DisplayGoals
+
+  console.log(allGoals)
 
   return(
     <>
       <h1>Goals View</h1>
-      {/* <SignOut />
-      <GoalsHeader username={user?.username}/>
-      <DisplayGoals handleSetGoal={handleSetGoal} userGoals={userGoals} />
-      <AddGoal userId={user.id} handleSetGoal={handleSetGoal}/> */}
+
+      <DisplayGoals allGoals={allGoals} handleGoal={handleGoal}/>
     </>
   )
 }
 
 export default GoalsView
+
+
+    // {/* <SignOut />
+    // <GoalsHeader username={user?.username}/>
+    // <DisplayGoals handleSetGoal={handleSetGoal} userGoals={userGoals} />
+    // <AddGoal userId={user.id} handleSetGoal={handleSetGoal}/> */}

@@ -1,26 +1,32 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-function DisplayGoals({ handleSetGoal, userGoals = [] }) {
+function DisplayGoals({ allGoals, handleGoal }) {
   const navigate = useNavigate();
 
-  function handleClick(goal){
-    handleSetGoal(goal)
-    navigate("/tasks")
+  function handleClickUser(){
+    navigate("/team");
   }
 
-  if (userGoals.length === 0) {
+  if (allGoals.length === 0) {
     return (
       <div>To get started, please add a new goal below.</div>
     )
-  } else{
+  } else {
     return (
       <div>
         <h4>Click on a goal to see it's associated tasks:</h4>
         <ul>
-          {userGoals.map((goal) => (
+          {allGoals.map((goal) => (
               <div key={goal.id}>
-                <li onClick={()=> handleClick(goal)}>{goal.goal}</li>
+                <h2>{goal.goal}</h2>
+                {goal.tasks.map((aTask, index) => (
+                  <div key={index}>
+                    <li>{aTask.task}</li>
+                    <button onClick={()=> handleClickUser()}>{aTask.user.username}</button>
+                    <button>Delete</button>
+                  </div>
+                ))}
               </div>
           ))}
         </ul>
@@ -30,3 +36,5 @@ function DisplayGoals({ handleSetGoal, userGoals = [] }) {
 }
 
 export default DisplayGoals
+
+  // {/* <li onClick={()=> handleClick(goal)}>{goal.goal}</li> */}
