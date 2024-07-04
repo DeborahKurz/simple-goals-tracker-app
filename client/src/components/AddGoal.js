@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function AddGoal({ userId, handleSetGoal }){
+function AddGoal({ handleGoal }){
     const [newGoal, setNewGoal] = useState("");
 
     function handleSubmit(e){
@@ -10,16 +10,15 @@ function AddGoal({ userId, handleSetGoal }){
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(
                 {
-                    goal: newGoal,
-                    user_id: userId
+                    goal: newGoal
                 }
             )
         }
-        const url = `http://localhost:5555/goals/${userId}`
+        const url = `http://localhost:5555/goals`
         fetch(url, configObj)
         .then(r=>r.json())
         .then(goalObj => {
-            handleSetGoal(goalObj);
+            handleGoal(goalObj);
             setNewGoal("");
         })
         

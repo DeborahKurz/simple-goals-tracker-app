@@ -51,8 +51,6 @@ function App() {
       <Routes>
         <Route path="/" element={<WelcomePage userList={userList} handleUser={handleUser}/> } />  
         <Route path="/goals" element={<GoalsView allGoals={allGoals} handleGoal={handleGoal}/>} />   
-        {/* <Route path="/goals" element={<GoalsView user={user} userGoals={userGoals} handleSetGoal={handleSetGoal} />} /> */}
-        {/* <Route path="/team" element={<TeamView goal={goal} />} /> */}
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
@@ -60,3 +58,6 @@ function App() {
 }
 
 export default App;
+
+        // {/* <Route path="/goals" element={<GoalsView user={user} userGoals={userGoals} handleSetGoal={handleSetGoal} />} /> */}
+        // {/* <Route path="/team" element={<TeamView goal={goal} />} /> */}

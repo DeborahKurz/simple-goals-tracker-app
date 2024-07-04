@@ -1,13 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AddGoal from "./AddGoal.js";
 
 function DisplayGoals({ allGoals, handleGoal }) {
   const navigate = useNavigate();
-
-  function handleAddGoal(){
-    console.log("Inside handleAddGoal")
-    //POST to goals no id needed
-  }
 
   function handleAddTask(goalId){
     console.log("Inside handleAddTask", goalId)
@@ -32,7 +28,7 @@ function DisplayGoals({ allGoals, handleGoal }) {
     return (
       <div>
         <h5>Click on a username to be taken to the Team View. Please complete tasks in Team View.</h5>
-        <button onClick={() => handleAddGoal()}>Add Goal</button>
+        <AddGoal handleGoal={handleGoal}/>
         <ul>
           {allGoals.map((goal) => (
               <div key={goal.id}>
@@ -57,3 +53,16 @@ function DisplayGoals({ allGoals, handleGoal }) {
 export default DisplayGoals
 
   // {/* <li onClick={()=> handleClick(goal)}>{goal.goal}</li> */}
+  // {/* <button onClick={() => handleAddGoal()}>Add Goal</button> */}
+  // {/* {displayAddGoal === "AddGoal" ? <AddGoal handleGoal={handleGoal}/> :  <br></br>} */}
+  // const [displayAddGoal, setDisplayAddGoal] = useState("NoGoal")
+
+  // function handleAddGoal(){
+  //   console.log("Inside handleAddGoal")
+  //   if(displayAddGoal === "NoGoal"){
+  //     setDisplayAddGoal("AddGoal")
+  //   } else {
+  //     setDisplayAddGoal("NoGoal")
+  //   }
+  //   //POST to goals no id needed
+  // }

@@ -39,6 +39,7 @@ class UserResource(Resource):
             return {"error": f"Error: {e}"}, 400
 api.add_resource(UserResource, '/')
 
+
 class GoalResource(Resource):
     def get(self):
         try:
@@ -50,44 +51,29 @@ class GoalResource(Resource):
         
         except Exception as e:
             return {"error": f"Error: {e}"}, 400
-        #     user = User.query.filter_by(id=id).first()
-        #     if not user:
-        #         return {"error": "User could not be found"}, 404
-        #     #query all tasks
-        #     #Then query all task associated with the goal task.goals_id
-        #     tasks = Task.query.filter_by(users_id=user.id).all()
-        #     if len(tasks) == 0:
-        #         return {"error": "Please add a goal for this user"}, 404
 
-        #     response_dict_list = [g.to_dict() for g in goals]
-        #     return response_dict_list, 200     
-        # except Exception as e:
-        #     return {"error": f"Error: {e}"}, 400
-        
-    def post(self, id):
+    def post(self):
         try:
             data = request.get_json()
-            goal = data.get('goal') 
-            if not goal:
+            goal_text = data.get('goal') 
+
+            if not goal_text:
                 return {"error": "Goal must be at least 1 character long."}, 400
-            
-            user = User.query.filter_by(id=id).first()
-            if not user:
-                return {"error": "No user found."}, 404
-            
-            goal = Goal(user_id=id, goal=goal)
-            db.session.add(goal)
+
+            new_goal = Goal(goal=goal_text)
+            db.session.add(new_goal)
             db.session.commit()
 
-            response_dict = goal.to_dict()
+            response_dict = new_goal.to_dict()
             response = make_response(
                 jsonify(response_dict),
                 201
             )
             return response
         except Exception as e:
-            return {"error": f"Error: {e}"}
+            return {"error": f"Error: {e}"}, 500
 api.add_resource(GoalResource, '/goals')
+
 
 class TaskResource(Resource):
     def get(self,id):
