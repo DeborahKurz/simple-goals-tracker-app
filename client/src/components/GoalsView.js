@@ -1,21 +1,50 @@
-import React from "react";
-import DisplayGoals from "./DisplayGoals.js";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AddGoal from "./AddGoal.js";
+import AddTask from "./AddTask.js";
+import DeleteTask from "./DeleteTask.js";
 
-function GoalsView({ allGoals, handleGoal, userList, handleTask, setAllGoals }){
-  return(
-    <>
-      <h1>Goals View</h1>
+function DisplayGoals({ allGoals, handleGoal, userList, handleTask, setAllGoals}) {
+  const navigate = useNavigate();
+  const [displayAddTask, setDisplayAddTask] = useState("NoTask")
 
-      <DisplayGoals allGoals={allGoals} handleGoal={handleGoal} userList={userList} handleTask={handleTask} setAllGoals={setAllGoals}/>
-    </>
-  )
+  function handleTaskForm(){
+    displayAddTask === "NoTask" ? setDisplayAddTask("AddTask") : setDisplayAddTask("NoTask")
+  }
+
+  function handleClickUser(){
+    navigate("/team");
+  }
+
+
+  if (allGoals.length === 0) {
+    return (
+      <div>To get started, please add a new goal.</div>
+    )
+  } else {
+    return (
+      <div>
+        <h5>Click on a username to be taken to the Team View. Please complete tasks in Team View.</h5>
+        <AddGoal handleGoal={handleGoal}/>
+        <ul>
+          {allGoals.map((goal) => (
+              <div key={goal.id}>
+                <h2>{goal.goal}</h2>
+                {goal.tasks.map((aTask, index) => (
+                  <div key={index}>
+                    <li>{aTask.task}</li>
+                    <button onClick={()=> handleClickUser()}>Task Owner: {aTask.user.username}</button>
+                    <DeleteTask taskId={aTask.id} allGoals={allGoals} setAllGoals={setAllGoals}/>
+                  </div>
+                ))}
+                <br></br>
+                {displayAddTask === "AddTask" ? <AddTask handleTask={handleTask} handleTaskForm={handleTaskForm} goalId={goal.id} userList={userList} /> : <button onClick={() => handleTaskForm(goal.id)}>Add A New Task</button>}
+              </div>
+          ))}
+        </ul>
+      </div>
+    );
+  }
 }
 
-export default GoalsView
-
-
-    // {/* <SignOut />
-    // <GoalsHeader username={user?.username}/>
-    // <DisplayGoals handleSetGoal={handleSetGoal} userGoals={userGoals} />
-    // <AddGoal userId={user.id} handleSetGoal={handleSetGoal}/> */}
+export default DisplayGoals
