@@ -1,22 +1,56 @@
 import React, { useState } from "react";
-import SignOut from "./SignOut.js";
-import TaskHeader from "./TaskHeader.js";
+
 // import DisplayTasks from "./DisplayTasks.js";
+
+// import CompleteTask from "./CompleteTask.js";
+import { useNavigate } from "react-router-dom";
 import AddTask from "./AddTask.js";
-import CompleteTask from "./CompleteTask.js";
+import DeleteTask from "./DeleteTask.js";
 
-function TeamView({ goal }){
+function TeamView({ userList, allGoals, setAllGoals, handleTask }){
+  console.log(userList)
+  const navigate = useNavigate()
+  const [newGoalId, setNewGoalId] = useState(null)
 
-  return(
-    <>
-      <SignOut />
-      <h5>Tasks that belong the goal:</h5>
-      <TaskHeader goal={goal}/>
-      {/* <DisplayTasks goal={goal}/> */}
-      <AddTask />
-      <CompleteTask />
-    </>
-  )
+  function handleClickGoal(goalId){
+    navigate("/goals");
+    setNewGoalId(goalId)
+  }
+
+  if (userList.length === 0) {
+    return (
+      <div>To get started, please add a new goal.</div>
+    )
+  } else {
+    return(
+      <div>
+        <h1> Team View </h1>
+        <h5>Please create goals and tasks in the Goals View in order to undertand how tasks relate to each goal.</h5>
+        <ul>
+            {userList.map((user) => (
+                <div key={user.id}>
+                  <h2>{user.username}</h2>
+                  {user.tasks.map((aTask, index) => (
+                    <div key={index}>
+                      <li>{aTask.task}</li>
+                      <button onClick={()=> handleClickGoal(aTask.goal.id)}>Goal: {aTask.goal.goal}</button>
+                      <DeleteTask taskId={aTask.id} allGoals={allGoals} setAllGoals={setAllGoals}/>
+                    </div>
+                  ))}
+                  <br></br>
+                  <AddTask handleTask={handleTask} goalId={newGoalId} userList={userList} />
+                </div>
+            ))}
+          </ul>
+
+          {/* <AddGoal handleGoal={handleGoal}/> */}
+        {/*<AddTask />
+        <CompleteTask /> */}
+      </div>
+    )
+  }
+
 }
 
 export default TeamView
+

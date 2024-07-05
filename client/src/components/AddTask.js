@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function AddTask({ handleTask, handleTaskForm, goalId, userList}){
+function AddTask({ handleTask, goalId, userList}){
     const [newTask, setNewTask] = useState("");
     const [userInput, setUserInput] = useState("");
     const [user, setUser] = useState("");
@@ -33,7 +33,6 @@ function AddTask({ handleTask, handleTaskForm, goalId, userList}){
         .then(r=>r.json())
         .then(taskObj => {
             handleTask(taskObj);
-            handleTaskForm();
             setNewTask("");
         })
         .catch(error => console.error('Error:', error));

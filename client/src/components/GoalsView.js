@@ -6,11 +6,6 @@ import DeleteTask from "./DeleteTask.js";
 
 function DisplayGoals({ allGoals, handleGoal, userList, handleTask, setAllGoals}) {
   const navigate = useNavigate();
-  const [displayAddTask, setDisplayAddTask] = useState("NoTask")
-
-  function handleTaskForm(){
-    displayAddTask === "NoTask" ? setDisplayAddTask("AddTask") : setDisplayAddTask("NoTask")
-  }
 
   function handleClickUser(){
     navigate("/team");
@@ -24,6 +19,7 @@ function DisplayGoals({ allGoals, handleGoal, userList, handleTask, setAllGoals}
   } else {
     return (
       <div>
+        <h1> Goals View </h1>
         <h5>Click on a username to be taken to the Team View. Please complete tasks in Team View.</h5>
         <AddGoal handleGoal={handleGoal}/>
         <ul>
@@ -38,7 +34,7 @@ function DisplayGoals({ allGoals, handleGoal, userList, handleTask, setAllGoals}
                   </div>
                 ))}
                 <br></br>
-                {displayAddTask === "AddTask" ? <AddTask handleTask={handleTask} handleTaskForm={handleTaskForm} goalId={goal.id} userList={userList} /> : <button onClick={() => handleTaskForm(goal.id)}>Add A New Task</button>}
+                <AddTask handleTask={handleTask} goalId={goal.id} userList={userList} />
               </div>
           ))}
         </ul>
@@ -48,3 +44,9 @@ function DisplayGoals({ allGoals, handleGoal, userList, handleTask, setAllGoals}
 }
 
 export default DisplayGoals
+
+  // const [displayAddTask, setDisplayAddTask] = useState("NoTask")
+
+  // function handleTaskForm(){
+  //   displayAddTask === "NoTask" ? setDisplayAddTask("AddTask") : setDisplayAddTask("NoTask")
+  // }
