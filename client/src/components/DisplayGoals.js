@@ -3,24 +3,40 @@ import { useNavigate } from "react-router-dom";
 import AddGoal from "./AddGoal.js";
 import AddTask from "./AddTask.js";
 
-function DisplayGoals({ allGoals, handleGoal, userList, handleTask }) {
+function DisplayGoals({ allGoals, handleGoal, userList, handleTask, setAllGoals}) {
   const navigate = useNavigate();
   const [displayAddTask, setDisplayAddTask] = useState("NoTask")
-  // const [userId, setUserId] = useState(null)
 
   function handleTaskForm(){
     displayAddTask === "NoTask" ? setDisplayAddTask("AddTask") : setDisplayAddTask("NoTask")
-  }
-
-  function handleDeleteTask(taskId){
-    console.log("Inside handleDeleteTask", taskId)
-    //DELETE to tasks with id
   }
 
   function handleClickUser(){
     navigate("/team");
   }
 
+  function handleDeleteTask(taskId){
+    const url = `http://localhost:5555/tasks/${taskId}`;
+    const configObj = {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json'}
+    };
+    fetch(url, configObj)
+    .then(r=>{
+      if (!r.ok) {
+        throw new Error('Failed to delete task.');
+      }
+      console.log('Task deleted successfully.');
+      const updatedGoals = allGoals.map(goal => ({
+        ...goal,
+        tasks: goal.tasks.filter(task => task.id != taskId)
+      }));
+      setAllGoals(updatedGoals)
+    })
+    .catch(error => {
+      console.lerror('Error deleting task:', error);
+    });
+  }
 
   if (allGoals.length === 0) {
     return (
@@ -53,19 +69,3 @@ function DisplayGoals({ allGoals, handleGoal, userList, handleTask }) {
 }
 
 export default DisplayGoals
-
-  // {/* <button onClick={() => handleTask(goal.id)}>Add Task</button> */}
-  // {/* <li onClick={()=> handleClick(goal)}>{goal.goal}</li> */}
-  // {/* <button onClick={() => handleAddGoal()}>Add Goal</button> */}
-  // {/* {displayAddGoal === "AddGoal" ? <AddGoal handleGoal={handleGoal}/> :  <br></br>} */}
-
-
-  // function handleAddGoal(){
-  //   console.log("Inside handleAddGoal")
-  //   if(displayAddGoal === "NoGoal"){
-  //     setDisplayAddGoal("AddGoal")
-  //   } else {
-  //     setDisplayAddGoal("NoGoal")
-  //   }
-  //   //POST to goals no id needed
-  // }

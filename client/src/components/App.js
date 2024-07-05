@@ -35,8 +35,6 @@ function App() {
     })
   }, [user, task])
 
-  console.log("allTasks ", allTasks)
-
   const handleUser = (user) => { 
     setUser(user);
   }
@@ -55,7 +53,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<WelcomePage userList={userList} handleUser={handleUser}/> } />  
-        <Route path="/goals" element={<GoalsView allGoals={allGoals} handleGoal={handleGoal} userList={userList} handleTask={handleTask}/>} />   
+        <Route path="/goals" element={<GoalsView allGoals={allGoals} handleGoal={handleGoal} userList={userList} handleTask={handleTask} setAllGoals={setAllGoals}/>} />   
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
