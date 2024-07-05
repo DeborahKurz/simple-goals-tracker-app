@@ -33,6 +33,7 @@ function AddTask({ handleTask, goalId, userList}){
         .then(r=>r.json())
         .then(taskObj => {
             handleTask(taskObj);
+
             setNewTask("");
         })
         .catch(error => console.error('Error:', error));

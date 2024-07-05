@@ -1,10 +1,33 @@
 import React from "react";
 
-function CompleteTask(){
-//PATCH request using the task's id
+function CompleteTask({ task }){
+    function handleClick(task){
+        const id = task.id;
+        const url = `http://localhost:5555/tasks/${id}`;
+        const configObj = {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(
+                {
+                    task: task.task,
+                    completed: true,
+                    goals_id: task.goals_id,
+                    users_id: task.users_id
+                }
+            )
+        }
+        
+        fetch(url, configObj)
+        .then(r=>r.json())
+        .then(taskObj=>{
+            console.log(taskObj)
+        })
+        // .catch
+    }
+
     return(
         <div>
-            <button>Task Complete!</button>
+            <button onClick={()=> handleClick(task)}>Done</button>
         </div>
     )
 }
