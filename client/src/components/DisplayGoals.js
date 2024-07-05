@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AddGoal from "./AddGoal.js";
 import AddTask from "./AddTask.js";
+import DeleteTask from "./DeleteTask.js";
 
 function DisplayGoals({ allGoals, handleGoal, userList, handleTask, setAllGoals}) {
   const navigate = useNavigate();
@@ -15,28 +16,6 @@ function DisplayGoals({ allGoals, handleGoal, userList, handleTask, setAllGoals}
     navigate("/team");
   }
 
-  function handleDeleteTask(taskId){
-    const url = `http://localhost:5555/tasks/${taskId}`;
-    const configObj = {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json'}
-    };
-    fetch(url, configObj)
-    .then(r=>{
-      if (!r.ok) {
-        throw new Error('Failed to delete task.');
-      }
-      console.log('Task deleted successfully.');
-      const updatedGoals = allGoals.map(goal => ({
-        ...goal,
-        tasks: goal.tasks.filter(task => task.id != taskId)
-      }));
-      setAllGoals(updatedGoals)
-    })
-    .catch(error => {
-      console.lerror('Error deleting task:', error);
-    });
-  }
 
   if (allGoals.length === 0) {
     return (
@@ -55,7 +34,7 @@ function DisplayGoals({ allGoals, handleGoal, userList, handleTask, setAllGoals}
                   <div key={index}>
                     <li>{aTask.task}</li>
                     <button onClick={()=> handleClickUser()}>Task Owner: {aTask.user.username}</button>
-                    <button onClick={() => handleDeleteTask(aTask.id)}>Delete Task</button>
+                    <DeleteTask taskId={aTask.id} allGoals={allGoals} setAllGoals={setAllGoals}/>
                   </div>
                 ))}
                 <br></br>
