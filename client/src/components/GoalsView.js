@@ -11,7 +11,6 @@ function DisplayGoals({ allGoals, handleGoal, userList, handleTask, setAllGoals}
     navigate("/team");
   }
 
-
   if (allGoals.length === 0) {
     return (
       <div>To get started, please add a new goal.</div>

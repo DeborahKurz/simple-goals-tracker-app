@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 
 // import DisplayTasks from "./DisplayTasks.js";
-
 // import CompleteTask from "./CompleteTask.js";
 import { useNavigate } from "react-router-dom";
 import AddTask from "./AddTask.js";
 import DeleteTask from "./DeleteTask.js";
 
-function TeamView({ userList, allGoals, setAllGoals, handleTask }){
-  console.log(userList)
+function TeamView({ userList, allGoals, setAllGoals, handleTask, setUser }){
   const navigate = useNavigate()
   const [newGoalId, setNewGoalId] = useState(null)
 
@@ -34,7 +32,7 @@ function TeamView({ userList, allGoals, setAllGoals, handleTask }){
                     <div key={index}>
                       <li>{aTask.task}</li>
                       <button onClick={()=> handleClickGoal(aTask.goal.id)}>Goal: {aTask.goal.goal}</button>
-                      <DeleteTask taskId={aTask.id} allGoals={allGoals} setAllGoals={setAllGoals}/>
+                      <DeleteTask taskId={aTask.id} allGoals={allGoals} setAllGoals={setAllGoals} setUser={setUser} userList={userList}/>
                     </div>
                   ))}
                   <br></br>

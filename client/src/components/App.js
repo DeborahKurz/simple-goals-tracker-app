@@ -54,7 +54,7 @@ function App() {
       <Routes>
         <Route path="/" element={<WelcomePage userList={userList} handleUser={handleUser}/> } />  
         <Route path="/goals" element={<GoalsView allGoals={allGoals} handleGoal={handleGoal} userList={userList} handleTask={handleTask} setAllGoals={setAllGoals}/>} /> 
-        <Route path="/team" element={<TeamView userList={userList} allGoals={allGoals} setAllGoals={setAllGoals} handleTask={handleTask}/>} />
+        <Route path="/team" element={<TeamView userList={userList} allGoals={allGoals} setAllGoals={setAllGoals} handleTask={handleTask} setUser={setUser}/>} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-function DeleteTask({ taskId, allGoals, setAllGoals}) {
+function DeleteTask({ taskId, allGoals, setAllGoals, setUser, userList }) {
 
     function handleDeleteTask(id){
         const url = `http://localhost:5555/tasks/${id}`;
@@ -19,6 +19,7 @@ function DeleteTask({ taskId, allGoals, setAllGoals}) {
             tasks: goal.tasks.filter(task => task.id != taskId)
           }));
           setAllGoals(updatedGoals)
+          setUser(userList)
         })
         .catch(error => {
           console.lerror('Error deleting task:', error);
