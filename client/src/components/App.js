@@ -44,9 +44,13 @@ function App() {
   };
 
   const handleTask = (task) => {
-    setAllTasks([...allTasks, task])
-    setTask(task)
+    setAllTasks([...allTasks, task]);
+    setTask(task);
   };
+
+  const handleCompletedTask = (task) => {
+    setTask(task);
+  }
 
   return (
     <div>
@@ -54,7 +58,7 @@ function App() {
       <Routes>
         <Route path="/" element={<WelcomePage userList={userList} handleUser={handleUser}/> } />  
         <Route path="/goals" element={<GoalsView allGoals={allGoals} handleGoal={handleGoal} userList={userList} handleTask={handleTask} setAllGoals={setAllGoals}/>} /> 
-        <Route path="/team" element={<TeamView userList={userList} allGoals={allGoals} setAllGoals={setAllGoals} handleTask={handleTask} setUser={setUser}/>} />
+        <Route path="/team" element={<TeamView userList={userList} allGoals={allGoals} setAllGoals={setAllGoals} setUser={setUser} handleCompletedTask={handleCompletedTask}/>} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>

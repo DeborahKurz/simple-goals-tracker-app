@@ -26,11 +26,19 @@ function DisplayGoals({ allGoals, handleGoal, userList, handleTask, setAllGoals}
               <div key={goal.id}>
                 <h2>{goal.goal}</h2>
                 {goal.tasks.map((aTask, index) => (
-                  <div key={index}>
-                    <li>{aTask.task}</li>
-                    <button onClick={()=> handleClickUser()}>Task Owner: {aTask.user.username}</button>
-                    <DeleteTask taskId={aTask.id} allGoals={allGoals} setAllGoals={setAllGoals}/>
-                  </div>
+                  aTask.completed === false ? (
+                    <div key={index}>
+                      <li>{aTask.task}</li>
+                      <button onClick={()=> handleClickUser()}>Task Owner: {aTask.user.username}</button>
+                      <DeleteTask taskId={aTask.id} allGoals={allGoals} setAllGoals={setAllGoals}/>
+                    </div>
+                  ) : (
+                    <div key={index}>
+                      <li style={{textDecoration: 'line-through' }}>Completed: {aTask.task}</li>
+                      <button onClick={()=> handleClickUser()}>Task Owner: {aTask.user.username}</button>
+                      <DeleteTask taskId={aTask.id} allGoals={allGoals} setAllGoals={setAllGoals}/>
+                    </div>
+                  )
                 ))}
                 <br></br>
                 <AddTask handleTask={handleTask} goalId={goal.id} userList={userList} />

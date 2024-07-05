@@ -1,6 +1,6 @@
 import React from "react";
 
-function CompleteTask({ task }){
+function CompleteTask({ task, handleCompletedTask }){
     function handleClick(task){
         const id = task.id;
         const url = `http://localhost:5555/tasks/${id}`;
@@ -20,7 +20,7 @@ function CompleteTask({ task }){
         fetch(url, configObj)
         .then(r=>r.json())
         .then(taskObj=>{
-            console.log(taskObj)
+            handleCompletedTask(taskObj)
         })
         // .catch
     }

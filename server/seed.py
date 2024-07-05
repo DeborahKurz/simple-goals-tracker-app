@@ -56,7 +56,7 @@ def create_tasks(num_tasks):
     for _ in range(num_tasks):
         goal = rc(goals)
         user = rc(users)
-        is_completed = fake.boolean(chance_of_getting_true=50)
+        is_completed = fake.boolean(chance_of_getting_true=0)
         task = Task(task=fake.text(), completed=is_completed, goals_id=goal.id, users_id=user.id)
         tasks.append(task)
     
