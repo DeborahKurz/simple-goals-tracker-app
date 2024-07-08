@@ -1,39 +1,71 @@
 import React, { useState } from "react";
+import { useFormik } from "formik";
+import * as yup from "yup";
 
 function AddGoal({ handleGoal }){
     const [newGoal, setNewGoal] = useState("");
 
-    function handleSubmit(e){
-        e.preventDefault();
-        const configObj = {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(
-                {
-                    goal: newGoal
-                }
-            )
+    const formschema = yup.object().shape({
+        goal: yup.string().required("Must enter a goal").max(20)
+    })
+
+    const formik = useFormik({
+        initialValues: {
+            goal: ""
+        },
+        validationSchema: formschema,
+        onSubmit: (values, { resetForm })=>{
+
+            const configObj = {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(values)
+            }
+            const url = `http://localhost:5555/goals`
+            fetch(url, configObj)
+            .then(r=>r.json())
+            .then(goalObj => {
+                handleGoal(goalObj);
+                setNewGoal("");
+                resetForm("");
+            })
         }
-        const url = `http://localhost:5555/goals`
-        fetch(url, configObj)
-        .then(r=>r.json())
-        .then(goalObj => {
-            handleGoal(goalObj);
-            setNewGoal("");
-        })
+    })
+
+    // function handleSubmit(e){
+    //     e.preventDefault();
+        // const configObj = {
+        //     method: 'POST',
+        //     headers: {'Content-Type': 'application/json'},
+        //     body: JSON.stringify(
+        //         {
+        //             goal: newGoal
+        //         }
+        //     )
+        // }
+        // const url = `http://localhost:5555/goals`
+        // fetch(url, configObj)
+        // .then(r=>r.json())
+        // .then(goalObj => {
+        //     handleGoal(goalObj);
+        //     setNewGoal("");
+        // })
         
-    }
+    // }
 
     return(
         <div>
             <h3>Add A New Goal</h3>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={formik.handleSubmit}>
                 <input 
+                    id="goal"
+                    name="goal"
                     type="text" 
-                    value={newGoal}
+                    value={formik.values.goal}
                     placeholder = "Set A Measurable Goal"
-                    onChange={(e)=> setNewGoal(e.target.value)}
+                    onChange={formik.handleChange}
                 />
+                <p style={{ color: "red" }}>{formik.errors.goal}</p>
                 <br />
                 <button type="submit">Add My Goal</button>
                 <br></br>

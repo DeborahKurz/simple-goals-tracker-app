@@ -33,10 +33,13 @@ function App() {
     .then((tasks) => {
       setAllTasks(tasks)
     })
-  }, [user, task])
+  }, [task])
+
+  // console.log(userList)
 
   const handleUser = (user) => { 
-    setUser(user);
+    setUserList([...userList, user]);
+    // setUser(user);
   }
 
   const handleGoal = (goal) => {
