@@ -22,7 +22,7 @@ function DeleteTask({ taskId, allGoals, setAllGoals, setUser, userList }) {
           setUser(userList)
         })
         .catch(error => {
-          console.lerror('Error deleting task:', error);
+          console.error('Error deleting task:', error);
         });
       }
 

@@ -21,7 +21,7 @@ function TeamView({ userList, allGoals, setAllGoals, setUser, handleCompletedTas
     return(
       <div>
         <h1> Team View </h1>
-        <h5>Please create goals and tasks in the Goals View in order to undertand how tasks relate to each goal.</h5>
+        <h5>Create goals and tasks in the Goals View in order to undertand how tasks relate to each goal.</h5>
         <ul>
             {userList.map((user) => (
                 <div key={user.id}>

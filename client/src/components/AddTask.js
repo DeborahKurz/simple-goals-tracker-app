@@ -35,6 +35,7 @@ function AddTask({ handleTask, goalId, userList}){
             handleTask(taskObj);
 
             setNewTask("");
+            setUserInput("");
         })
         .catch(error => console.error('Error:', error));
     }

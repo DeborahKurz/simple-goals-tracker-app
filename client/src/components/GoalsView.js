@@ -4,7 +4,7 @@ import AddGoal from "./AddGoal.js";
 import AddTask from "./AddTask.js";
 import DeleteTask from "./DeleteTask.js";
 
-function DisplayGoals({ allGoals, handleGoal, userList, handleTask, setAllGoals}) {
+function DisplayGoals({ allGoals, handleGoal, userList, handleTask, setAllGoals, setUser}) {
   const navigate = useNavigate();
 
   function handleClickUser(){
@@ -19,7 +19,7 @@ function DisplayGoals({ allGoals, handleGoal, userList, handleTask, setAllGoals}
     return (
       <div>
         <h1> Goals View </h1>
-        <h5>Click on a username to be taken to the Team View. Please complete tasks in Team View.</h5>
+        <h5>Navigate to Team View to mark tasks as completed.</h5>
         <AddGoal handleGoal={handleGoal}/>
         <ul>
           {allGoals.map((goal) => (
@@ -36,7 +36,7 @@ function DisplayGoals({ allGoals, handleGoal, userList, handleTask, setAllGoals}
                     <div key={index}>
                       <li style={{textDecoration: 'line-through' }}>Completed: {aTask.task}</li>
                       <button onClick={()=> handleClickUser()}>Task Owner: {aTask.user.username}</button>
-                      <DeleteTask taskId={aTask.id} allGoals={allGoals} setAllGoals={setAllGoals}/>
+                      <DeleteTask taskId={aTask.id} allGoals={allGoals} setAllGoals={setAllGoals} setUser={setUser}/>
                     </div>
                   )
                 ))}

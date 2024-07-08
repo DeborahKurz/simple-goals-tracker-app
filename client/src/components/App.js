@@ -57,7 +57,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<WelcomePage userList={userList} handleUser={handleUser}/> } />  
-        <Route path="/goals" element={<GoalsView allGoals={allGoals} handleGoal={handleGoal} userList={userList} handleTask={handleTask} setAllGoals={setAllGoals}/>} /> 
+        <Route path="/goals" element={<GoalsView allGoals={allGoals} handleGoal={handleGoal} userList={userList} handleTask={handleTask} setAllGoals={setAllGoals} setUser={setUser}/>} /> 
         <Route path="/team" element={<TeamView userList={userList} allGoals={allGoals} setAllGoals={setAllGoals} setUser={setUser} handleCompletedTask={handleCompletedTask}/>} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>

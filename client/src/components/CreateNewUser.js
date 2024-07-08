@@ -41,11 +41,11 @@ export const CreateNewUser = ({handleUser, userList}) => {
       .then(r => {
         if(r.status == 200){
           setRefreshPage(!refreshPage);
-          resetForm();
         }
       })
       .then((userObj) => {
-        handleUser(userObj)
+        handleUser(userObj);
+        resetForm();
       })
     },
   });
