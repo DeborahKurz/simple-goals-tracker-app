@@ -18,27 +18,28 @@ function AddTask({ handleTask, goalId, userList }){
             const foundUser = userList.find(
                 (user) => values.user.toLowerCase() === user.username.toLowerCase()
                 );
-            if (foundUser) {
-                const dataToSend = {
-                    task: values.task,
-                    completed: false,
-                    goals_id: goalId,
-                    users_id: foundUser.id
-                }
-                const configObj = {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify(dataToSend)
-                }
-                const url = 'http://localhost:5555/tasks';
-                fetch(url, configObj)
-                .then(r=>r.json())
-                .then((taskObj) => {
-                    handleTask(taskObj);
-                    resetForm({ task:"", user: "" });
-                })
-                .catch(error => console.error('Error:', error));
+            if (!foundUser) {
+                formik.setFieldError('user', 'User not found. Please enter a valid user.')
             }
+            const dataToSend = {
+                task: values.task,
+                completed: false,
+                goals_id: goalId,
+                users_id: foundUser.id
+            }
+            const configObj = {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(dataToSend)
+            }
+            const url = 'http://localhost:5555/tasks';
+            fetch(url, configObj)
+            .then(r=>r.json())
+            .then((taskObj) => {
+                handleTask(taskObj);
+                resetForm({ task:"", user: "" });
+            })
+            .catch(error => console.error('Error:', error));
         }
     })
 
