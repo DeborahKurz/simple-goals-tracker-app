@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
 function AddGoal({ handleGoal }){
-    // const [newGoal, setNewGoal] = useState("");
-
     const formschema = yup.object().shape({
         goal: yup.string().required("Must enter a goal").max(20)
     })
@@ -26,7 +24,6 @@ function AddGoal({ handleGoal }){
             .then(r=>r.json())
             .then(goalObj => {
                 handleGoal(goalObj);
-                // setNewGoal("");
                 resetForm("");
             })
         }
