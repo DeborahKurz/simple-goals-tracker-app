@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+
 import ListUsers from "./ListUsers.js";
-import { CreateNewUser } from "./CreateNewUser.js";
+import CreateNewUser from "./CreateNewUser.js";
 
 function WelcomePage({ userList, handleUser }){
+    //userList = to render users : ListUsers, CreateNewUsers
+    //CreateNewUser = to re-render page
     return(
         <>    
             <h1>Welcome</h1>
@@ -16,7 +18,7 @@ function WelcomePage({ userList, handleUser }){
             <br></br>
             <ListUsers userList={userList}/>
             <br></br>
-            <CreateNewUser handleUser={handleUser} userList={userList}/>
+            <CreateNewUser userList={userList} handleUser={handleUser}/>
         </>
     )
 }

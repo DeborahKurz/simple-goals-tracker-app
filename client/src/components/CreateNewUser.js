@@ -1,17 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-export const CreateNewUser = ({handleUser, userList}) => {
-  const [refreshPage, setRefreshPage] = useState(false);
-  
-  useEffect(() => {
-    fetch("http://127.0.0.1:5555/")
-    .then(r => r.json())
-    .then((data) => {
-      console.log("CreateNewUser: ",data)
-    })
-  }, [refreshPage]);
+function CreateNewUser({userList, handleUser }) {
 
   const formSchema = yup.object().shape({
     username: yup.string().required("Must enter a username").max(20),
@@ -38,16 +29,10 @@ export const CreateNewUser = ({handleUser, userList}) => {
       }
       fetch("http://127.0.0.1:5555/", configObj)
       .then(r => {
-        if(r.status == 200){
-          setRefreshPage(!refreshPage);
-        }
         r.json().then((response)=>{handleUser(response)
           resetForm();
         })
       })
-      // .then((userObj) => {
-      //   resetForm();
-      // })
     },
   });
 
@@ -68,3 +53,5 @@ export const CreateNewUser = ({handleUser, userList}) => {
     </div>
   )
 }
+
+export default CreateNewUser

@@ -1,7 +1,6 @@
 import React from "react";
 
 function ListUsers({userList}){
-    console.log(userList)
     return(
         <>
             <h3>Your Team Includes The Following Usernames:</h3>

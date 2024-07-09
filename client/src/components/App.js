@@ -8,10 +8,10 @@ import TeamView from "./TeamView.js";
 import ErrorPage from "./ErrorPage.js";
 
 function App() {
-  const [userList, setUserList] = useState([]); //all users
-  const [user, setUser] = useState([]);  //runs useEffect after CreateNewUser adds a username
+  const [userList, setUserList] = useState([]);
   const [allGoals, setAllGoals] = useState([]);
-  const [allTasks, setAllTasks] = useState([])
+  const [allTasks, setAllTasks] = useState([]);
+  const [user, setUser] = useState([]);
   const [task, setTask] = useState([]);
 
 
@@ -36,12 +36,8 @@ function App() {
     })
   }, [])
 
-  console.log("userList: ", userList, "allTasks: ", allTasks)
-
-
   const handleUser = (user) => { 
     setUserList([...userList, user]);
-    // setUser(user);
   }
 
   const handleGoal = (goal) => {
@@ -50,7 +46,6 @@ function App() {
 
   const handleTask = (task) => {
     setAllTasks([...allTasks, task]);
-    // setTask(task);
   };
 
   const handleCompletedTask = (task) => {
@@ -61,8 +56,10 @@ function App() {
     <div>
       <NavBar />
       <Routes>
-        <Route path="/" element={<WelcomePage userList={userList} handleUser={handleUser}/> } />  
+        <Route path="/" element={<WelcomePage userList={userList} handleUser={handleUser}/> } /> 
+
         <Route path="/goals" element={<GoalsView allGoals={allGoals} handleGoal={handleGoal} userList={userList} handleTask={handleTask} setAllGoals={setAllGoals} setUser={setUser} allTasks={allTasks} setAllTasks={setAllTasks}/>} /> 
+        
         <Route path="/team" element={<TeamView userList={userList} allGoals={allGoals} setAllGoals={setAllGoals} setUser={setUser} handleCompletedTask={handleCompletedTask} allTasks={allTasks} setAllTasks={setAllTasks} setUserList={setUserList}/>} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
