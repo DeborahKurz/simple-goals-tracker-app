@@ -1,6 +1,7 @@
 import React from "react";
 
 function CompleteTask({ task, handleCompletedTask }){
+
     function handleClick(task){
         const id = task.id;
         const url = `http://localhost:5555/tasks/${id}`;
@@ -15,7 +16,7 @@ function CompleteTask({ task, handleCompletedTask }){
                     users_id: task.users_id
                 }
             )
-        }
+        };
         
         fetch(url, configObj)
         .then(r=>r.json())
@@ -29,6 +30,6 @@ function CompleteTask({ task, handleCompletedTask }){
             <button onClick={()=> handleClick(task)}>Done</button>
         </div>
     )
-}
+};
 
 export default CompleteTask;

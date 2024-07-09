@@ -59,19 +59,31 @@ function App() {
     setAllGoals(updatedGoals);
   };
 
-  const handleCompletedTask = (task) => {
-    setTask(task);
+  const handleCompletedTask = (taskObj) => {
+    console.log(taskObj)
+    //udpated taskObj
+    //update AllGoals. Remove the old taskObj. Add a new task obj
+
+
+
+    // const updatedTasks = allTasks.map(task => ({
+    //   ...task,
+    //   task: task.filter(task => task.id != taskObj.id)
+    // })) //removes updated task
+    // setAllGoals(updatedTasks) //updates state array
+    // handleTask(taskObj) //adds task back into state array
+    // // setTask(task);
   }
 
   return (
     <div>
       <NavBar />
       <Routes>
-        <Route path="/" element={<WelcomePage userList={userList} handleUser={handleUser}/> } /> 
+        <Route path="/" element={<WelcomePage userList={userList} handleUser={handleUser} allTasks={allTasks}/> } /> 
 
         <Route path="/goals" element={<GoalsView userList={userList} allGoals={allGoals} handleGoal={handleGoal} handleGoalsDeleteTask={handleGoalsDeleteTask} handleTask={handleTask}/>} /> 
 
-        <Route path="/team" element={<TeamView userList={userList} allGoals={allGoals} setAllGoals={setAllGoals} setUser={setUser} handleCompletedTask={handleCompletedTask} allTasks={allTasks} setAllTasks={setAllTasks} setUserList={setUserList}/>} />
+        <Route path="/team" element={<TeamView userList={userList} setUserList={setUserList}  allGoals={allGoals} setAllGoals={setAllGoals} allTasks={allTasks} setAllTasks={setAllTasks} setUser={setUser} handleCompletedTask={handleCompletedTask} />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>

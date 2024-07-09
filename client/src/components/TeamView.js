@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import CompleteTask from "./CompleteTask.js"
+
+import CompleteTask from "./CompleteTask.js";
 import DeleteTask from "./DeleteTask.js";
 
-function TeamView({ userList, allGoals, setAllGoals, setUser, handleCompletedTask, allTasks, setAllTasks, setUserList={setUserList} }){
-  const navigate = useNavigate()
+function TeamView({ userList, setUserList, allGoals, setAllGoals, allTasks, setAllTasks, setUser, handleCompletedTask }){
+  const navigate = useNavigate();
 
-  function handleClickGoal(goalId){
+  function handleClickGoal(){
     navigate("/goals");
-  }
+  };
 
   if (userList.length === 0) {
     return (
@@ -27,7 +28,7 @@ function TeamView({ userList, allGoals, setAllGoals, setUser, handleCompletedTas
                     aTask.completed === false ? (
                     <div key={aTask.id}>
                       <li>{aTask.task}</li>
-                      <button onClick={()=> handleClickGoal(aTask.goal.id)}>Goal: {aTask.goal.goal}</button>
+                      <button onClick={()=> handleClickGoal()}>Goal: {aTask.goal.goal}</button>
                       <CompleteTask task={aTask} handleCompletedTask={handleCompletedTask}/>
                       <DeleteTask taskId={aTask.id} allGoals={allGoals} setAllGoals={setAllGoals} setUser={setUser} allTasks={allTasks} setAllTasks={setAllTasks} userList={userList} setUserList={setUserList}/>
                     </div>

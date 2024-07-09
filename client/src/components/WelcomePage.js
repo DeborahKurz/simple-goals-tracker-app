@@ -1,11 +1,11 @@
 import React from "react";
 
 import ListUsers from "./ListUsers.js";
+import CompletedCount from "./CompletedCount.js";
 import CreateNewUser from "./CreateNewUser.js";
 
-function WelcomePage({ userList, handleUser }){
-    //userList = to render users : ListUsers, CreateNewUsers
-    //CreateNewUser = to re-render page
+function WelcomePage({ userList, handleUser, allTasks }){
+
     return(
         <>    
             <h1>Welcome</h1>
@@ -17,6 +17,7 @@ function WelcomePage({ userList, handleUser }){
             <h4>Happy Goal Crushing!</h4>
             <br></br>
             <ListUsers userList={userList}/>
+            <CompletedCount allTasks={allTasks}/>
             <br></br>
             <CreateNewUser userList={userList} handleUser={handleUser}/>
         </>
