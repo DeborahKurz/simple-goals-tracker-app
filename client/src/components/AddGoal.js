@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 
 function AddGoal({ handleGoal }){
-    const [newGoal, setNewGoal] = useState("");
+    // const [newGoal, setNewGoal] = useState("");
 
     const formschema = yup.object().shape({
         goal: yup.string().required("Must enter a goal").max(20)
@@ -26,32 +26,11 @@ function AddGoal({ handleGoal }){
             .then(r=>r.json())
             .then(goalObj => {
                 handleGoal(goalObj);
-                setNewGoal("");
+                // setNewGoal("");
                 resetForm("");
             })
         }
     })
-
-    // function handleSubmit(e){
-    //     e.preventDefault();
-        // const configObj = {
-        //     method: 'POST',
-        //     headers: {'Content-Type': 'application/json'},
-        //     body: JSON.stringify(
-        //         {
-        //             goal: newGoal
-        //         }
-        //     )
-        // }
-        // const url = `http://localhost:5555/goals`
-        // fetch(url, configObj)
-        // .then(r=>r.json())
-        // .then(goalObj => {
-        //     handleGoal(goalObj);
-        //     setNewGoal("");
-        // })
-        
-    // }
 
     return(
         <div>

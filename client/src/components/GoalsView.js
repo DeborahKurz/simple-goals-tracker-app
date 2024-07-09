@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import AddGoal from "./AddGoal.js";
 import AddTask from "./AddTask.js";
@@ -19,7 +19,7 @@ function DisplayGoals({ allGoals, handleGoal, userList, handleTask, setAllGoals,
     return (
       <div>
         <h1> Goals View </h1>
-        <h5>Navigate to Team View to mark tasks as completed.</h5>
+        <h5 onClick={handleClickUser}>Navigate to Team View to mark tasks as completed.</h5>
         <AddGoal handleGoal={handleGoal}/>
         <ul>
           {allGoals.map((goal) => (

@@ -22,7 +22,6 @@ function CompleteTask({ task, handleCompletedTask }){
         .then(taskObj=>{
             handleCompletedTask(taskObj)
         })
-        // .catch
     }
 
     return(

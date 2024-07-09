@@ -35,7 +35,6 @@ function App() {
     })
   }, [task])
 
-  // console.log(userList)
 
   const handleUser = (user) => { 
     setUserList([...userList, user]);
@@ -70,7 +69,3 @@ function App() {
 
 export default App;
 
-  // {/* <Route path="/goals" element={<GoalsView user={user} userGoals={userGoals} handleSetGoal={handleSetGoal} />} /> */}
-  // {/* <Route path="/team" element={<TeamView goal={goal} />} /> */}
-    // const [userGoals, setUserGoals] = useState([]); //sets 1 user's goals
-  // const [goal, setGoal] = useState([]);  //sets 1 goal
