@@ -60,20 +60,14 @@ function App() {
   };
 
   const handleCompletedTask = (taskObj) => {
-    console.log(taskObj)
-    //udpated taskObj
-    //update AllGoals. Remove the old taskObj. Add a new task obj
+    const updatedUsers = userList.map(user => ({
+      ...user,
+      tasks: user.tasks.map(task => 
+        task.id === taskObj.id ? { ...task, completed: true } : task)
+    }));
 
-
-
-    // const updatedTasks = allTasks.map(task => ({
-    //   ...task,
-    //   task: task.filter(task => task.id != taskObj.id)
-    // })) //removes updated task
-    // setAllGoals(updatedTasks) //updates state array
-    // handleTask(taskObj) //adds task back into state array
-    // // setTask(task);
-  }
+    setUserList(updatedUsers);
+  };
 
   return (
     <div>

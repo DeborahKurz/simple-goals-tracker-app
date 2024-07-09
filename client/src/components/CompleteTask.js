@@ -20,10 +20,8 @@ function CompleteTask({ task, handleCompletedTask }){
         
         fetch(url, configObj)
         .then(r=>r.json())
-        .then(taskObj=>{
-            handleCompletedTask(taskObj)
-        })
-    }
+        .then(taskObj=>{handleCompletedTask(taskObj)})
+    };
 
     return(
         <div>
