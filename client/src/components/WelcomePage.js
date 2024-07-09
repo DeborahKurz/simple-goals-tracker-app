@@ -16,8 +16,8 @@ function WelcomePage({ userList, handleUser, allTasks }){
             <h4>If you ever need to create a new user, or see who is already 'registered' as a user in your team, you can navigate back to this page by selecting "Home" in the navbar.</h4>
             <h4>Happy Goal Crushing!</h4>
             <br></br>
-            <ListUsers userList={userList}/>
             <CompletedCount allTasks={allTasks}/>
+            <ListUsers userList={userList}/>
             <br></br>
             <CreateNewUser userList={userList} handleUser={handleUser}/>
         </>

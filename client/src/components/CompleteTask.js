@@ -27,7 +27,7 @@ function CompleteTask({ task, handleCompletedTask }){
 
     return(
         <div>
-            <button onClick={()=> handleClick(task)}>Done</button>
+            <button style={{ width: "150px", height: "54px", marginRight: "10px" }} onClick={()=> handleClick(task)}>Task Done</button>
         </div>
     )
 };
