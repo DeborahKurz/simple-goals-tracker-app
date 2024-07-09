@@ -1,6 +1,6 @@
 import React from "react";
 
-function DeleteTask({ taskId, allGoals, setAllGoals, setUser, userList }) {
+function DeleteTask({ taskId, allTasks, setAllTasks, userList, setUserList }) {
 
     function handleDeleteTask(id){
         const url = `http://localhost:5555/tasks/${id}`;
@@ -14,13 +14,17 @@ function DeleteTask({ taskId, allGoals, setAllGoals, setUser, userList }) {
             throw new Error('Failed to delete task.');
           }
           console.log('Task deleted successfully.');
-          const updatedGoals = allGoals.map(goal => ({
-            ...goal,
-            tasks: goal.tasks.filter(task => task.id != taskId)
-          }));
-          setAllGoals(updatedGoals)
-          setUser(userList)
-        })
+
+          const updatedTasks = allTasks.filter(task => task.id !== taskId);
+          setAllTasks(updatedTasks);
+
+          const updatedUserList = userList.map(user => ({
+            ...user,
+            tasks: user.tasks.filter(task => task.id != taskId)
+          }))
+          setUserList(updatedUserList)
+
+        }) 
         .catch(error => {
           console.error('Error deleting task:', error);
         });
@@ -31,3 +35,14 @@ function DeleteTask({ taskId, allGoals, setAllGoals, setUser, userList }) {
     )
 }
 export default DeleteTask
+
+
+  // setAllGoals(updatedGoals)
+  // if (setUser){
+  //   setUser(prevUsers => {
+  //     return prevUsers.map(user => ({
+  //       ...user,
+  //       tasks: user.tasks.filter(task => task.id !== taskId)
+  //     }));
+  //   });
+  // }

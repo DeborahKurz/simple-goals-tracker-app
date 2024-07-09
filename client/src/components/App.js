@@ -14,6 +14,7 @@ function App() {
   const [allTasks, setAllTasks] = useState([])
   const [task, setTask] = useState([]);
 
+
   useEffect(()=>{
     fetch("http://127.0.0.1:5555/")
     .then(r=>r.json())
@@ -33,7 +34,9 @@ function App() {
     .then((tasks) => {
       setAllTasks(tasks)
     })
-  }, [task])
+  }, [])
+
+  console.log("userList: ", userList, "allTasks: ", allTasks)
 
 
   const handleUser = (user) => { 
@@ -47,7 +50,7 @@ function App() {
 
   const handleTask = (task) => {
     setAllTasks([...allTasks, task]);
-    setTask(task);
+    // setTask(task);
   };
 
   const handleCompletedTask = (task) => {
@@ -59,8 +62,8 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<WelcomePage userList={userList} handleUser={handleUser}/> } />  
-        <Route path="/goals" element={<GoalsView allGoals={allGoals} handleGoal={handleGoal} userList={userList} handleTask={handleTask} setAllGoals={setAllGoals} setUser={setUser}/>} /> 
-        <Route path="/team" element={<TeamView userList={userList} allGoals={allGoals} setAllGoals={setAllGoals} setUser={setUser} handleCompletedTask={handleCompletedTask}/>} />
+        <Route path="/goals" element={<GoalsView allGoals={allGoals} handleGoal={handleGoal} userList={userList} handleTask={handleTask} setAllGoals={setAllGoals} setUser={setUser} allTasks={allTasks} setAllTasks={setAllTasks}/>} /> 
+        <Route path="/team" element={<TeamView userList={userList} allGoals={allGoals} setAllGoals={setAllGoals} setUser={setUser} handleCompletedTask={handleCompletedTask} allTasks={allTasks} setAllTasks={setAllTasks} setUserList={setUserList}/>} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>
@@ -68,4 +71,3 @@ function App() {
 }
 
 export default App;
-

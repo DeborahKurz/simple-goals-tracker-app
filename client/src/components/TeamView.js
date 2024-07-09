@@ -1,16 +1,13 @@
 import React, { useState } from "react";
-
 import { useNavigate } from "react-router-dom";
 import CompleteTask from "./CompleteTask.js"
 import DeleteTask from "./DeleteTask.js";
 
-function TeamView({ userList, allGoals, setAllGoals, setUser, handleCompletedTask }){
+function TeamView({ userList, allGoals, setAllGoals, setUser, handleCompletedTask, allTasks, setAllTasks, setUserList={setUserList} }){
   const navigate = useNavigate()
-  const [newGoalId, setNewGoalId] = useState(null)
 
   function handleClickGoal(goalId){
     navigate("/goals");
-    setNewGoalId(goalId)
   }
 
   if (userList.length === 0) {
@@ -26,13 +23,13 @@ function TeamView({ userList, allGoals, setAllGoals, setUser, handleCompletedTas
             {userList.map((user) => (
                 <div key={user.id}>
                   <h2>{user.username}</h2>
-                  {user.tasks.map((aTask, index) => (
+                  {user.tasks.map((aTask) => (
                     aTask.completed === false ? (
-                    <div key={index}>
+                    <div key={aTask.id}>
                       <li>{aTask.task}</li>
                       <button onClick={()=> handleClickGoal(aTask.goal.id)}>Goal: {aTask.goal.goal}</button>
                       <CompleteTask task={aTask} handleCompletedTask={handleCompletedTask}/>
-                      <DeleteTask taskId={aTask.id} allGoals={allGoals} setAllGoals={setAllGoals} setUser={setUser} userList={userList}/>
+                      <DeleteTask taskId={aTask.id} allGoals={allGoals} setAllGoals={setAllGoals} setUser={setUser} allTasks={allTasks} setAllTasks={setAllTasks} userList={userList} setUserList={setUserList}/>
                     </div>
                     ) : null
                   ))}
@@ -47,7 +44,3 @@ function TeamView({ userList, allGoals, setAllGoals, setUser, handleCompletedTas
 }
 
 export default TeamView
-
-// import DisplayTasks from "./DisplayTasks.js";
-// import AddTask from "./AddTask.js";
-// {/* <AddTask handleTask={handleTask} goalId={newGoalId} userList={userList} /> */}

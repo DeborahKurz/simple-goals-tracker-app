@@ -2,9 +2,9 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import AddGoal from "./AddGoal.js";
 import AddTask from "./AddTask.js";
-import DeleteTask from "./DeleteTask.js";
+import DeleteGoalTask from "./DeleteGoalTask.js";
 
-function DisplayGoals({ allGoals, handleGoal, userList, handleTask, setAllGoals, setUser}) {
+function DisplayGoals({ allGoals, handleGoal, userList, handleTask, setAllGoals }) {
   const navigate = useNavigate();
 
   function handleClickUser(){
@@ -30,13 +30,13 @@ function DisplayGoals({ allGoals, handleGoal, userList, handleTask, setAllGoals,
                     <div key={index}>
                       <li>{aTask.task}</li>
                       <button onClick={()=> handleClickUser()}>Task Owner: {aTask.user.username}</button>
-                      <DeleteTask taskId={aTask.id} allGoals={allGoals} setAllGoals={setAllGoals}/>
+                      <DeleteGoalTask taskId={aTask.id} allGoals={allGoals} setAllGoals={setAllGoals}/>
                     </div>
                   ) : (
                     <div key={index}>
                       <li style={{textDecoration: 'line-through' }}>Completed: {aTask.task}</li>
                       <button onClick={()=> handleClickUser()}>Task Owner: {aTask.user.username}</button>
-                      <DeleteTask taskId={aTask.id} allGoals={allGoals} setAllGoals={setAllGoals} setUser={setUser}/>
+                      <DeleteGoalTask taskId={aTask.id} allGoals={allGoals} setAllGoals={setAllGoals}/>
                     </div>
                   )
                 ))}
@@ -51,9 +51,3 @@ function DisplayGoals({ allGoals, handleGoal, userList, handleTask, setAllGoals,
 }
 
 export default DisplayGoals
-
-  // const [displayAddTask, setDisplayAddTask] = useState("NoTask")
-
-  // function handleTaskForm(){
-  //   displayAddTask === "NoTask" ? setDisplayAddTask("AddTask") : setDisplayAddTask("NoTask")
-  // }
