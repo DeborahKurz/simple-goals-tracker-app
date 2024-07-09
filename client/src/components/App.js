@@ -76,14 +76,16 @@ function App() {
   };
 
   return (
-    <div>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<WelcomePage userList={userList} handleUser={handleUser} allTasks={allTasks}/> } /> 
-        <Route path="/goals" element={<GoalsView userList={userList} allGoals={allGoals} handleGoal={handleGoal} handleGoalsDeleteTask={handleGoalsDeleteTask} handleTask={handleTask}/>} /> 
-        <Route path="/team" element={<TeamView userList={userList} handleCompletedTask={handleCompletedTask} />} />
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
+    <div style={{width: "100%", height: "100px", background: "linear-Gradient(#C0C0C0, white)"}}>
+      <div style={{marginLeft: "25px"}}>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<WelcomePage userList={userList} handleUser={handleUser} allTasks={allTasks}/> } /> 
+          <Route path="/goals" element={<GoalsView userList={userList} allGoals={allGoals} handleGoal={handleGoal} handleGoalsDeleteTask={handleGoalsDeleteTask} handleTask={handleTask}/>} /> 
+          <Route path="/team" element={<TeamView userList={userList} handleCompletedTask={handleCompletedTask} />} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+      </div>
     </div>
   );
 }
