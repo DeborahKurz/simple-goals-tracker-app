@@ -1,15 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+
 import AddGoal from "./AddGoal.js";
 import AddTask from "./AddTask.js";
 import DeleteGoalTask from "./DeleteGoalTask.js";
 
-function DisplayGoals({ allGoals, handleGoal, userList, handleTask, setAllGoals }) {
+function DisplayGoals({ userList, setUserList, allGoals, handleGoalsDeleteTask, setAllGoals, handleGoal, handleTask}) {
   const navigate = useNavigate();
 
   function handleClickUser(){
     navigate("/team");
-  }
+  };
 
   if (allGoals.length === 0) {
     return (
@@ -19,24 +20,24 @@ function DisplayGoals({ allGoals, handleGoal, userList, handleTask, setAllGoals 
     return (
       <div>
         <h1> Goals View </h1>
-        <h5 onClick={handleClickUser}>Navigate to Team View to mark tasks as completed.</h5>
+        <h5>Navigate to Team View to mark tasks as completed.</h5>
         <AddGoal handleGoal={handleGoal}/>
         <ul>
           {allGoals.map((goal) => (
               <div key={goal.id}>
                 <h2>{goal.goal}</h2>
-                {goal.tasks.map((aTask, index) => (
+                {goal.tasks.map((aTask) => (
                   aTask.completed === false ? (
-                    <div key={index}>
+                    <div key={aTask.id}>
                       <li>{aTask.task}</li>
                       <button onClick={()=> handleClickUser()}>Task Owner: {aTask.user.username}</button>
-                      <DeleteGoalTask taskId={aTask.id} allGoals={allGoals} setAllGoals={setAllGoals}/>
+                      <DeleteGoalTask taskId={aTask.id} handleGoalsDeleteTask={handleGoalsDeleteTask}/>
                     </div>
                   ) : (
-                    <div key={index}>
+                    <div key={aTask.id}>
                       <li style={{textDecoration: 'line-through' }}>Completed: {aTask.task}</li>
                       <button onClick={()=> handleClickUser()}>Task Owner: {aTask.user.username}</button>
-                      <DeleteGoalTask taskId={aTask.id} allGoals={allGoals} setAllGoals={setAllGoals}/>
+                      <DeleteGoalTask taskId={aTask.id} handleGoalsDeleteTask={handleGoalsDeleteTask}/>
                     </div>
                   )
                 ))}
