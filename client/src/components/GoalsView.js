@@ -28,15 +28,15 @@ function DisplayGoals({ userList, allGoals, handleGoal, handleGoalsDeleteTask, h
                 <h2>{goal.goal}</h2>
                 {goal.tasks.map((aTask) => (
                   aTask.completed === false ? (
-                    <div key={aTask.id}>
-                      <li>{aTask.task}</li>
-                      <button onClick={()=> handleClickUser()}>Task Owner: {aTask.user.username}</button>
+                    <div key={aTask.id} style={{ display: "flex", alignItems: "center", width: "1000px", height: "60px" }}>
+                      <li style={{ width:"500px", height: "50px", border: "2px solid black", marginRight: "-2px" }}>{aTask.task}</li>
+                      <button style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }} onClick={()=> handleClickUser()}>Task Owner: {aTask.user.username}</button>
                       <DeleteGoalTask taskId={aTask.id} handleGoalsDeleteTask={handleGoalsDeleteTask}/>
                     </div>
                   ) : (
-                    <div key={aTask.id}>
-                      <li style={{textDecoration: 'line-through' }}>Completed: {aTask.task}</li>
-                      <button onClick={()=> handleClickUser()}>Task Owner: {aTask.user.username}</button>
+                    <div key={aTask.id} style={{ display: "flex", alignItems: "center", width: "1000px", height: "60px" }}>
+                      <li style={{ textDecoration: 'line-through', width:"500px", height: "50px", border: "2px solid black", marginRight: "-2px" }}>Completed: {aTask.task}</li>
+                      <button style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }} onClick={()=> handleClickUser()}>Task Owner: {aTask.user.username}</button>
                       <DeleteGoalTask taskId={aTask.id} handleGoalsDeleteTask={handleGoalsDeleteTask}/>
                     </div>
                   )

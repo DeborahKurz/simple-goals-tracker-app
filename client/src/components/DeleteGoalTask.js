@@ -24,7 +24,7 @@ function DeleteTask({ taskId, handleGoalsDeleteTask }) {
     }
 
     return (
-        <button onClick={()=> handleDeleteTask(taskId)}>Delete Task</button>
+        <button style={{ width: "150px", height: "54px", marginRight: "10px" }} onClick={()=> handleDeleteTask(taskId)}>Delete Task</button>
     )
 }
 export default DeleteTask
