@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-function AddTask({ handleTask, goalId, userList }){
+function AddTask({ userList, handleTask, goalId }){
     const formschema = yup.object().shape({
         task: yup.string().required("Must enter a task.").max(150),
         user: yup.string().required("Must enter a user.")
@@ -19,7 +19,7 @@ function AddTask({ handleTask, goalId, userList }){
                 (user) => values.user.toLowerCase() === user.username.toLowerCase()
                 );
             if (!foundUser) {
-                formik.setFieldError('user', 'User not found. Please enter a valid user.')
+                formik.setFieldError('user', 'Username not found. Please enter a username that has been created.')
             }
             const dataToSend = {
                 task: values.task,

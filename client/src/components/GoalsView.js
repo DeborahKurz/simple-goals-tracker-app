@@ -5,7 +5,7 @@ import AddGoal from "./AddGoal.js";
 import AddTask from "./AddTask.js";
 import DeleteGoalTask from "./DeleteGoalTask.js";
 
-function DisplayGoals({ userList, setUserList, allGoals, handleGoalsDeleteTask, setAllGoals, handleGoal, handleTask}) {
+function DisplayGoals({ userList, allGoals, handleGoal, handleGoalsDeleteTask, handleTask }) {
   const navigate = useNavigate();
 
   function handleClickUser(){
@@ -42,7 +42,7 @@ function DisplayGoals({ userList, setUserList, allGoals, handleGoalsDeleteTask, 
                   )
                 ))}
                 <br></br>
-                <AddTask handleTask={handleTask} goalId={goal.id} userList={userList} />
+                <AddTask userList={userList} handleTask={handleTask} goalId={goal.id} />
               </div>
           ))}
         </ul>

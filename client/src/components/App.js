@@ -47,11 +47,16 @@ function App() {
       ...goal,
       tasks: goal.tasks.filter(task => task.id != taskId)
     }));
-    setAllGoals(updatedGoals)
+    setAllGoals(updatedGoals);
   };
 
+  //AddTask.js uses this through GoalsView
   const handleTask = (task) => {
-    setAllTasks([...allTasks, task]);
+    const updatedGoals = allGoals.map(goal => ({
+      ...goal,
+      tasks: [...goal.tasks, task]
+    }))
+    setAllGoals(updatedGoals);
   };
 
   const handleCompletedTask = (task) => {
@@ -64,7 +69,7 @@ function App() {
       <Routes>
         <Route path="/" element={<WelcomePage userList={userList} handleUser={handleUser}/> } /> 
 
-        <Route path="/goals" element={<GoalsView userList={userList} setUserList={setUserList} allGoals={allGoals} handleGoalsDeleteTask={handleGoalsDeleteTask}          setAllGoals={setAllGoals} handleGoal={handleGoal}     handleTask={handleTask} setUser={setUser} allTasks={allTasks} setAllTasks={setAllTasks}/>} /> 
+        <Route path="/goals" element={<GoalsView userList={userList} allGoals={allGoals} handleGoal={handleGoal} handleGoalsDeleteTask={handleGoalsDeleteTask} handleTask={handleTask}/>} /> 
 
         <Route path="/team" element={<TeamView userList={userList} allGoals={allGoals} setAllGoals={setAllGoals} setUser={setUser} handleCompletedTask={handleCompletedTask} allTasks={allTasks} setAllTasks={setAllTasks} setUserList={setUserList}/>} />
         <Route path="*" element={<ErrorPage />} />
