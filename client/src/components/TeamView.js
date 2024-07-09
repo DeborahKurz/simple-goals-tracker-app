@@ -2,9 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import CompleteTask from "./CompleteTask.js";
-// import DeleteTask from "./DeleteTask.js";
 
-function TeamView({ userList,     setUserList, allGoals, setAllGoals, allTasks, setAllTasks, setUser, handleCompletedTask }){
+function TeamView({ userList, handleCompletedTask }){
   const navigate = useNavigate();
 
   function handleClickGoal(){

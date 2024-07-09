@@ -1,9 +1,8 @@
 #To Do List:
 
->fromik -> clear inputs when done with them.
->allGoals (get & set State)
-
->Styling
+>README
+>NavBar styling
+>Styling in general
 
 
 

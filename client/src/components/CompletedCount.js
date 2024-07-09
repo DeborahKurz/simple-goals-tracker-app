@@ -13,6 +13,6 @@ function CompletedCount({ allTasks }){
             tasks.
         </h4>
     )
-}
+};
 
 export default CompletedCount

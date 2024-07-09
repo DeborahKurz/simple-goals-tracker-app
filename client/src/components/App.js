@@ -11,9 +11,6 @@ function App() {
   const [userList, setUserList] = useState([]);
   const [allGoals, setAllGoals] = useState([]);
   const [allTasks, setAllTasks] = useState([]);
-  const [user, setUser] = useState([]);
-  const [task, setTask] = useState([]);
-
 
   useEffect(()=>{
     fetch("http://127.0.0.1:5555/")
@@ -32,14 +29,13 @@ function App() {
     .catch((error) => console.error(error));
   }, []);
 
-
-  //Needed for WelcomePage updating state
   const handleUser = (user) => { 
     setUserList([...userList, user]);
   }
-  //GoalsView needs to see what to display and to add a goal
+
   const handleGoal = (goal) => {
     setAllGoals([...allGoals, goal]);
+    setAllTasks(allTasks);
   };
 
   const handleGoalsDeleteTask = (taskId) => {
@@ -47,16 +43,23 @@ function App() {
       ...goal,
       tasks: goal.tasks.filter(task => task.id != taskId)
     }));
+
+    const updatedTasks = allTasks.filter(task => task.id != taskId);
+
     setAllGoals(updatedGoals);
+    setAllTasks(updatedTasks);
   };
 
-  //AddTask.js uses this through GoalsView
   const handleTask = (task) => {
     const updatedGoals = allGoals.map(goal => ({
       ...goal,
       tasks: [...goal.tasks, task]
-    }))
+    }));
+
+    const updatedTasks = [...allTasks, task];
+
     setAllGoals(updatedGoals);
+    setAllTasks(updatedTasks);
   };
 
   const handleCompletedTask = (taskObj) => {
@@ -66,7 +69,10 @@ function App() {
         task.id === taskObj.id ? { ...task, completed: true } : task)
     }));
 
+    const updatedTasks = allTasks.map(task => task.id === taskObj.id ? { ...task.task, completed: true } : task);
+
     setUserList(updatedUsers);
+    setAllTasks(updatedTasks);
   };
 
   return (
@@ -74,10 +80,8 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<WelcomePage userList={userList} handleUser={handleUser} allTasks={allTasks}/> } /> 
-
         <Route path="/goals" element={<GoalsView userList={userList} allGoals={allGoals} handleGoal={handleGoal} handleGoalsDeleteTask={handleGoalsDeleteTask} handleTask={handleTask}/>} /> 
-
-        <Route path="/team" element={<TeamView userList={userList} setUserList={setUserList}  allGoals={allGoals} setAllGoals={setAllGoals} allTasks={allTasks} setAllTasks={setAllTasks} setUser={setUser} handleCompletedTask={handleCompletedTask} />} />
+        <Route path="/team" element={<TeamView userList={userList} handleCompletedTask={handleCompletedTask} />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>

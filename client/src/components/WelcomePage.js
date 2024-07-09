@@ -22,6 +22,6 @@ function WelcomePage({ userList, handleUser, allTasks }){
             <CreateNewUser userList={userList} handleUser={handleUser}/>
         </>
     )
-}
+};
 
 export default WelcomePage
