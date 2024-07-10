@@ -1,5 +1,4 @@
 import App from "./components/App.js";
-import ExistingUserLogin from "./components/ExistingUserLogin.js";
 import GoalsRoute from "./components/GoalsView.js";
 import TeamView from "./components/TeamView.js";
 import WelcomePage from "./components/WelcomePage.js";

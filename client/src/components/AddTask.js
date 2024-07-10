@@ -75,6 +75,6 @@ function AddTask({ userList, handleTask, goalId }){
             </div>
         </>
     )
-}
+};
 
 export default AddTask

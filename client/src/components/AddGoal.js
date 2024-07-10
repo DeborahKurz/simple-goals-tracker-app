@@ -32,7 +32,6 @@ function AddGoal({ handleGoal }){
     return(
         <>
             <div>
-                {/* <h3>Add A New Goal</h3> */}
                 <form onSubmit={formik.handleSubmit} style={{ display: "flex", alignItems: "center", width: "1000px", height: "60px", marginRight: "10px" }}>
                     <input 
                         id="goal"
