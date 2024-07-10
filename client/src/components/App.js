@@ -58,8 +58,14 @@ function App() {
 
     const updatedTasks = [...allTasks, task];
 
+    const updatedUsers = userList.map(user => ({
+      ...user,
+      tasks: [...user.tasks, task]
+    }));
+
     setAllGoals(updatedGoals);
     setAllTasks(updatedTasks);
+    setUserList(updatedUsers);
   };
 
   const handleCompletedTask = (taskObj) => {
