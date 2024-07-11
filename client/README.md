@@ -1,5 +1,3 @@
-#To Do List:
-
 # Simple Goals Tracker Application For Families
 Welcome to this Goals Tracker App (simple version)!
 
@@ -87,15 +85,28 @@ This is the project tree:
     └── seed.py *
 
 
-
 #### App.js:
+App.js is in charge of displaying different components based on what route is being rendered ('/' renders "WelcomePage", '/goals' renders "GoalsView", '/team' renders "TeamView"). useEffect fetches to '/' for all users, '/goals' for all goals, and '/tasks' for all tasks. 
+App.js holds three state variables (userList, allGoals, and allTasks) which are passed down to child components when needed, and updated through functions defined in this file: 
+1. 'handleUser' is used by WelcomePage & children components to update state.
+2. 'handleGoal' is used by GoalsView & children components to update state.
+3. 'handleGoalsDeleteTask' is used by GoalsView & children components to update state.
+4. 'handleTasks' is used by GoalsView & children components to update state.
+5. 'handleCompletedTask' is used by TeamView & childen components to update state.
+
+
+
+
+
+
+export default App; -->
 
 #### NavBar.js:
 
 ### ErrorPage.js:
 
 ### Client Folder:
-The "client" folder houses our REACT components.
+The "client" folder houses our REACT frontend components.
 
 #### WelcomePage.js:
 WelcomePage.js is the UI visible at "/" route. It calls the child components ListUsers, CompletedCount, and CreateNewUser to allow you to create a new username, see the usernames already using this app, and see how many tasks the team has completed, and how many tasks are left to complete. It also provides basic user instructions for how to utilize the app.
@@ -128,9 +139,16 @@ TeamView.js is the UI visible at the "/team" route and displays all the users an
 CompleteTask uses a PATCH request to http://localhost:5555/tasks/${taskId} to update a task and rerenders the page using the function "handleCompletedTask" (which is located in App.js), to update the UI once a task has been marked completed (so that only tasks that need to be completed are shown).
 
 #### Server Folder:
+The "server" folder houses our Python backend code.
+
 ##### instance folder / app.db:
+The "instance" folder houses our app.db file. This is our database and it contains 3 tables: "goals", "tasks", and "users".
+
 ##### app.py
+
+
 ##### models.py
+
 ##### seed.py
 
 
