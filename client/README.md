@@ -59,7 +59,6 @@ This is the project tree:
 │         ├── components *
 │         │   ├── AddGoal.js *
 │         │   ├── AddTask.js * 
-│         │   ├── App.css *
 │         │   ├── App.js *
 │         │   ├── CompleteTask.js *
 │         │   ├── CompletedCount.js *
@@ -71,8 +70,7 @@ This is the project tree:
 │         │   ├── NavBar.js *
 │         │   ├── TeamView.js *
 │         │   └── WelcomePage.js *
-│         ├── index.css
-│         ├── index.js *
+│         ├── index.js 
 │         └── routes.js *
 └── server *
     ├── __pycache__
@@ -87,9 +85,6 @@ This is the project tree:
 
 ### Client Folder:
 The "client" folder houses our REACT frontend components.
-
-### index.js:
-"index.js" creates a root and renders it using "RouterProvider".
 
 ### routes.js:
 'routes.js' defines the routes used in this application. The following components are associated with the various routes: 'App' ('/' route), 'WelcomePage' ('/' route), 'GoalsRoute' ('/goals' route), 'TeamView' ('/team' route), and 'ErrorPage' (any route that has not been defined).
@@ -143,17 +138,19 @@ TeamView.js is the UI visible at the "/team" route and displays all the users an
 CompleteTask uses a PATCH request to http://localhost:5555/tasks/${taskId} to update a task and rerenders the page using the function "handleCompletedTask" (which is located in App.js), to update the UI once a task has been marked completed (so that only tasks that need to be completed are shown).
 
 #### Server Folder:
-The "server" folder houses our Python backend code.
+The "server" folder houses our Python/FLASK backend code.
 
 ##### instance folder / app.db:
 The "instance" folder houses our app.db file. This is our database and it contains 3 tables: "goals", "tasks", and "users".
 
 ##### app.py
-
+'app.py' defines the Flask endpoints that can be made from the frontend to our backend. It tells the application what to do in the database when a request is recieved, and allows our frontend to operate make fetch requests without a hitch.
 
 ##### models.py
+'models.py' defines our database tables and creates relationships, back-populating, cascades, and serilization rules so tables seamlessly interact with each other.
 
 ##### seed.py
+'seed.py' allows us to use seed the database with random (and non coherent) data. 5 users will be created, along with 10 goals, and 30 tasks (assigned randomly to the 5 users and 10 goals).
 
 
 
