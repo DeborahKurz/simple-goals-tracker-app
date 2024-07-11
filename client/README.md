@@ -85,6 +85,18 @@ This is the project tree:
     └── seed.py *
 
 
+### Client Folder:
+The "client" folder houses our REACT frontend components.
+
+### index.js:
+"index.js" creates a root and renders it using "RouterProvider".
+
+### routes.js:
+'routes.js' defines the routes used in this application. The following components are associated with the various routes: 'App' ('/' route), 'WelcomePage' ('/' route), 'GoalsRoute' ('/goals' route), 'TeamView' ('/team' route), and 'ErrorPage' (any route that has not been defined).
+
+### Components Folder:
+The "client/src/components" folder houses our frontend components used to build the parts of the webpages that are visible to the user.
+
 #### App.js:
 App.js is in charge of displaying different components based on what route is being rendered ('/' renders "WelcomePage", '/goals' renders "GoalsView", '/team' renders "TeamView"). useEffect fetches to '/' for all users, '/goals' for all goals, and '/tasks' for all tasks. 
 App.js holds three state variables (userList, allGoals, and allTasks) which are passed down to child components when needed, and updated through functions defined in this file: 
@@ -99,9 +111,6 @@ NavBar.js allows us to render a navbar on all pages for easy user navigation. It
 
 ### ErrorPage.js:
 ErrorPage renders an error if an undefined route is navigated to. It also renders the NavBar component so that users can return to the defined routes.
-
-### Client Folder:
-The "client" folder houses our REACT frontend components.
 
 #### WelcomePage.js:
 WelcomePage.js is the UI visible at "/" route. It calls the child components ListUsers, CompletedCount, and CreateNewUser to allow you to create a new username, see the usernames already using this app, and see how many tasks the team has completed, and how many tasks are left to complete. It also provides basic user instructions for how to utilize the app.
