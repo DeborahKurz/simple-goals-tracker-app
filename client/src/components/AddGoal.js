@@ -30,24 +30,22 @@ function AddGoal({ handleGoal }){
     })
 
     return(
-        <>
-            <div>
-                <form onSubmit={formik.handleSubmit} style={{ display: "flex", alignItems: "center", width: "1000px", height: "60px", marginRight: "10px" }}>
-                    <input 
-                        id="goal"
-                        name="goal"
-                        type="text" 
-                        value={formik.values.goal}
-                        placeholder = "Add A New Goal"
-                        onChange={formik.handleChange}
-                    />
-                    <p style={{ color: "red" }}>{formik.errors.goal}</p>
-                    <br />
-                    <button type="submit">Add My Goal</button>
-                    <br></br>
-                </form>
-            </div>
-        </>
+        <div>
+            <form onSubmit={formik.handleSubmit} style={{ display: "flex", alignItems: "center", width: "1000px", height: "60px", marginRight: "10px" }}>
+                <input 
+                    id="goal"
+                    name="goal"
+                    type="text" 
+                    value={formik.values.goal}
+                    placeholder = "Add A New Goal"
+                    onChange={formik.handleChange}
+                />
+                <p style={{ color: "red" }}>{formik.errors.goal}</p>
+                <br />
+                <button type="submit">Add My Goal</button>
+                <br></br>
+            </form>
+        </div>
     )
 };
 

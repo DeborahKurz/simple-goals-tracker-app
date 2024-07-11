@@ -57,34 +57,35 @@ This is the project tree:
 (files with * by them will be discussed below)
 .
 ├── client *
-│    ├── __pycache__
-│    ├── app.py *
-│    ├── config.py
-│    ├── instance
-│    │   └── app.db
-│    ├── migrations
-│    ├── models.py *
-│    └── seed.py *
+│     └── src
+│         ├── components *
+│         │   ├── AddGoal.js *
+│         │   ├── AddTask.js * 
+│         │   ├── App.css *
+│         │   ├── App.js *
+│         │   ├── CompleteTask.js *
+│         │   ├── CompletedCount.js *
+│         │   ├── CreateNewUser.js *
+│         │   ├── DeleteGoalTask.js *
+│         │   ├── ErrorPage.js *
+│         │   ├── GoalsView.js *
+│         │   ├── ListUsers.js *
+│         │   ├── NavBar.js *
+│         │   ├── TeamView.js *
+│         │   └── WelcomePage.js *
+│         ├── index.css
+│         ├── index.js *
+│         └── routes.js *
 └── server *
-    └── src
-        ├── components *
-        │   ├── AddGoal.js *
-        │   ├── AddTask.js * 
-        │   ├── App.css *
-        │   ├── App.js *
-        │   ├── CompleteTask.js *
-        │   ├── CompletedCount.js *
-        │   ├── CreateNewUser.js *
-        │   ├── DeleteGoalTask.js *
-        │   ├── ErrorPage.js *
-        │   ├── GoalsView.js *
-        │   ├── ListUsers.js *
-        │   ├── NavBar.js *
-        │   ├── TeamView.js *
-        │   └── WelcomePage.js *
-        ├── index.css
-        ├── index.js *
-        └── routes.js *
+    ├── __pycache__
+    ├── app.py *
+    ├── config.py
+    ├── instance
+    │   └── app.db
+    ├── migrations
+    ├── models.py *
+    └── seed.py *
+
 
 
 #### App.js:
@@ -109,12 +110,22 @@ CompletedCount.js allows users to see how many tasks have been completed and how
 CreateNewUser.js uses formik and yup to create a validated form where a user can enter a username and it is added to the database after checking the datatype and seeing if that username has already been taken. CreateNewUser makes a post request to http://127.0.0.1:5555/ in order to do this.
 
 #### GoalsView.js:
+GoalsView.js is the UI visible at the "/goals" route and displays all the goals and their associated tasks. Next to each task, the username that has been assigned to that task is visible, as well as a 'delete' button so a task can be removed if it is no longer needed or mis-spelled. It calls the child components AddGoal, AddTask, and DeleteGoalTask to allow you to create a new goals and tasks and to delete tasks. The hook, useNaviage, is used to redirect a user to the "/team" route if a username is clicked on.  
 
 ##### AddGoal.js:
+AddGoal.js uses formik and yup to create a validated form where a user can enter a new goal. AddGoal makes a post request to http://localhost:5555/goals in order to do this.
 
 ##### AddTask.js:
+AddTask.js uses formik and yup to create a validated form where a user can enter a new task that is associated with the goal under which the "Add Task" form was submitted. AddTask makes a post request to http://localhost:5555/tasks and takes in the user input of the task, and the username responsible for completing the task.
 
 ##### DeleteGoalTask.js:
+DeleteGoalTask.js uses a DELETE request to http://localhost:5555/tasks/${taskId} to delete a task from a goal.
+
+#### TeamView.js:
+TeamView.js is the UI visible at the "/team" route and displays all the users and their associated tasks. Next to each task, the goal that has been assigned to that task is visible, as well as a 'complete' button so a task can be marked as 'done' once it has been completed. There is not an option to delete a task from this page, because tasks are associated with goals, and therefore a user should be aware of how deleting a task could effect the team (so tasks can only added and deleted in the Goals View). It calls the child component CompleteTask. The hook, useNaviage, is used to redirect a user to the "/goals" route if a goal is clicked on.  
+
+##### CompleteTask.js
+CompleteTask uses a PATCH request to http://localhost:5555/tasks/${taskId} to update a task and rerenders the page using the function "handleCompletedTask" (which is located in App.js), to update the UI once a task has been marked completed (so that only tasks that need to be completed are shown).
 
 #### Server Folder:
 ##### instance folder / app.db:
@@ -122,40 +133,14 @@ CreateNewUser.js uses formik and yup to create a validated form where a user can
 ##### models.py
 ##### seed.py
 
+
+
+
+
+
 **cli.py** and **helpers.py**
 `cli.py` handles the menus, and helpers.py handles user input and calling our Model's methods.
 
-#### cli.py:
-This file gives you the menus that are visible in the CLI and calls methods in `helpers.py` (which call methods that handle SQL in our models).
-**`menu()` and `main()`** work together as the main menu (the one we see when we start the app in our CLI). They include the following options:
-1. See all saved U.S. States (this allows you to see all the States they ahve added to the wishlist)
-2. Add a new U.S. State (this lets you add a new State to your wishlist)
-3. View a State's details (this asks you to choose a State and then shows you the details of that state which include the cities you have added and notes on what specifically you want to see/do in each city. Under the hood, this option will take you to the "city menu" described below)
-4. Delete a State (this option is used to delete a State and its corresponding cities from your wishlist)
-5. Exit the program (this is pretty self explainitory: when you are done adding to or updating your wishlist, you can select this option to exit the program)
-
-**`sub_menu()` and `cities_loop()`** work together to create a second menu designed specifically for handling your saved cities. This menu includes the following options:
-1. Add a new city (this allows you to add a new city to the State you are currently in)
-2. Delete a city (this lets you to remove a city from your wishlist)
-3. Return to the 'States' Menu (this is how you return to the "main menu")
-
-`main()` and `cities_loop()` call methods that were placed in the `helpers.py` file in order to make cleaner code.
-
-#### helpers.py:
-This file holds some of the code that is called in `cli.py`. It also draws from our `models` folder (`state.py` and `city.py`) to make the `cli.py` menu work.
-
-`helpers.py` imports both the State and City classes and uses them in some of the following methods:
-1. `exit_program()`: Uses `exit()` to exit out of our app's CLI menu.
-2. `list_states()`: Lists States or alerts you to add a State if you haven't already.
-3. `choose_state()`: Handles user input and allows you to choose which State specifically you would like to see details on.
-4. `delete_state()`: Calls methods from both `state.py` and `city.py` to delete a State and all it's associated cities from the database.
-5. `add_state()`: Takes your input and allows you to add a state to the database.
-6. `list_cities()`: Lists all the cities associated with a chosen State, or alerts you to add a city if there aren't any cities in the database (assicoated with the chosen State).
-7. `add_city()`: Handles user input and allows you to add a city to the database.
-8. `delete_city()`: Deletes a city associated with a chosen State.
-9. `separator()`: Creates a line of stars (*) that acts as a separator in the command line.
-
-These methods call on methods in the `models` folder.
 
 ### Models
 This application does not use SQLAlchemy, so, in the `models` folder (`lib/models`), you will find two Python files (**`state.py`** and **`city.py`**) with SQL statements.
