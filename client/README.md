@@ -98,6 +98,7 @@ App.js holds three state variables (userList, allGoals, and allTasks) which are 
 NavBar.js allows us to render a navbar on all pages for easy user navigation. It includes basic in-line styling.
 
 ### ErrorPage.js:
+ErrorPage renders an error if an undefined route is navigated to. It also renders the NavBar component so that users can return to the defined routes.
 
 ### Client Folder:
 The "client" folder houses our REACT frontend components.
