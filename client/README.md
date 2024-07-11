@@ -52,7 +52,76 @@ This application stores your goals and tasks in the `app.db` file where you will
 
 
 ### Tree:
-In order to present cleaner code, the user view was broken into two files:
+In order to present cleaner code, the files have been broken into two major file: "server" (to house the server-side files) and "client" (to house the client-side files).
+This is the project tree:
+(files with * by them will be discussed below)
+.
+├── client *
+│    ├── __pycache__
+│    ├── app.py *
+│    ├── config.py
+│    ├── instance
+│    │   └── app.db
+│    ├── migrations
+│    ├── models.py *
+│    └── seed.py *
+└── server *
+    └── src
+        ├── components *
+        │   ├── AddGoal.js *
+        │   ├── AddTask.js * 
+        │   ├── App.css *
+        │   ├── App.js *
+        │   ├── CompleteTask.js *
+        │   ├── CompletedCount.js *
+        │   ├── CreateNewUser.js *
+        │   ├── DeleteGoalTask.js *
+        │   ├── ErrorPage.js *
+        │   ├── GoalsView.js *
+        │   ├── ListUsers.js *
+        │   ├── NavBar.js *
+        │   ├── TeamView.js *
+        │   └── WelcomePage.js *
+        ├── index.css
+        ├── index.js *
+        └── routes.js *
+
+
+#### App.js:
+
+#### NavBar.js:
+
+### ErrorPage.js:
+
+### Client Folder:
+The "client" folder houses our REACT components.
+
+#### WelcomePage.js:
+WelcomePage.js is the UI visible at "/" route. It calls the child components ListUsers, CompletedCount, and CreateNewUser to allow you to create a new username, see the usernames already using this app, and see how many tasks the team has completed, and how many tasks are left to complete. It also provides basic user instructions for how to utilize the app.
+
+##### ListUsers.js:
+ListUsers.js maps through the list of all the users (held in state in App.js) to display all the usernames that are in use.
+
+##### CompletedCount.js:
+CompletedCount.js allows users to see how many tasks have been completed and how many are left to complete by filtering  through all the tasks (held in state in App.js), and displaying them.
+
+##### CreateNewUser.js:
+CreateNewUser.js uses formik and yup to create a validated form where a user can enter a username and it is added to the database after checking the datatype and seeing if that username has already been taken. CreateNewUser makes a post request to http://127.0.0.1:5555/ in order to do this.
+
+#### GoalsView.js:
+
+##### AddGoal.js:
+
+##### AddTask.js:
+
+##### DeleteGoalTask.js:
+
+#### Server Folder:
+##### instance folder / app.db:
+##### app.py
+##### models.py
+##### seed.py
+
 **cli.py** and **helpers.py**
 `cli.py` handles the menus, and helpers.py handles user input and calling our Model's methods.
 

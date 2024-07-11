@@ -1,6 +1,7 @@
 import React from "react";
 
 function ListUsers({userList}){
+    
     return(
         <>
             <h3>Your Team Includes The Following Usernames:</h3>
@@ -15,6 +16,6 @@ function ListUsers({userList}){
             </div>
         </>
     )
-}
+};
 
 export default ListUsers
