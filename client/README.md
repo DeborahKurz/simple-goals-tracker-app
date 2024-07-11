@@ -94,14 +94,8 @@ App.js holds three state variables (userList, allGoals, and allTasks) which are 
 4. 'handleTasks' is used by GoalsView & children components to update state.
 5. 'handleCompletedTask' is used by TeamView & childen components to update state.
 
-
-
-
-
-
-export default App; -->
-
 #### NavBar.js:
+NavBar.js allows us to render a navbar on all pages for easy user navigation. It includes basic in-line styling.
 
 ### ErrorPage.js:
 
