@@ -12,7 +12,11 @@ function TeamView({ userList, handleCompletedTask }){
 
   if (userList.length === 0) {
     return (
-      <div>To get started, please add a new goal.</div>
+      <div>
+        <h1> Team View </h1>
+        <h3>To get started, please add a goal in Goals View.</h3>
+        <button onClick={handleClickGoal}> Go To 'Goals View' </button>
+      </div>
     )
   } else {
     return(
@@ -23,15 +27,22 @@ function TeamView({ userList, handleCompletedTask }){
             {userList.map((user) => (
                 <div key={user.id}>
                   <h2>{user.username}</h2>
-                  {user.tasks.map((aTask) => (
-                    aTask.completed === false ? (
-                    <div key={aTask.id} style={{ display: "flex", alignItems: "center", width: "1000px", height: "60px" }}>
-                      <li style={{ width:"500px", height: "50px", border: "2px solid black", marginRight: "-2px" }}>{aTask.task}</li>
-                      <button style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }} onClick={()=> handleClickGoal()}>Goal: {aTask.goal.goal}</button>
-                      <CompleteTask task={aTask} handleCompletedTask={handleCompletedTask}/>
+                  {user.tasks.length === 0 ? (
+                    <div>
+                      <h4> To get started, please add a task in Goals View. </h4>
+                      <button onClick={handleClickGoal}> Go To 'Goals View' </button>
                     </div>
-                    ) : null
-                  ))}
+                  ) : (
+                    user.tasks.map((aTask) => (
+                      aTask.completed === false ? (
+                      <div key={aTask.id} style={{ display: "flex", alignItems: "center", width: "1000px", height: "60px" }}>
+                        <li style={{ width:"500px", height: "50px", border: "2px solid black", marginRight: "-2px" }}>{aTask.task}</li>
+                        <button style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }} onClick={()=> handleClickGoal()}>Goal: {aTask.goal.goal}</button>
+                        <CompleteTask task={aTask} handleCompletedTask={handleCompletedTask}/>
+                      </div>
+                      ) : null
+                    ))
+                  )}
                   <br></br>
                 </div>
             ))}

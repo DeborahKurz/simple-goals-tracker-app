@@ -51,12 +51,12 @@ function App() {
   };
 
   const handleTask = (task) => {
-    const updatedGoals = allGoals.map(goal => ({
+    const updatedGoals = allGoals.map((goal) => ({
       ...goal,
       tasks: [...goal.tasks, task]
     }));
 
-    const updatedTasks = [...allTasks, task];
+    const updatedTasks = allTasks.length > 0 ? [...allTasks, task] : [task];
 
     const updatedUsers = userList.map(user => ({
       ...user,

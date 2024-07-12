@@ -1,7 +1,7 @@
 # Simple Goals Tracker Application For Families
 Welcome to this Goals Tracker App (simple version)!
 
-This application is designed with families in mind and provides a way for parents to start training their pre-teen and teenage children how to set goals and work towards them wtih a group. Families can set overarching goals and build responsibility and accountability within their home by assigning contributing tasks to each family member. Two "views" are provided in this app to help you understand the goals overall and how each user fits into them: "Goals View" allows users to easily see each goal and assign tasks to users. "Team View" lets users view all their tasks in one place for easy reference.
+This application is designed with families in mind and provides a way for parents to start training their pre-teen and teenage children how to set goals and work towards them within a group. Families can set overarching goals and build responsibility and accountability within their home by assigning contributing tasks to each family member. Two "views" are provided in this app to help you understand the goals overall, and how each user fits into them: "Goals View" allows users to easily see each goal and assign tasks to users. "Team View" lets users view all their tasks in one place for easy reference.
 
 This is a REACT and FLASK application. Data is stored in three tables: "users", "goals", and "tasks".
 
@@ -150,6 +150,14 @@ The "instance" folder houses our app.db file. This is our database and it contai
 'models.py' defines our database tables and creates relationships, back-populating, cascades, and serilization rules so tables seamlessly interact with each other.
 
 ##### seed.py
-'seed.py' allows us to use seed the database with random (and non coherent) data. 5 users will be created, along with 10 goals, and 30 tasks (assigned randomly to the 5 users and 10 goals).
+'seed.py' allows us to use seed the database with random (and non coherent) data. 5 users will be created, along with 10 goals, and 30 tasks (assigned randomly to the 5 users and 10 goals). Currently the code that seeds the database is commented out. This allows a user to run the following command in the terminal and have an empty project:
+     ```console
+        python server/seed.py
+    ```
+To seed the database with random data, uncomment all the code in the seed.py file and then run the following command (this will delete any data you have previously added to the app):
+    ```console
+        python server/seed.py
+    ```
+
 
 ### I hope you enjoy this simple goals-tracker application!
