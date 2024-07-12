@@ -3,17 +3,20 @@ Welcome to this Goals Tracker App (simple version)!
 
 This application is designed with families in mind and provides a way for parents to start training their pre-teen and teenage children how to set goals and work towards them within a group. Families can set overarching goals and build responsibility and accountability within their home by assigning contributing tasks to each family member. Two "views" are provided in this app to help you understand the goals overall, and how each user fits into them: "Goals View" allows users to easily see each goal and assign tasks to users. "Team View" lets users view all their tasks in one place for easy reference.
 
-This is a REACT and FLASK application. Data is stored in three tables: "users", "goals", and "tasks".
+BASICS: This is a REACT/FLASK application. In the database, data is stored in three tables: "users", "goals", and "tasks".
 
 Are you ready to get started?
 
 ## Yes please! Let's get started!
 Awesome! I'm so excited you will be using this app.
-To get things up and running, do these steps:
+To get things up and running, follow these steps:
 
 1. **Fork** this app into your Github account.
 2. **Copy** this app (Code -> SSH -> *copy*)
-3. **Clone:** Open your Terminal and run ```$ git clone then_paste_your_copy_here``
+3. **Clone:** Open your Terminal and run: 
+    ```console
+        $ git clone then_paste_the_copy_here``
+    ```
 4. **Install Dependencies For The Backend Code** by running these two commands:
     ```console
         pipenv install
@@ -53,6 +56,8 @@ This application stores your goals and tasks in the `app.db` file where you will
 In order to present cleaner code, the files have been broken into two major folders: "server" (to house the server-side files) and "client" (to house the client-side files).
 This is the project tree:
 *(files with a 'star' by them will be discussed in more detail below)*
+
+```console
 .
 ├── client *
 │     └── src
@@ -81,6 +86,7 @@ This is the project tree:
     ├── migrations
     ├── models.py *
     └── seed.py *
+```
 
 
 ### Client Folder:
@@ -104,7 +110,7 @@ App.js holds three state variables (userList, allGoals, and allTasks) which are 
 #### NavBar.js:
 NavBar.js allows us to render a navbar on all pages for easy user navigation. It includes basic in-line styling.
 
-### ErrorPage.js:
+#### ErrorPage.js:
 ErrorPage renders an error if an undefined route is navigated to. It also renders the NavBar component so that users can return to the defined routes.
 
 #### WelcomePage.js:
@@ -119,6 +125,8 @@ CompletedCount.js allows users to see how many tasks have been completed and how
 ##### CreateNewUser.js:
 CreateNewUser.js uses formik and yup to create a validated form where a user can enter a username and it is added to the database after checking the datatype and seeing if that username has already been taken. CreateNewUser makes a post request to http://127.0.0.1:5555/ in order to do this.
 
+
+
 #### GoalsView.js:
 GoalsView.js is the UI visible at the "/goals" route and displays all the goals and their associated tasks. Next to each task, the username that has been assigned to that task is visible, as well as a 'delete' button so a task can be removed if it is no longer needed or mis-spelled. It calls the child components AddGoal, AddTask, and DeleteGoalTask to allow users to create new goals and tasks and to delete tasks. The hook, useNaviage, is used to redirect a user to the "/team" route if a username is clicked on.  
 
@@ -131,11 +139,15 @@ AddTask.js uses formik and yup to create a validated form where a user can enter
 ##### DeleteGoalTask.js:
 DeleteGoalTask.js uses a DELETE request to http://localhost:5555/tasks/${taskId} to delete a task.
 
+
+
 #### TeamView.js:
 TeamView.js is the UI visible at the "/team" route and displays all the users and their associated tasks. Next to each task the goal that has been assigned to that task is visible, as well as a 'complete' button so a task can be marked as 'done' once it has been completed. There is not an option to delete a task from this page because tasks are associated with goals and therefore a user should be aware of how deleting a task could effect the team (so tasks can only added and deleted in the Goals View). TeamView calls the child component CompleteTask. The hook, useNaviage, is used to redirect a user to the "/goals" route if a goal is clicked on.  
 
 ##### CompleteTask.js
 CompleteTask uses a PATCH request to http://localhost:5555/tasks/${taskId} to update a task and re-renders the page using the function "handleCompletedTask" (which is located in App.js) and updates the UI once a task has been marked completed (so that only tasks that need to be completed are shown).
+
+
 
 #### Server Folder:
 The "server" folder houses our Python/FLASK backend code.
