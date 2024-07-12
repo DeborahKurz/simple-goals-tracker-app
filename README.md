@@ -15,7 +15,7 @@ To get things up and running, follow these steps:
 2. **Copy** this app (Code -> SSH -> *copy*)
 3. **Clone:** Open your Terminal and run: 
     ```console
-        $ git clone then_paste_the_copy_here``
+        $ git clone then_paste_the_copy_here
     ```
 4. **Install Dependencies For The Backend Code** by running these two commands:
     ```console
