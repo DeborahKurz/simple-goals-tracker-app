@@ -29,18 +29,24 @@ function TeamView({ userList, handleCompletedTask }){
                   <h2>{user.username}</h2>
                   {user.tasks.length === 0 ? (
                     <div>
-                      <button onClick={handleClickGoal}> Go To 'Goals View' </button>
+                      <h4 style={{ color: "green" }}> <em>Nice Work! You have no outstanding tasks.</em></h4>
                     </div>
                   ) : (
-                    user.tasks.map((aTask) => (
-                      aTask.completed === false ? (
-                      <div key={aTask.id} style={{ display: "flex", alignItems: "center", width: "1000px", height: "60px" }}>
-                        <li style={{ width:"500px", height: "50px", border: "2px solid black", marginRight: "-2px" }}>{aTask.task}</li>
-                        <button style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }} onClick={()=> handleClickGoal()}>Goal: {aTask.goal.goal}</button>
-                        <CompleteTask task={aTask} handleCompletedTask={handleCompletedTask}/>
+                    user.tasks.every(task => task.completed === true) ? (
+                      <div>
+                        <h4 style={{ color: "green" }}> <em>Nice Work! You have no outstanding tasks.</em></h4>
                       </div>
-                      ) : null
-                    ))
+                    ):(
+                      user.tasks.map((aTask) => (
+                        aTask.completed === false ? (
+                        <div key={aTask.id} style={{ display: "flex", alignItems: "center", width: "1000px", height: "60px" }}>
+                          <li style={{ width:"500px", height: "50px", border: "2px solid black", marginRight: "-2px" }}>{aTask.task}</li>
+                          <button style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }} onClick={()=> handleClickGoal()}>Goal: {aTask.goal.goal}</button>
+                          <CompleteTask task={aTask} handleCompletedTask={handleCompletedTask}/>
+                        </div>
+                        ) : null
+                      ))
+                    )
                   )}
                   <br></br>
                 </div>
@@ -49,7 +55,6 @@ function TeamView({ userList, handleCompletedTask }){
       </div>
     )
   }
-
-}
+};
 
 export default TeamView
