@@ -3,14 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 import AddGoal from "./AddGoal.js";
 import AddTask from "./AddTask.js";
-import DeleteGoalTask from "./DeleteGoalTask.js";
+import ListGoals from "./ListGoals.js";
 
 function DisplayGoals({ userList, allGoals, handleGoal, handleGoalsDeleteTask, handleTask }) {
   const navigate = useNavigate();
-
-  function handleClickTeam(){
-    navigate("/team");
-  };
 
   function handleClickUser(){
     navigate("/");
@@ -37,21 +33,7 @@ function DisplayGoals({ userList, allGoals, handleGoal, handleGoalsDeleteTask, h
               <div key={goal.id}>
                 <h2>{goal.goal}</h2>
                 {goal.tasks.length > 0 ? (
-                  goal.tasks.map((aTask) => (
-                    aTask.completed === false ? (
-                      <div key={aTask.id} style={{ display: "flex", alignItems: "center", width: "1000px", height: "60px" }}>
-                        <li style={{ width:"500px", height: "50px", border: "2px solid black", marginRight: "-2px" }}>{aTask.task}</li>
-                        <button style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }} onClick={()=> handleClickTeam()}>Task Owner: {aTask.user.username}</button>
-                        <DeleteGoalTask taskId={aTask.id} handleGoalsDeleteTask={handleGoalsDeleteTask}/>
-                      </div>
-                    ) : (
-                      <div key={aTask.id} style={{ display: "flex", alignItems: "center", width: "1000px", height: "60px" }}>
-                        <li style={{ textDecoration: 'line-through', width:"500px", height: "50px", border: "2px solid black", marginRight: "-2px" }}>Completed: {aTask.task}</li>
-                        <button style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }} onClick={()=> handleClickTeam()}>Task Owner: {aTask.user.username}</button>
-                        <DeleteGoalTask taskId={aTask.id} handleGoalsDeleteTask={handleGoalsDeleteTask}/>
-                      </div>
-                    )
-                  ))
+                  <ListGoals goal={goal} handleGoalsDeleteTask={handleGoalsDeleteTask}/>
                 ) : (
                   <div>
                     <h4> No tasks are assigned to this goal. Please add a task. </h4>

@@ -11,6 +11,9 @@ function App() {
   const [userList, setUserList] = useState([]);
   const [allGoals, setAllGoals] = useState([]);
   const [allTasks, setAllTasks] = useState([]);
+  console.log("userList: ", userList)
+  console.log("allGoals: ", allGoals)
+  console.log("allTasks: ", allTasks)
 
   useEffect(()=>{
     fetch("http://127.0.0.1:5555/")
@@ -35,7 +38,7 @@ function App() {
 
   const handleGoal = (goal) => {
     setAllGoals([...allGoals, goal]);
-    setAllTasks(allTasks);
+    setAllTasks([...allTasks, ...goal.tasks]);
   };
 
   const handleGoalsDeleteTask = (taskId) => {
@@ -51,10 +54,15 @@ function App() {
   };
 
   const handleTask = (task) => {
-    const updatedGoals = allGoals.map((goal) => ({
-      ...goal,
-      tasks: [...goal.tasks, task]
-    }));
+    const updatedGoals = allGoals.map((goal) => {
+      if(goal.id === task.goal_id) {
+        return {
+          ...goal,
+          tasks: [...goal.tasks, task]
+        }
+      }
+      return goal;
+    });
 
     const updatedTasks = allTasks.length > 0 ? [...allTasks, task] : [task];
 
