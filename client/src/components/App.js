@@ -11,9 +11,6 @@ function App() {
   const [userList, setUserList] = useState([]);
   const [allGoals, setAllGoals] = useState([]);
   const [allTasks, setAllTasks] = useState([]);
-  console.log("userList: ", userList)
-  console.log("allGoals: ", allGoals)
-  console.log("allTasks: ", allTasks)
 
   useEffect(()=>{
     fetch("http://127.0.0.1:5555/")
@@ -38,7 +35,12 @@ function App() {
 
   const handleGoal = (goal) => {
     setAllGoals([...allGoals, goal]);
-    setAllTasks([...allTasks, ...goal.tasks]);
+    if(allTasks.length === 0) {
+      setAllTasks(goal.tasks);
+    }else{
+      const updatedTasks = [...allTasks, ...goal.tasks];
+      setAllTasks(updatedTasks);
+    }
   };
 
   const handleGoalsDeleteTask = (taskId) => {
@@ -54,8 +56,11 @@ function App() {
   };
 
   const handleTask = (task) => {
+    const updatedTasks = allTasks.length > 0 ? [...allTasks, task] : [task];
+    setAllTasks(updatedTasks);
+
     const updatedGoals = allGoals.map((goal) => {
-      if(goal.id === task.goal_id) {
+      if(goal.id === task.goals_id) {
         return {
           ...goal,
           tasks: [...goal.tasks, task]
@@ -63,30 +68,37 @@ function App() {
       }
       return goal;
     });
-
-    const updatedTasks = allTasks.length > 0 ? [...allTasks, task] : [task];
-
-    const updatedUsers = userList.map(user => ({
-      ...user,
-      tasks: [...user.tasks, task]
-    }));
-
     setAllGoals(updatedGoals);
-    setAllTasks(updatedTasks);
+
+    const updatedUsers = userList.map((user) => {
+      if(user.id === task.users_id) {
+        return {
+          ...user,
+          tasks: [...user.tasks, task]
+        }
+      }
+      return user;
+    })
     setUserList(updatedUsers);
   };
 
   const handleCompletedTask = (taskObj) => {
+    const updatedTasks = allTasks.map(task => task.id === taskObj.id ? { ...task.task, completed: true } : task);
+    setAllTasks(updatedTasks);
+
     const updatedUsers = userList.map(user => ({
       ...user,
       tasks: user.tasks.map(task => 
         task.id === taskObj.id ? { ...task, completed: true } : task)
     }));
-
-    const updatedTasks = allTasks.map(task => task.id === taskObj.id ? { ...task.task, completed: true } : task);
-
     setUserList(updatedUsers);
-    setAllTasks(updatedTasks);
+
+    const updatedGoals = allGoals.map(goal => ({
+      ...goal,
+      tasks: goal.tasks.map(task => 
+        task.id === taskObj.id ? { ...task, completed: true } : task)
+    }));
+    setAllGoals(updatedGoals);
   };
 
   return (

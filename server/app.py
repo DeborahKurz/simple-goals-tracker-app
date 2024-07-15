@@ -79,9 +79,6 @@ class TaskResource(Resource):
     def get(self):
         try:
             tasks = Task.query.all()
-
-            if len(tasks) == 0:
-                return {"error": "Please add a task that is at least 1 character long"}, 404
             
             response_dict_list = [t.to_dict() for t in tasks]
             return response_dict_list, 200

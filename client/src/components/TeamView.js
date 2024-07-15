@@ -22,14 +22,13 @@ function TeamView({ userList, handleCompletedTask }){
     return(
       <div>
         <h1> Team View </h1>
-        <h5>Create goals and tasks in the Goals View in order to undertand how tasks relate to each goal.</h5>
+        <h4> Please add tasks in Goals View. </h4>
         <ul>
             {userList.map((user) => (
                 <div key={user.id}>
                   <h2>{user.username}</h2>
                   {user.tasks.length === 0 ? (
                     <div>
-                      <h4> To get started, please add a task in Goals View. </h4>
                       <button onClick={handleClickGoal}> Go To 'Goals View' </button>
                     </div>
                   ) : (
