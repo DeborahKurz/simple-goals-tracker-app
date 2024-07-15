@@ -71,6 +71,7 @@ This is the project tree:
 │         │   ├── DeleteGoalTask.js *
 │         │   ├── ErrorPage.js *
 │         │   ├── GoalsView.js *
+│         │   ├── ListGoals.js *
 │         │   ├── ListUsers.js *
 │         │   ├── NavBar.js *
 │         │   ├── TeamView.js *
@@ -135,6 +136,9 @@ AddGoal.js uses formik and yup to create a validated form where a user can enter
 
 ##### AddTask.js:
 AddTask.js uses formik and yup to create a validated form where a user can enter a new task that is associated with the goal under which the "Add Task" form was submitted. AddTask makes a post request to http://localhost:5555/tasks and takes in the user input of the task, and the username responsible for completing the task.
+
+##### ListGoals.js:
+ListGoals.js was created to make the code in GoalsView easier to read. It's purpose is to map through a goal that it has been handed and determine what to display based on whether the goal's tasks are completed or not (and how many have been completed).
 
 ##### DeleteGoalTask.js:
 DeleteGoalTask.js uses a DELETE request to http://localhost:5555/tasks/${taskId} to delete a task.
