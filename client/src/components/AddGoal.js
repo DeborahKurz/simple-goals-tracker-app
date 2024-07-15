@@ -4,7 +4,7 @@ import * as yup from "yup";
 
 function AddGoal({ handleGoal }){
     const formschema = yup.object().shape({
-        goal: yup.string().required("Must enter a goal").max(20)
+        goal: yup.string().required("Please enter a goal with at least 1 character.").max(20)
     })
 
     const formik = useFormik({
@@ -40,9 +40,10 @@ function AddGoal({ handleGoal }){
                     placeholder = "Add A New Goal"
                     onChange={formik.handleChange}
                 />
-                <p style={{ color: "red" }}>{formik.errors.goal}</p>
-                <br />
+                <br></br>
                 <button type="submit">Add My Goal</button>
+                <br></br>
+                <p style={{ color: "red" }}>{formik.errors.goal}</p>
                 <br></br>
             </form>
         </div>
