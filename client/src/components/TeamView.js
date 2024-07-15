@@ -6,6 +6,10 @@ import CompleteTask from "./CompleteTask.js";
 function TeamView({ userList, handleCompletedTask }){
   const navigate = useNavigate();
 
+  function handleClickUser(){
+    navigate("/");
+  };
+
   function handleClickGoal(){
     navigate("/goals");
   };
@@ -13,9 +17,8 @@ function TeamView({ userList, handleCompletedTask }){
   if (userList.length === 0) {
     return (
       <div>
-        <h1> Team View </h1>
-        <h3>To get started, please add a goal in Goals View.</h3>
-        <button onClick={handleClickGoal}> Go To 'Goals View' </button>
+        <h3>To get started, please create a username.</h3>
+        <button onClick={handleClickUser}>Take Me To 'Create Username'</button>
       </div>
     )
   } else {
