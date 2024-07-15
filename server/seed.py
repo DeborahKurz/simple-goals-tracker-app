@@ -21,6 +21,8 @@ def delete_all_data():
         db.session.rollback()
         print(f"Error deleteing data from database: {e}")
 
+#Uncomment the rest of this funciton to seed database:
+
 # def create_users(num_users):
 #     users = []
 #     for _ in range(num_users):
@@ -32,19 +34,19 @@ def delete_all_data():
 # def create_goals(num_goals):
 #     goals = []
 
-    # if not User.query.first():
-    #     fake_user = User(username='fake_user')
-    #     db.session.add(fake_user)
-    #     db.session.commit()
-    # else:
-    #     fake_user = None
+#     if not User.query.first():
+#         fake_user = User(username='fake_user')
+#         db.session.add(fake_user)
+#         db.session.commit()
+#     else:
+#         fake_user = None
 
-    # users = User.query.all()
+#     users = User.query.all()
     
-    # for _ in range(num_goals):
-    #     goal = Goal(goal=fake.sentence())
-    #     goals.append(goal)
-    # return goals
+#     for _ in range(num_goals):
+#         goal = Goal(goal=fake.sentence())
+#         goals.append(goal)
+#     return goals
 
 # def create_tasks(num_tasks):
 #     tasks = []
@@ -69,9 +71,11 @@ if __name__ == '__main__':
         delete_all_data()
         print("Existing Data Deleted From Database")
 
+    #Uncomment everything below to seed the database:
+
         # print("Starting seed...")
         
-        # num_users = 5
+        # num_users = 5 
         # users_to_create = create_users(num_users)
         # db.session.add_all(users_to_create)
         # db.session.commit()
