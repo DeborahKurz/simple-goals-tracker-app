@@ -52,6 +52,6 @@ function DisplayGoals({ userList, allGoals, handleGoal, handleGoalsDeleteTask, h
       )}
     </div>
   )
-}
+};
 
 export default DisplayGoals

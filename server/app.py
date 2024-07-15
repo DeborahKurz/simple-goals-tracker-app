@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from flask import Flask, request, current_app, make_response, jsonify
+from flask import Flask, request, make_response, jsonify
 from flask_restful import Resource, Api
 from models import User, Goal, Task
 from config import app, db, api
@@ -79,7 +79,7 @@ class TaskResource(Resource):
     def get(self):
         try:
             tasks = Task.query.all()
-            
+
             response_dict_list = [t.to_dict() for t in tasks]
             return response_dict_list, 200
         

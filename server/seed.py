@@ -21,7 +21,7 @@ def delete_all_data():
         db.session.rollback()
         print(f"Error deleteing data from database: {e}")
 
-#Uncomment the rest of this funciton to seed database:
+#Uncomment the rest of this funciton to seed the database:
 
 # def create_users(num_users):
 #     users = []

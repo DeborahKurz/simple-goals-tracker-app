@@ -56,9 +56,9 @@ function TeamView({ userList, handleCompletedTask }){
               ))}
             </ul>
         </div>
-        )}
-      </div>
-    );
-  };
+      )}
+    </div>
+  );
+};
 
 export default TeamView
