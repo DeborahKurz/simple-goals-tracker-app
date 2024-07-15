@@ -29,9 +29,11 @@ function App() {
     .catch((error) => console.error(error));
   }, []);
 
+
   const handleUser = (user) => { 
     setUserList([...userList, user]);
   }
+
 
   const handleGoal = (goal) => {
     setAllGoals([...allGoals, goal]);
@@ -43,17 +45,24 @@ function App() {
     }
   };
 
+
   const handleGoalsDeleteTask = (taskId) => {
+    const updatedTasks = allTasks.filter(task => task.id != taskId);
+    setAllTasks(updatedTasks);
+
     const updatedGoals = allGoals.map(goal => ({
       ...goal,
       tasks: goal.tasks.filter(task => task.id != taskId)
     }));
-
-    const updatedTasks = allTasks.filter(task => task.id != taskId);
-
     setAllGoals(updatedGoals);
-    setAllTasks(updatedTasks);
+
+    const updatedUsers = userList.map(user => ({
+      ...user,
+      tasks: user.tasks.filter(task => task.id != taskId)
+    }));
+    setUserList(updatedUsers);
   };
+
 
   const handleTask = (task) => {
     const updatedTasks = allTasks.length > 0 ? [...allTasks, task] : [task];
@@ -81,6 +90,7 @@ function App() {
     })
     setUserList(updatedUsers);
   };
+
 
   const handleCompletedTask = (taskObj) => {
     const updatedTasks = allTasks.map(task => task.id === taskObj.id ? { ...task.task, completed: true } : task);
