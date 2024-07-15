@@ -93,22 +93,20 @@ function App() {
 
 
   const handleCompletedTask = (taskObj) => {
-    const updatedTasks = allTasks.map(task => task.id === taskObj.id ? { ...task.task, completed: true } : task);
-    setAllTasks(updatedTasks);
+    setAllTasks(prevTasks => prevTasks.map(task => task.id === taskObj.id ? { 
+      ...task, 
+      completed: true 
+    } : task));
 
-    const updatedUsers = userList.map(user => ({
-      ...user,
-      tasks: user.tasks.map(task => 
-        task.id === taskObj.id ? { ...task, completed: true } : task)
-    }));
-    setUserList(updatedUsers);
-
-    const updatedGoals = allGoals.map(goal => ({
+    setAllGoals(prevGoals => prevGoals.map(goal => ({
       ...goal,
-      tasks: goal.tasks.map(task => 
-        task.id === taskObj.id ? { ...task, completed: true } : task)
-    }));
-    setAllGoals(updatedGoals);
+      tasks: goal.tasks.map(task => task.id === taskObj.id ? {...task, completed: true } : task)
+    })));
+
+    setUserList(prevUsers => prevUsers.map(user => ({
+      ...user,
+      tasks: user.tasks.map(task => task.id === taskObj.id ? {...task, completed: true } : task)
+    })));
   };
 
   return (
@@ -124,6 +122,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;
