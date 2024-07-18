@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from flask import Flask, request, make_response, jsonify
-from flask_restful import Resource, Api
+from flask_restful import Resource
 from models import User, Goal, Task
 from config import app, db, api
 

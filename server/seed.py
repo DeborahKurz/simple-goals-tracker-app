@@ -23,46 +23,46 @@ def delete_all_data():
 
 #Uncomment the rest of this funciton to seed the database:
 
-# def create_users(num_users):
-#     users = []
-#     for _ in range(num_users):
-#         username = fake.user_name()
-#         user = User(username=username)
-#         users.append(user)
-#     return users
+def create_users(num_users):
+    users = []
+    for _ in range(num_users):
+        username = fake.user_name()
+        user = User(username=username)
+        users.append(user)
+    return users
 
-# def create_goals(num_goals):
-#     goals = []
+def create_goals(num_goals):
+    goals = []
 
-#     if not User.query.first():
-#         fake_user = User(username='fake_user')
-#         db.session.add(fake_user)
-#         db.session.commit()
-#     else:
-#         fake_user = None
+    if not User.query.first():
+        fake_user = User(username='fake_user')
+        db.session.add(fake_user)
+        db.session.commit()
+    else:
+        fake_user = None
 
-#     users = User.query.all()
+    users = User.query.all()
     
-#     for _ in range(num_goals):
-#         goal = Goal(goal=fake.sentence())
-#         goals.append(goal)
-#     return goals
+    for _ in range(num_goals):
+        goal = Goal(goal=fake.sentence())
+        goals.append(goal)
+    return goals
 
-# def create_tasks(num_tasks):
-#     tasks = []
-#     fake = Faker()
+def create_tasks(num_tasks):
+    tasks = []
+    fake = Faker()
 
-#     goals = Goal.query.all()
-#     users = User.query.all()
+    goals = Goal.query.all()
+    users = User.query.all()
 
-#     for _ in range(num_tasks):
-#         goal = rc(goals)
-#         user = rc(users)
-#         is_completed = fake.boolean(chance_of_getting_true=30)
-#         task = Task(task=fake.text(), completed=is_completed, goals_id=goal.id, users_id=user.id)
-#         tasks.append(task)
+    for _ in range(num_tasks):
+        goal = rc(goals)
+        user = rc(users)
+        is_completed = fake.boolean(chance_of_getting_true=30)
+        task = Task(task=fake.text(), completed=is_completed, goals_id=goal.id, users_id=user.id)
+        tasks.append(task)
     
-#     return tasks
+    return tasks
 
 
 if __name__ == '__main__':
@@ -73,24 +73,24 @@ if __name__ == '__main__':
 
     #Uncomment everything below to seed the database:
 
-        # print("Starting seed...")
+        print("Starting seed...")
         
-        # num_users = 5 
-        # users_to_create = create_users(num_users)
-        # db.session.add_all(users_to_create)
-        # db.session.commit()
-        # print(f"Seeded {num_users} users successfully.")
+        num_users = 5 
+        users_to_create = create_users(num_users)
+        db.session.add_all(users_to_create)
+        db.session.commit()
+        print(f"Seeded {num_users} users successfully.")
 
-        # num_goals = 10
-        # goals_to_create = create_goals(num_goals)
-        # db.session.add_all(goals_to_create)
-        # db.session.commit()
-        # print(f"Seeded {num_goals} goals successfully.")
+        num_goals = 10
+        goals_to_create = create_goals(num_goals)
+        db.session.add_all(goals_to_create)
+        db.session.commit()
+        print(f"Seeded {num_goals} goals successfully.")
 
-        # num_tasks = 30
-        # tasks_to_create = create_tasks(num_tasks)
-        # db.session.add_all(tasks_to_create)
-        # db.session.commit()
-        # print(f"Seeded {num_tasks} tasks successfully.")
+        num_tasks = 30
+        tasks_to_create = create_tasks(num_tasks)
+        db.session.add_all(tasks_to_create)
+        db.session.commit()
+        print(f"Seeded {num_tasks} tasks successfully.")
 
-        # print("Seed completed.")
+        print("Seed completed.")
