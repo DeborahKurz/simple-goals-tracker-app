@@ -162,6 +162,33 @@ class TaskByIdResource(Resource):
             return response
 api.add_resource(TaskByIdResource, '/tasks/<int:id>')
 
+#Accepts a goal (id)
+#searhes for all users associated with goal
+
+class UsersThroughGoal(Resource):
+    def get(self,id):
+        
+
+
+
+    # def get(self,id):
+    #     #Goal has an id > tasks has goal id and user id goal.user
+    #     #getting me the tasks with the users related to the goal
+    #     # tasks = Task.query.filter_by(goals_id=id).all()
+    #     users = User.query.filter(user.task.goals_id==id).all()
+    #     breakpoint(users)
+
+    #     db.session.commit(users)
+
+    #     response_dict = {{"message": "Success"}}
+
+    #     response = make_resposne(
+    #         jsonify(reponse_dict),
+    #         201
+    #     )
+    #     return response
+api.add_resource(UsersThroughGoal, '/users/<int:id>')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
+

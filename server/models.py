@@ -46,7 +46,7 @@ class Task(db.Model, SerializerMixin):
     serialize_rules = ('-user.tasks', '-goal.tasks')
 
     def __repr__(self):
-        return f'<Task {self.id}, {self.task}, {self.task}, {self.completed}, {self.user.username} {self.goal.goal}>'
+        return f'<Task {self.id}, {self.task}, {self.completed}, {self.user.username} {self.goal.goal}>'
 
 
 class Goal(db.Model,SerializerMixin):
@@ -69,4 +69,5 @@ class Goal(db.Model,SerializerMixin):
 
     def __repr__(self):
         return f'<Goal {self.id}, {self.goal}>'
+        
     
