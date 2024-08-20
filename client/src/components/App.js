@@ -118,10 +118,13 @@ function App() {
       username: userObj.username 
     } : user));
   };
-
   const handleDeleteUser = (userId) => {
     setUserList(prevUsers => prevUsers.filter(user => user.id !== userId))
   }
+
+  // const handleDeletingUser = (userId) => {
+  //   setUserList(prevUsers => prevUsers.filter(user => user.id !== userId))
+  // }
 
   return (
     <div style={{width: "100%", height: "100px", background: "linear-Gradient(#C0C0C0, white)"}}>
