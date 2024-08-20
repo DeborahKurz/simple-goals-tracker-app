@@ -207,3 +207,6 @@ class Subtasks(Resource):
             response = {"error": "No subtask(s) found."}
             return response, 404
 api.add_resource(Subtasks, "/subtasks/<int:task_id>")
+
+if __name__ == '__main__':
+    app.run(port=5555, debug=True)
