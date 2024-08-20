@@ -2,7 +2,7 @@
 
 from flask import Flask, request, make_response, jsonify
 from flask_restful import Resource
-from models import User, Goal, Task
+from models import User, Goal, Task, Subtask
 from config import app, db, api
 
 class UserResource(Resource):
@@ -197,8 +197,19 @@ class TaskByIdResource(Resource):
 api.add_resource(TaskByIdResource, '/tasks/<int:id>')
 
 
+class Subtasks(Resource):
+    def get(self, task_id):
+        subtasks = Subtask.query.filter_by(task_id = task_id).all()
+        if subtasks:
+            subtask_list = [subtask.to_dict() for subtask in subtasks]
+            return subtask_list, 200
+        else:
+            response = {"error": "No subtask(s) found."}
+            return response, 404
+api.add_resource(Subtasks, "/subtasks/<int:task_id>")
 
-class Subtasks()
+
+
 
 
 #get all the user's goals (users_id)
