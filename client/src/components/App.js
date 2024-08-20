@@ -111,6 +111,15 @@ function App() {
     })));
   };
 
+
+  const handleUpdatedUser = (userObj) => {
+    setUserList(prevUsers => prevUsers.map(user => user.id === userObj.id ? { 
+      ...user, 
+      username: userObj.username 
+    } : user));
+  };
+
+
   return (
     <div style={{width: "100%", height: "100px", background: "linear-Gradient(#C0C0C0, white)"}}>
       <div style={{marginLeft: "25px"}}>
@@ -120,7 +129,7 @@ function App() {
           <Route path="/goals" element={<GoalsView userList={userList} allGoals={allGoals} handleGoal={handleGoal} handleGoalsDeleteTask={handleGoalsDeleteTask} handleTask={handleTask}/>} /> 
           <Route path="/team" element={<TeamView userList={userList} handleCompletedTask={handleCompletedTask} />} />
           <Route path="/subtasks/:taskId" element = {<SubtasksView allTasks={allTasks}/>} />
-          <Route path="/user/:userId" element = {<UserInfo userList={userList}/>} />
+          <Route path="/user/:userId" element = {<UserInfo userList={userList} handleUpdatedUser={handleUpdatedUser}/>} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-function CompletedSubtask({subtask, handleCompletedSubtask}){
+function CompleteSubtask({subtask, handleCompletedSubtask}){
     console.log("CompletedSubtask triggered")
     return(
         <div>
@@ -12,4 +12,4 @@ function CompletedSubtask({subtask, handleCompletedSubtask}){
     )
 };
 
-export default CompletedSubtask
+export default CompleteSubtask

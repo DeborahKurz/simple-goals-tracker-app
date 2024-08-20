@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import CompletedSubtask from "./CompletedSubtask";
+import CompleteSubtask from "./CompleteSubtask";
 
 function SubtasksView({ allTasks }){
     const [subtasks, setSubtasks] = useState([]);
@@ -69,8 +69,8 @@ function SubtasksView({ allTasks }){
                                     >
                                         {subT.subtask}
                                     </li>
-                                    
-                                    <CompletedSubtask subtask={subT} handleCompletedSubtask={handleCompletedSubtask} />
+
+                                    <CompleteSubtask subtask={subT} handleCompletedSubtask={handleCompletedSubtask} />
                                     
                                     <button
                                         style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }}
