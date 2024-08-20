@@ -40,6 +40,26 @@ class UserResource(Resource):
 api.add_resource(UserResource, '/')
 
 
+class UserResourceById(Resource):
+    def patch(self, id):
+        data = request.get_json()
+
+        user = User.query.filter_by(id = id).first()
+        if user:
+            try:
+               user.username = data['username']
+
+               db.session.commit() 
+
+               response_dict = user.to_dict()
+               return response_dict, 202
+            
+            except Exception as e:
+                return {"error": "No user found"}, 404
+
+api.add_resource(UserResourceById, '/<int:id>')
+
+
 class GoalResource(Resource):
     def get(self):
         try:
@@ -163,16 +183,19 @@ class TaskByIdResource(Resource):
 api.add_resource(TaskByIdResource, '/tasks/<int:id>')
 
 
-#get all the user's goals (users_id)
-class UsersGoals(Resource):
-    def get(self, userId):
-  
-        tasks = Task.query.filter_by(users_id = userId).all()
-        task_list = [task.goal.to_dict() for task in tasks]
 
-        return task_list, 200
+
+
+#get all the user's goals (users_id)
+# class UsersGoals(Resource):
+#     def get(self, userId):
+  
+#         tasks = Task.query.filter_by(users_id = userId).all()
+#         task_list = [task.goal.to_dict() for task in tasks]
+
+#         return task_list, 200
         
-api.add_resource(UsersGoals, "/usersgoals/<int:userId>")
+# api.add_resource(UsersGoals, "/usersgoals/<int:userId>")
 
 
 

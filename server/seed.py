@@ -26,7 +26,7 @@ def delete_all_data():
 def create_users(num_users):
     users = []
     for _ in range(num_users):
-        username = fake.name()
+        username = fake.first_name()
         user = User(username=username)
         users.append(user)
     return users
