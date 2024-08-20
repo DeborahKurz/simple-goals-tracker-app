@@ -5,6 +5,8 @@ import NavBar from "./NavBar.js";
 import GoalsView from "./GoalsView.js";
 import WelcomePage from "./WelcomePage.js";
 import TeamView from "./TeamView.js";
+import SubtasksView from "./SubtasksView.js";
+import UserInfo from "./UserInfo.js";
 import ErrorPage from "./ErrorPage.js";
 
 function App() {
@@ -117,6 +119,8 @@ function App() {
           <Route path="/" element={<WelcomePage userList={userList} handleUser={handleUser} allTasks={allTasks}/> } /> 
           <Route path="/goals" element={<GoalsView userList={userList} allGoals={allGoals} handleGoal={handleGoal} handleGoalsDeleteTask={handleGoalsDeleteTask} handleTask={handleTask}/>} /> 
           <Route path="/team" element={<TeamView userList={userList} handleCompletedTask={handleCompletedTask} />} />
+          <Route path="/subtasks" element = {<SubtasksView />} />
+          <Route path="/user" element = {<UserInfo />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>

@@ -14,6 +14,10 @@ function TeamView({ userList, handleCompletedTask }){
     navigate("/goals");
   };
 
+  function handleSubtaskClick(){
+    navigate("/subtasks")
+  }
+
   return(
     <div>
       <h1>Team View</h1>
@@ -45,6 +49,7 @@ function TeamView({ userList, handleCompletedTask }){
                             <li style={{ width:"500px", height: "50px", border: "2px solid black", marginRight: "-2px" }}>{aTask.task}</li>
                             <button style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }} onClick={()=> handleClickGoal()}>Goal: {aTask.goal.goal}</button>
                             <CompleteTask task={aTask} handleCompletedTask={handleCompletedTask}/>
+                            <button style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }} onClick={()=> handleSubtaskClick()}>View Subtasks</button>
                           </div>
                           ) : null
                         )

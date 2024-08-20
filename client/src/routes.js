@@ -2,6 +2,8 @@ import App from "./components/App.js";
 import WelcomePage from "./components/WelcomePage.js";
 import GoalsRoute from "./components/GoalsView.js";
 import TeamView from "./components/TeamView.js";
+import SubtasksView from "./components/SubtasksView.js";
+import UserInfo from "./components/UserInfo.js";
 import ErrorPage from "./components/ErrorPage.js";
 
 
@@ -22,6 +24,14 @@ const routes = [
             {
                 path: "/team",
                 element: <TeamView />,
+            },
+            {
+                path: "/subtasks",
+                element: <SubtasksView />
+            },
+            {
+                path: "/user",
+                element: <UserInfo />
             }
         ]
     },
