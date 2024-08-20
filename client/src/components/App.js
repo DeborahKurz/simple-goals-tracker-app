@@ -119,7 +119,7 @@ function App() {
           <Route path="/" element={<WelcomePage userList={userList} handleUser={handleUser} allTasks={allTasks}/> } /> 
           <Route path="/goals" element={<GoalsView userList={userList} allGoals={allGoals} handleGoal={handleGoal} handleGoalsDeleteTask={handleGoalsDeleteTask} handleTask={handleTask}/>} /> 
           <Route path="/team" element={<TeamView userList={userList} handleCompletedTask={handleCompletedTask} />} />
-          <Route path="/subtasks" element = {<SubtasksView />} />
+          <Route path="/subtasks/:taskId" element = {<SubtasksView allTasks={allTasks}/>} />
           <Route path="/user" element = {<UserInfo />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>

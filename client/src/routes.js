@@ -26,7 +26,7 @@ const routes = [
                 element: <TeamView />,
             },
             {
-                path: "/subtasks",
+                path: "/subtasks/:taskId",
                 element: <SubtasksView />
             },
             {
