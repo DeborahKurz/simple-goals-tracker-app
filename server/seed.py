@@ -8,7 +8,7 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import db, User, Goal, Task
+from models import db, User, Goal, Task, Subtask
 
 def delete_all_data():
     try:
@@ -26,10 +26,11 @@ def delete_all_data():
 def create_users(num_users):
     users = []
     for _ in range(num_users):
-        username = fake.user_name()
+        username = fake.name()
         user = User(username=username)
         users.append(user)
     return users
+
 
 def create_goals(num_goals):
     goals = []
@@ -44,9 +45,12 @@ def create_goals(num_goals):
     users = User.query.all()
     
     for _ in range(num_goals):
-        goal = Goal(goal=fake.sentence())
+        
+        goal = Goal(goal = fake.text(max_nb_chars=25))
         goals.append(goal)
+
     return goals
+
 
 def create_tasks(num_tasks):
     tasks = []
@@ -59,10 +63,29 @@ def create_tasks(num_tasks):
         goal = rc(goals)
         user = rc(users)
         is_completed = fake.boolean(chance_of_getting_true=30)
-        task = Task(task=fake.text(), completed=is_completed, goals_id=goal.id, users_id=user.id)
+        task_text = fake.text(max_nb_chars=25)
+
+        task = Task(task=task_text, completed=is_completed, goals_id=goal.id, users_id=user.id)
         tasks.append(task)
-    
+
     return tasks
+
+
+def create_subtasks(num_subtasks):
+    subtasks = []
+    fake = Faker()
+
+    tasks = Task.query.all()
+
+    for _ in range(num_subtasks):
+        task = rc(tasks)
+        is_completed = fake.boolean(chance_of_getting_true=30)
+        subtask_text = fake.text(max_nb_chars=30)
+
+        subtask = Subtask(subtask=subtask_text, completed=is_completed, task_id=task.id)
+        subtasks.append(subtask)
+    
+    return subtasks
 
 
 if __name__ == '__main__':
@@ -92,5 +115,11 @@ if __name__ == '__main__':
         db.session.add_all(tasks_to_create)
         db.session.commit()
         print(f"Seeded {num_tasks} tasks successfully.")
+
+        num_subtasks = 100
+        subtasks_to_create = create_subtasks(num_subtasks)
+        db.session.add_all(subtasks_to_create)
+        db.session.commit()
+        print(f"Seeded {num_subtasks} sub tasks successfully.")
 
         print("Seed completed.")
