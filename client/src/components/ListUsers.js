@@ -1,6 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 function ListUsers({userList}){
+    const navigate = useNavigate();
+
+    function handleProfileClick(){
+        navigate("/user");
+    };
     
     return(
         <>
@@ -8,8 +14,9 @@ function ListUsers({userList}){
             <div>
                 <ul>
                     {userList?.map((user) => (
-                        <div key={user.id}>
+                        <div key={user.id} >
                             <li>{user.username}</li>
+                            <button style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }} onClick={()=> handleProfileClick()}>Edit Profile</button>
                         </div>
                     ))}
                 </ul>

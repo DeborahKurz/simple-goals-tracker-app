@@ -16,7 +16,7 @@ function TeamView({ userList, handleCompletedTask }){
 
   function handleSubtaskClick(){
     navigate("/subtasks")
-  }
+  };
 
   return(
     <div>
