@@ -56,7 +56,19 @@ class UserResourceById(Resource):
             
             except Exception as e:
                 return {"error": "No user found"}, 404
+            
+    def delete(self, id):
+        user = User.query.filter_by(id = id).first()
 
+        if user:
+            db.session.delete(user)
+            db.session.commit()
+
+            response = {"message": "User successfully deleted."}
+            return response, 200
+        else:
+            response = {"error" : "No user found"}
+            return response
 api.add_resource(UserResourceById, '/<int:id>')
 
 

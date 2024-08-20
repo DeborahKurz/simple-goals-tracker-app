@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function UserInfo({ userList, handleUpdatedUser}){
+function UserInfo({ userList, handleUpdatedUser, handleDeleteUser}){
     const [newUsername, setNewUsername] = useState("");
+    const navigate = useNavigate();
 
     const { userId } = useParams()
     const user = userList.find((u) => u.id === parseInt(userId, 10));
@@ -28,9 +30,17 @@ function UserInfo({ userList, handleUpdatedUser}){
         })
     };
 
-    // function handleDeleteClick(){
-    //     const url = 
-    // }
+    function handleDeleteClick(){
+        const url = `http://localhost:5555/${user.id}`
+        const configObj = {
+            method: 'DELETE'
+        };
+        fetch(url, configObj)
+        .then(()=>{
+            handleDeleteUser(user.id);
+            navigate('/');
+        });
+    }
 
     return(
         <div>
@@ -46,7 +56,7 @@ function UserInfo({ userList, handleUpdatedUser}){
                     <h5>Delete Username:</h5>
                     <h5>Delete this user, their tasks, and subtasks. </h5>
                     <h4>This is a permanent action and cannot be undone. </h4>
-                    <button onClick={handleUpdateClick}>Confirm: Delete User</button>
+                    <button onClick={handleDeleteClick}>Confirm: Delete User</button>
                 </div>
             </div>
             <div>
