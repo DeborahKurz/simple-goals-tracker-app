@@ -30,7 +30,7 @@ const routes = [
                 element: <SubtasksView />
             },
             {
-                path: "/user",
+                path: "/user/:userId",
                 element: <UserInfo />
             }
         ]

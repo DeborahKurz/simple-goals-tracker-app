@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 function ListUsers({userList}){
     const navigate = useNavigate();
 
-    function handleProfileClick(){
-        navigate("/user");
+    function handleProfileClick(userId){
+        navigate(`/user/${userId}`);
     };
     
     return(
@@ -16,7 +16,7 @@ function ListUsers({userList}){
                     {userList?.map((user) => (
                         <div key={user.id} >
                             <li>{user.username}</li>
-                            <button style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }} onClick={()=> handleProfileClick()}>Edit Profile</button>
+                            <button style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }} onClick={()=> handleProfileClick(user.id)}>Edit Profile</button>
                         </div>
                     ))}
                 </ul>
