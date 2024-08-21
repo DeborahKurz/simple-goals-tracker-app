@@ -207,7 +207,24 @@ class Subtasks(Resource):
         return response, 202
 api.add_resource(Subtasks, '/subtasks')
 
-class SubtasksById(Resource):
+class SubtasksBySubtaskId(Resource):
+    def patch(self, sub_id):
+        pass
+    def delete(self, sub_id):
+        subtask = Subtask.query.filter_by(id = sub_id).first()
+
+        if subtask:
+            db.session.delete(subtask)
+            db.session.commit()
+
+            response = {"message": "Subtask successfully deleted."}
+            return response, 200
+        else:
+            response = {"error" : "No subtask found"}
+            return response
+api.add_resource(SubtasksBySubtaskId, '/subtasksid/<int:sub_id>')
+
+class SubtasksByTaskId(Resource):
     def get(self, task_id):
         subtasks = Subtask.query.filter_by(task_id = task_id).all()
         if subtasks:
@@ -216,7 +233,7 @@ class SubtasksById(Resource):
         else:
             response = {"error": "No subtask(s) found."}
             return response, 404
-api.add_resource(SubtasksById, "/subtasks/<int:task_id>")
+api.add_resource(SubtasksByTaskId, "/subtasks/<int:task_id>")
 
 
 class UsersCompletedTasks(Resource):
