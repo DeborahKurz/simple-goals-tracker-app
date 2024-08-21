@@ -74,7 +74,7 @@ function SubtasksView({ allTasks }){
 
     return (
         <div>
-            <h1>Task: {task ? task.task : 'Loading...'}</h1>
+            <h1>Task: {task.task}</h1>
             <div>
                 <h4>Create A New Subtask:</h4>
                 <input
@@ -94,42 +94,42 @@ function SubtasksView({ allTasks }){
                         {subtasks.every((subtask) => subtask.completed === true) ? (
                             <div>
                                 <h3 style={{ color: "green" }}>
-                                    <em>Great work! You have no outstanding subtasks!</em>
+                                    <em>Great work! You have no outstanding subtasks.</em>
                                 </h3>
                             </div>
-                        ) : (
-                            subtasks.map((subT) => (
-                                <div
-                                    key={subT.id}
-                                    style={{ display: "flex", alignItems: "center", width: "1000px", height: "60px" }}
+                        ) : null}
+                        {(subtasks.map((subT) => (
+                            <div
+                                key={subT.id}
+                                style={{ display: "flex", alignItems: "center", width: "1000px", height: "60px" }}
+                            >
+                                <li
+                                    style={{
+                                        textDecoration: subT.completed ? 'line-through' : 'none',
+                                        width: "500px",
+                                        height: "50px",
+                                        border: "2px solid black",
+                                        marginRight: "-2px",
+                                    }}
                                 >
-                                    <li
-                                        style={{
-                                            textDecoration: subT.completed ? 'line-through' : 'none',
-                                            width: "500px",
-                                            height: "50px",
-                                            border: "2px solid black",
-                                            marginRight: "-2px",
-                                        }}
-                                    >
-                                        {subT.subtask}
-                                    </li>
-    
-                                    <CompleteSubtask
-                                        subtask={subT}
-                                        handleCompletedSubtask={handleCompletedSubtask}
-                                    />
-                                    <button
-                                        style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }}
-                                        onClick={() => handleEditedSubtask(subT.id)}
-                                    >
-                                        Edit Subtask
-                                    </button>
-                                    <DeleteSubtask
-                                        subtask={subT}
-                                        handleDeletedSubtask={handleDeletedSubtask}
-                                    />
-                                </div>
+                                    {subT.subtask}
+                                </li>
+
+                                <CompleteSubtask
+                                    subtask={subT}
+                                    handleCompletedSubtask={handleCompletedSubtask}
+                                />
+                                <button
+                                    style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }}
+                                    onClick={() => handleEditedSubtask(subT.id)}
+                                >
+                                    Edit Subtask
+                                </button>
+                                <DeleteSubtask
+                                    subtask={subT}
+                                    handleDeletedSubtask={handleDeletedSubtask}
+                                />
+                            </div>
                             ))
                         )}
                     </ul>
