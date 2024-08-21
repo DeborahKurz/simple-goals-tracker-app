@@ -6,7 +6,7 @@ function CompleteSubtask({subtask, handleCompletedSubtask}){
         <div>
             <button
                 style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }}
-                onClick={() => handleCompletedSubtask()}
+                onClick={() => handleCompletedSubtask(subtask.id)}
             >Completed</button>
         </div>
     )

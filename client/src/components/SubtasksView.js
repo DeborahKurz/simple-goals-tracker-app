@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import CompleteSubtask from "./CompleteSubtask";
+import DeleteSubtask from "./DeleteSubtask";
 
 function SubtasksView({ allTasks }){
     const [subtasks, setSubtasks] = useState([]);
@@ -47,16 +48,24 @@ function SubtasksView({ allTasks }){
         });
     };
 
-    function handleCompletedSubtask(){
+    function handleCompletedSubtask(SubId){
         console.log("handleCompletedSubtask triggered")
     };
 
-    function handleEditedSubtask(){
+    function handleEditedSubtask(SubId){
         console.log("handleEditedSubtask triggered")
     };
 
-    function handleDeletedSubtask(){
+    function handleDeletedSubtask(subId){
         console.log("handleDeletedSubtask triggered")
+        //update list of subtasks
+        const newList = subtasks.filter((subT) => {
+            if(subT.id !== subId){
+                return subT
+            }
+        })
+        console.log(newList)
+        setSubtasks(newList)
     };
 
     return (
@@ -103,10 +112,7 @@ function SubtasksView({ allTasks }){
                                         style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }}
                                         onClick={() => handleEditedSubtask(subT.id)}
                                     > Edit Subtask </button>
-                                    <button
-                                        style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }}
-                                        onClick={() => handleDeletedSubtask(subT.id)}
-                                    > Delete Subtask </button>
+                                    <DeleteSubtask subtask={subT} handleDeletedSubtask={handleDeletedSubtask}/>
                                 </div>
                             ))
                         )}
