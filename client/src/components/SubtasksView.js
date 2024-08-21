@@ -5,6 +5,7 @@ import CompleteSubtask from "./CompleteSubtask";
 
 function SubtasksView({ allTasks }){
     const [subtasks, setSubtasks] = useState([]);
+    const [newSubtask, setNewSubtask] = useState("");
     const { taskId } = useParams();
 
     const task = allTasks.find((t) => t.id === parseInt(taskId, 10));
@@ -18,12 +19,45 @@ function SubtasksView({ allTasks }){
 
     console.log(subtasks)
 
+    function handleUpdatedSubtasks(subtaskObj){
+        //add new subtask to setSubtasks
+        const newList = [...subtasks, subtaskObj];
+        setSubtasks(newList);
+    }
+
+    function handleNewSubtask(){
+        console.log("handleNewSubtask triggered")
+        const url = `http://localhost:5555/subtasks`
+
+        const configObj = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(
+                {
+                    subtask: newSubtask,
+                    task_id: task.id
+                }
+            )
+        };
+
+        fetch(url, configObj)
+        .then(r=>r.json())
+        .then(subtaskObj=>{
+            handleUpdatedSubtasks(subtaskObj)
+            setNewSubtask("")
+        });
+        //post to new subtask
+        //set state
+        //empty state
+    }
+    console.log("newSubtask: ", newSubtask)
+
     function handleCompletedSubtask(){
         console.log("handleCompletedSubtask triggered")
     }
 
     function handleEditedSubtask(){
-        console.log("handleEditedSubtask")
+        console.log("handleEditedSubtask triggered")
     }
 
     function handleDeletedSubtask(){
@@ -36,8 +70,8 @@ function SubtasksView({ allTasks }){
             <h1>Task: {task ? task.task : 'Loading...'}</h1>
             <div>
                 <h4>Create A New Subtask:</h4>
-                <input placeholder="Subtask..." />
-                <button>Create Subtask</button>
+                <input placeholder="Subtask..." value={newSubtask} onChange={(e) => setNewSubtask(e.target.value)}/>
+                <button onClick={handleNewSubtask}>Create Subtask</button>
             </div>
             {subtasks.length === 0 ? (
                 <div>
@@ -71,7 +105,10 @@ function SubtasksView({ allTasks }){
                                     </li>
 
                                     <CompleteSubtask subtask={subT} handleCompletedSubtask={handleCompletedSubtask} />
-                                    
+                                    <button
+                                        style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }}
+                                        onClick={() => handleEditedSubtask(subT.id)}
+                                    > Edit Subtask </button>
                                     <button
                                         style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }}
                                         onClick={() => handleDeletedSubtask(subT.id)}

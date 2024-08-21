@@ -194,8 +194,23 @@ class TaskByIdResource(Resource):
             return response
 api.add_resource(TaskByIdResource, '/tasks/<int:id>')
 
+class Subtask(Resource):
+    def post():
+        #get data
+        data = request.get_json()
+        subtask = Subtask(subtask=data['subtask'],completed=False, task_id=data['task_id'])
 
-class Subtasks(Resource):
+        db.session.add(subtask)
+        db.session.commit()
+        #create Subtask
+        #add()
+        #commit()
+        #create response
+        #return response
+        pass
+api.add_resource(Subtask, '/subtasks')
+
+class SubtasksById(Resource):
     def get(self, task_id):
         subtasks = Subtask.query.filter_by(task_id = task_id).all()
         if subtasks:
@@ -204,7 +219,7 @@ class Subtasks(Resource):
         else:
             response = {"error": "No subtask(s) found."}
             return response, 404
-api.add_resource(Subtasks, "/subtasks/<int:task_id>")
+api.add_resource(SubtasksById, "/subtasks/<int:task_id>")
 
 
 class UsersCompletedTasks(Resource):

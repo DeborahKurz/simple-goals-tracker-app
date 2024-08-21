@@ -17,9 +17,6 @@ function UserInfo({ userList, handleUpdatedUser, handleDeleteUser}){
         .then((tasks)=>setTasks(tasks))
     }, []);
 
-    console.log('Tasks: ', tasks)
-
-
     function handleUpdateClick(){
         const url = `http://localhost:5555/${user.id}`
 
@@ -72,18 +69,18 @@ function UserInfo({ userList, handleUpdatedUser, handleDeleteUser}){
             </div>
             <div>
                 <h4>{user.username}'s Completed Tasks:</h4>
-                <div>
+                <ul>
                     {tasks.map((task)=>(
-                        <ul>
-                            <li>Task: {task.task}</li>
-                            <div>
+                        <li key={task.id}>
+                            <div>Task: {task.task}</div>
+                            <ul>
                                 {task.subtasks.map((sub)=> sub.completed === true ? (
-                                    <li><em>Subtask: {sub.subtask}</em></li>
+                                    <li key={sub.id}><em>Subtask: {sub.subtask}</em></li>
                                 ) : null )}
-                            </div>
-                        </ul>
+                            </ul>
+                        </li>
                     ))}
-                </div>
+                </ul>
             </div>
         </div>
     )
