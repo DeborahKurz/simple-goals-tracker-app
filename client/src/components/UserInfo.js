@@ -69,18 +69,22 @@ function UserInfo({ userList, handleUpdatedUser, handleDeleteUser}){
             </div>
             <div>
                 <h4>{user.username}'s Completed Tasks:</h4>
-                <ul>
-                    {tasks.map((task)=>(
-                        <li key={task.id}>
-                            <div>Task: {task.task}</div>
-                            <ul>
-                                {task.subtasks.map((sub)=> sub.completed === true ? (
-                                    <li key={sub.id}><em>Subtask: {sub.subtask}</em></li>
-                                ) : null )}
-                            </ul>
-                        </li>
-                    ))}
-                </ul>
+                {user.tasks.length === 0 ? (
+                    <h4><em>{user.username} has no completed tasks. Please check back.</em></h4>
+                ) : (
+                    <ul>
+                        {user.tasks.map((task)=>(
+                            <li key={task.id}>
+                                <div>Task: {task.task}</div>
+                                <ul>
+                                    {task.subtasks.map((sub)=> sub.completed === true ? (
+                                        <li key={sub.id}><em>Subtask: {sub.subtask}</em></li>
+                                    ) : null )}
+                                </ul>
+                            </li>
+                        ))}
+                    </ul>
+                )}
             </div>
         </div>
     )
