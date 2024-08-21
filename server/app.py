@@ -194,21 +194,18 @@ class TaskByIdResource(Resource):
             return response
 api.add_resource(TaskByIdResource, '/tasks/<int:id>')
 
-class Subtask(Resource):
-    def post():
-        #get data
+class Subtasks(Resource):
+    def post(self):
         data = request.get_json()
-        subtask = Subtask(subtask=data['subtask'],completed=False, task_id=data['task_id'])
+
+        subtask = Subtask(subtask=data['subtask'],completed=0, task_id=data['task_id'])
 
         db.session.add(subtask)
         db.session.commit()
-        #create Subtask
-        #add()
-        #commit()
-        #create response
-        #return response
-        pass
-api.add_resource(Subtask, '/subtasks')
+
+        response = subtask.to_dict()
+        return response, 202
+api.add_resource(Subtasks, '/subtasks')
 
 class SubtasksById(Resource):
     def get(self, task_id):

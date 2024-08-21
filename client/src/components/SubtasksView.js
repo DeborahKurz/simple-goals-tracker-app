@@ -20,7 +20,6 @@ function SubtasksView({ allTasks }){
     console.log(subtasks)
 
     function handleUpdatedSubtasks(subtaskObj){
-        //add new subtask to setSubtasks
         const newList = [...subtasks, subtaskObj];
         setSubtasks(newList);
     }
@@ -46,24 +45,19 @@ function SubtasksView({ allTasks }){
             handleUpdatedSubtasks(subtaskObj)
             setNewSubtask("")
         });
-        //post to new subtask
-        //set state
-        //empty state
-    }
-    console.log("newSubtask: ", newSubtask)
+    };
 
     function handleCompletedSubtask(){
         console.log("handleCompletedSubtask triggered")
-    }
+    };
 
     function handleEditedSubtask(){
         console.log("handleEditedSubtask triggered")
-    }
+    };
 
     function handleDeletedSubtask(){
         console.log("handleDeletedSubtask triggered")
-    }
-
+    };
 
     return (
         <div>
