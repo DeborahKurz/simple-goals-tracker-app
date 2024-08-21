@@ -209,9 +209,27 @@ api.add_resource(Subtasks, '/subtasks')
 
 class SubtasksBySubtaskId(Resource):
     def patch(self, sub_id):
-        pass
+
+        data = request.get_json()
+        subtask = Subtask.query.filter_by(id=sub_id).first()
+
+        if subtask:
+            try:
+                subtask.subtask = data['subtask']
+                subtask.completed = data['completed']
+                subtask.task_id = data['task_id']
+
+                db.session.commit()
+
+                response_dict = subtask.to_dict()
+                return response_dict, 202
+            except Exception as e:
+                return {"error": f"Error: {e}"}, 400
+        else:
+            return {"error": "No task found."}, 404
+
     def delete(self, sub_id):
-        subtask = Subtask.query.filter_by(id = sub_id).first()
+        subtask = Subtask.query.filter_by(id=sub_id).first()
 
         if subtask:
             db.session.delete(subtask)
@@ -221,7 +239,7 @@ class SubtasksBySubtaskId(Resource):
             return response, 200
         else:
             response = {"error" : "No subtask found"}
-            return response
+            return response, 404
 api.add_resource(SubtasksBySubtaskId, '/subtasksid/<int:sub_id>')
 
 class SubtasksByTaskId(Resource):
