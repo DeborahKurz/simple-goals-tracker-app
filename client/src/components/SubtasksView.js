@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import CompleteSubtask from "./CompleteSubtask";
+import EditSubtask from "./EditSubtask";
 import DeleteSubtask from "./DeleteSubtask";
 
 function SubtasksView({ allTasks }){
@@ -18,15 +19,12 @@ function SubtasksView({ allTasks }){
         .catch((error) => console.error(error))
     }, []);
 
-    console.log(subtasks)
-
     function handleUpdatedSubtasks(subtaskObj){
         const newList = [...subtasks, subtaskObj];
         setSubtasks(newList);
     }
 
     function handleNewSubtask(){
-        console.log("handleNewSubtask triggered")
         const url = `http://localhost:5555/subtasks`
 
         const configObj = {
@@ -59,8 +57,15 @@ function SubtasksView({ allTasks }){
         setSubtasks(updatedSubtasks)
     }
 
-    function handleEditedSubtask(subId){
-        console.log("handleEditedSubtask triggered")
+    function handleEditSubtask(subtaskObj){
+        const updatedSubtasks = subtasks.map((subT) => {
+            if(subT.id === subtaskObj.id){
+                return { ...subT, subtask: subtaskObj.subtask }
+            } else {
+                return subT
+            }
+        })
+        setSubtasks(updatedSubtasks)
     };
 
     function handleDeletedSubtask(subId){ 
@@ -119,12 +124,7 @@ function SubtasksView({ allTasks }){
                                     subtask={subT}
                                     handleCompletedSubtask={handleCompletedSubtask}
                                 />
-                                <button
-                                    style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }}
-                                    onClick={() => handleEditedSubtask(subT.id)}
-                                >
-                                    Edit Subtask
-                                </button>
+                                <EditSubtask subtask={subT} handleEditSubtask={handleEditSubtask}/>
                                 <DeleteSubtask
                                     subtask={subT}
                                     handleDeletedSubtask={handleDeletedSubtask}

@@ -1,7 +1,6 @@
 import React from "react";
 
 function CompleteSubtask({subtask, handleCompletedSubtask}){
-    console.log("CompletedSubtask triggered")
 
     function handleCompleted(subId){
         const url = `http://localhost:5555/subtasksid/${subId}`

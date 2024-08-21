@@ -1,7 +1,6 @@
 import React from "react";
 
 function DeleteSubtask({subtask, handleDeletedSubtask}){
-    console.log("Inside DeleteSubtask")
 
     function handleDelete(subId){
         const url = `http://localhost:5555/subtasksid/${subId}`
