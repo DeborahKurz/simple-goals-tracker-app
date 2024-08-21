@@ -72,20 +72,6 @@ class UserResourceById(Resource):
 api.add_resource(UserResourceById, '/<int:id>')
 
 
-class UsersCompletedTasks(Resource):
-    def get(self, user_id):
-        tasks = Task.query.filter_by(users_id = user_id).all()
-        completed_tasks = [task.to_dict() for task in tasks if task.completed == 1]
-
-        if completed_tasks:
-            return completed_tasks, 200
-        else:
-            response = {"error": "No task(s) found."}
-
-            return response, 404
-api.add_resource(UsersCompletedTasks, '/usertasks/<int:user_id>')
-
-
 class GoalResource(Resource):
     def get(self):
         try:
@@ -219,6 +205,20 @@ class Subtasks(Resource):
             response = {"error": "No subtask(s) found."}
             return response, 404
 api.add_resource(Subtasks, "/subtasks/<int:task_id>")
+
+
+class UsersCompletedTasks(Resource):
+    def get(self, user_id):
+        tasks = Task.query.filter_by(users_id = user_id).all()
+        completed_tasks = [task.to_dict() for task in tasks if task.completed == 1]
+
+        if completed_tasks:
+            return completed_tasks, 200
+        else:
+            response = {"error": "No task(s) found."}
+
+            return response, 404
+api.add_resource(UsersCompletedTasks, '/usertasks/<int:user_id>')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
