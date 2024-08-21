@@ -12,6 +12,7 @@ from models import db, User, Goal, Task, Subtask
 
 def delete_all_data():
     try:
+        db.session.query(Subtask).delete()
         db.session.query(Task).delete()
         db.session.query(Goal).delete()
         db.session.query(User).delete()
