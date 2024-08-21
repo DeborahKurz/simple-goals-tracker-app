@@ -56,15 +56,12 @@ function SubtasksView({ allTasks }){
         console.log("handleEditedSubtask triggered")
     };
 
-    function handleDeletedSubtask(subId){
-        console.log("handleDeletedSubtask triggered")
-        //update list of subtasks
+    function handleDeletedSubtask(subId){ 
         const newList = subtasks.filter((subT) => {
             if(subT.id !== subId){
                 return subT
             }
         })
-        console.log(newList)
         setSubtasks(newList)
     };
 
