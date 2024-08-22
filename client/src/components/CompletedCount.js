@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import Context from "./App.js";
+import { Context } from "./App.js";
 
 function CompletedCount(){
     const { allTasks } = useContext(Context);

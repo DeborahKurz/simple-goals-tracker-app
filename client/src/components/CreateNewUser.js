@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { Context } from "./App.js";
 
-function CreateNewUser({userList, handleUser }) {
+function CreateNewUser() {
+  const { userList, handleUser } = useContext(Context);
 
   const formSchema = yup.object().shape({
     username: yup.string().required("Must enter a username").max(20),

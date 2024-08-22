@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { Context } from "./App.js";
 
-function ListUsers({userList}){
+function ListUsers(){
     const navigate = useNavigate();
+    const { userList } = useContext(Context);
 
     function handleProfileClick(userId){
         navigate(`/user/${userId}`);

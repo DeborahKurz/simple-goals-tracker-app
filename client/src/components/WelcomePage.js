@@ -6,7 +6,7 @@ import CompletedCount from "./CompletedCount.js";
 import CreateNewUser from "./CreateNewUser.js";
 
 function WelcomePage(){
-    const { userList, handleUser, allTasks } = useContext(Context);
+    const { userList } = useContext(Context);
 
     return (
         <>    
@@ -20,15 +20,15 @@ function WelcomePage(){
             <br></br>
             {userList.length === 0 ? (
                 <div>
-                    <CompletedCount allTasks={allTasks}/>
+                    <CompletedCount />
                     <h3> Please add a new user to get started. </h3>
-                    <CreateNewUser userList={userList} handleUser={handleUser}/>
+                    <CreateNewUser />
                 </div>
             ) : (
                 <div>
-                    <CompletedCount allTasks={allTasks}/>
-                    <ListUsers userList={userList}/>
-                    <CreateNewUser userList={userList} handleUser={handleUser}/>
+                    <CompletedCount />
+                    <ListUsers />
+                    <CreateNewUser />
                 </div>
 
             )}
