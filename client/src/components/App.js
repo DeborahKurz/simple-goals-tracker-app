@@ -128,7 +128,7 @@ function App() {
 
   return (
     <Context.Provider value={{ 
-      userList, setUserList, handleUser,
+      userList, setUserList, handleUser, handleUpdatedUser, handleDeleteUser,
       allTasks, setAllTasks,
       allGoals, handleGoal, handleGoalsDeleteTask,
       handleTask, handleCompletedTask  
@@ -141,7 +141,7 @@ function App() {
             <Route path="/goals" element={<GoalsView />} /> 
             <Route path="/team" element={<TeamView />} />
             <Route path="/subtasks/:taskId" element = {<SubtasksView />} />
-            <Route path="/user/:userId" element = {<UserInfo userList={userList} handleUpdatedUser={handleUpdatedUser} handleDeleteUser={handleDeleteUser}/>} />
+            <Route path="/user/:userId" element = {<UserInfo />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </div>

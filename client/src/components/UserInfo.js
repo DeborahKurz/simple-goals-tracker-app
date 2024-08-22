@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { Context } from "./App.js";
 
-function UserInfo({ userList, handleUpdatedUser, handleDeleteUser}){
+function UserInfo(){
+    const { userList, handleUpdatedUser, handleDeleteUser} = useContext(Context);
+
     const [newUsername, setNewUsername] = useState("");
     const [tasks, setTasks] = useState([]);
     const navigate = useNavigate();
