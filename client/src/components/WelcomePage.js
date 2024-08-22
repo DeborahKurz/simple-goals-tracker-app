@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "./App.js";
 
 import ListUsers from "./ListUsers.js";
 import CompletedCount from "./CompletedCount.js";
 import CreateNewUser from "./CreateNewUser.js";
 
-function WelcomePage({ userList, handleUser, allTasks }){
+function WelcomePage(){
+    const { userList, handleUser, allTasks } = useContext(Context);
 
     return (
         <>    

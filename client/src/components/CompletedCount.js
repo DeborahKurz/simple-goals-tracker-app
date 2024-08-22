@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import Context from "./App.js";
 
-function CompletedCount({ allTasks }){
+function CompletedCount(){
+    const { allTasks } = useContext(Context);
+
     if(allTasks.length > 0){
         const completedTasks = allTasks.filter(task => task.completed).length;
         const notCompletedTasks = allTasks.filter(task => !task.completed).length;
