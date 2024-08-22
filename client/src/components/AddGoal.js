@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { Context } from "./App.js";
 
-function AddGoal({ handleGoal }){
+function AddGoal(){
+    const { handleGoal } = useContext(Context);
+
     const formschema = yup.object().shape({
         goal: yup.string().required("Please enter a goal with at least 1 character.").max(20)
     })

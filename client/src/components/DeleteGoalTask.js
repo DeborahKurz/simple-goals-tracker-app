@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "./App.js";
 
-function DeleteTask({ taskId, handleGoalsDeleteTask }) {
+function DeleteTask({ taskId }) {
+  const { handleGoalsDeleteTask } = useContext(Context);
+
     function handleDeleteTask(id){
         const url = `http://localhost:5555/tasks/${id}`;
 

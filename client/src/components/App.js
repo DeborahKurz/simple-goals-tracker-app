@@ -129,14 +129,16 @@ function App() {
   return (
     <Context.Provider value={{ 
       userList, setUserList, handleUser,
-      allTasks, setAllTasks,  
+      allTasks, setAllTasks,
+      allGoals, handleGoal, handleGoalsDeleteTask,
+      handleTask  
       }}>
       <div style={{width: "100%", height: "100px", background: "linear-Gradient(#C0C0C0, white)"}}>
         <div style={{marginLeft: "25px"}}>
           <NavBar />
           <Routes>
             <Route path="/" element={<WelcomePage /> } /> 
-            <Route path="/goals" element={<GoalsView userList={userList} allGoals={allGoals} handleGoal={handleGoal} handleGoalsDeleteTask={handleGoalsDeleteTask} handleTask={handleTask}/>} /> 
+            <Route path="/goals" element={<GoalsView />} /> 
             <Route path="/team" element={<TeamView userList={userList} handleCompletedTask={handleCompletedTask} />} />
             <Route path="/subtasks/:taskId" element = {<SubtasksView allTasks={allTasks}/>} />
             <Route path="/user/:userId" element = {<UserInfo userList={userList} handleUpdatedUser={handleUpdatedUser} handleDeleteUser={handleDeleteUser}/>} />

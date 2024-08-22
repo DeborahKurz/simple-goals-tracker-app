@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { Context } from "./App.js";
 
 import AddGoal from "./AddGoal.js";
 import AddTask from "./AddTask.js";
 import ListGoals from "./ListGoals.js";
 
-function DisplayGoals({ userList, allGoals, handleGoal, handleGoalsDeleteTask, handleTask }) {
+function DisplayGoals() {
   const navigate = useNavigate();
+  const { userList, allGoals } = useContext(Context);
 
   function handleClickUser(){
     navigate("/");
@@ -26,23 +28,23 @@ function DisplayGoals({ userList, allGoals, handleGoal, handleGoalsDeleteTask, h
           {allGoals.length === 0 ? (
             <div>
               <h3>Please Add A Goal</h3>
-              <AddGoal handleGoal={handleGoal}/>
+              <AddGoal />
             </div>
           ) : (
             <div>
-              <AddGoal handleGoal={handleGoal}/>
+              <AddGoal />
               <ul>
               {allGoals.map((goal) => (
                 <div key={goal.id}>
                   <h2>{goal.goal}</h2>
                   {goal.tasks.length > 0 ? (
-                    <ListGoals goal={goal} handleGoalsDeleteTask={handleGoalsDeleteTask}/>
+                    <ListGoals goal={goal}/>
                   ) : (
                     <div>
                       <h4> No tasks are assigned to this goal. Please add a task. </h4>
                     </div>
                   )}
-                  <AddTask userList={userList} handleTask={handleTask} goalId={goal.id} />
+                  <AddTask goalId={goal.id} />
                 </div>
               ))}
               </ul>
