@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
+import { Context } from "./App.js";
 
 import CompleteSubtask from "./CompleteSubtask";
 import EditSubtask from "./EditSubtask";
 import DeleteSubtask from "./DeleteSubtask";
 
-function SubtasksView({ allTasks }){
+export const SubtaskContext = React.createContext();
+
+function SubtasksView(){
+    const { allTasks } = useContext(Context);
+
     const [subtasks, setSubtasks] = useState([]);
     const [newSubtask, setNewSubtask] = useState("");
+
     const { taskId } = useParams();
 
     const task = allTasks.find((t) => t.id === parseInt(taskId, 10));
@@ -78,7 +84,7 @@ function SubtasksView({ allTasks }){
     };
 
     return (
-        <div>
+        <SubtaskContext.Provider value={{ handleCompletedSubtask,handleEditSubtask, handleDeletedSubtask }}>
             <h1>Task: {task.task}</h1>
             <div>
                 <h4>Create A New Subtask:</h4>
@@ -120,22 +126,16 @@ function SubtasksView({ allTasks }){
                                     {subT.subtask}
                                 </li>
 
-                                <CompleteSubtask
-                                    subtask={subT}
-                                    handleCompletedSubtask={handleCompletedSubtask}
-                                />
-                                <EditSubtask subtask={subT} handleEditSubtask={handleEditSubtask}/>
-                                <DeleteSubtask
-                                    subtask={subT}
-                                    handleDeletedSubtask={handleDeletedSubtask}
-                                />
+                                <CompleteSubtask subtask={subT}/>
+                                <EditSubtask subtask={subT}/>
+                                <DeleteSubtask subtask={subT}/>
                             </div>
                             ))
                         )}
                     </ul>
                 </div>
             )}
-        </div>
+        </SubtaskContext.Provider>
     );
 }
 

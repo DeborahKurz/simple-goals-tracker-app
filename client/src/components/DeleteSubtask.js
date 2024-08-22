@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { SubtaskContext } from "./SubtasksView.js";
 
-function DeleteSubtask({subtask, handleDeletedSubtask}){
+function DeleteSubtask({ subtask }){
+    const { handleDeletedSubtask } = useContext(SubtaskContext);
 
     function handleDelete(subId){
         const url = `http://localhost:5555/subtasksid/${subId}`

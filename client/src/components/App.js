@@ -140,7 +140,7 @@ function App() {
             <Route path="/" element={<WelcomePage /> } /> 
             <Route path="/goals" element={<GoalsView />} /> 
             <Route path="/team" element={<TeamView />} />
-            <Route path="/subtasks/:taskId" element = {<SubtasksView allTasks={allTasks}/>} />
+            <Route path="/subtasks/:taskId" element = {<SubtasksView />} />
             <Route path="/user/:userId" element = {<UserInfo userList={userList} handleUpdatedUser={handleUpdatedUser} handleDeleteUser={handleDeleteUser}/>} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>

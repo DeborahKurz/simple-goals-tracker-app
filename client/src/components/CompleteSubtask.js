@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { SubtaskContext } from "./SubtasksView.js";
 
-function CompleteSubtask({subtask, handleCompletedSubtask}){
+function CompleteSubtask({ subtask }){
+    const { handleCompletedSubtask } = useContext(SubtaskContext);
 
     function handleCompleted(subId){
         const url = `http://localhost:5555/subtasksid/${subId}`

@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { SubtaskContext } from "./SubtasksView.js";
 
-function EditSubtask({subtask, handleEditSubtask}){
+function EditSubtask({ subtask }){
+    const { handleEditSubtask } = useContext(SubtaskContext);
     const [ newSubtask, setNewSubtask ] = useState("");
 
     function handleEdit(subId){
