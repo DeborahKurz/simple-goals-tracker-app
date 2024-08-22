@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { Context } from "./App.js";
 
 import CompleteTask from "./CompleteTask.js";
 
-function TeamView({ userList, handleCompletedTask }){
+function TeamView(){
   const navigate = useNavigate();
+  const { userList } = useContext(Context);
 
   function handleClickUser(){
     navigate("/");
@@ -48,7 +50,7 @@ function TeamView({ userList, handleCompletedTask }){
                           <div key={aTask.id} style={{ display: "flex", alignItems: "center", width: "1000px", height: "60px" }}>
                             <li style={{ width:"500px", height: "50px", border: "2px solid black", marginRight: "-2px" }}>{aTask.task}</li>
                             <button style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }} onClick={()=> handleClickGoal()}>Goal: {aTask.goal.goal}</button>
-                            <CompleteTask task={aTask} handleCompletedTask={handleCompletedTask}/>
+                            <CompleteTask task={aTask}/>
                             <button style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }} onClick={()=> handleSubtaskClick(aTask.id)}>View Subtasks</button>
                           </div>
                           ) : null

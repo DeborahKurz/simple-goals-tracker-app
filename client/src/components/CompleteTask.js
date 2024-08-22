@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "./App.js";
 
-function CompleteTask({ task, handleCompletedTask }){
+function CompleteTask({ task }){
+    const { handleCompletedTask } = useContext(Context);
 
     function handleClick(task){
         const id = task.id;

@@ -131,7 +131,7 @@ function App() {
       userList, setUserList, handleUser,
       allTasks, setAllTasks,
       allGoals, handleGoal, handleGoalsDeleteTask,
-      handleTask  
+      handleTask, handleCompletedTask  
       }}>
       <div style={{width: "100%", height: "100px", background: "linear-Gradient(#C0C0C0, white)"}}>
         <div style={{marginLeft: "25px"}}>
@@ -139,7 +139,7 @@ function App() {
           <Routes>
             <Route path="/" element={<WelcomePage /> } /> 
             <Route path="/goals" element={<GoalsView />} /> 
-            <Route path="/team" element={<TeamView userList={userList} handleCompletedTask={handleCompletedTask} />} />
+            <Route path="/team" element={<TeamView />} />
             <Route path="/subtasks/:taskId" element = {<SubtasksView allTasks={allTasks}/>} />
             <Route path="/user/:userId" element = {<UserInfo userList={userList} handleUpdatedUser={handleUpdatedUser} handleDeleteUser={handleDeleteUser}/>} />
             <Route path="*" element={<ErrorPage />} />
