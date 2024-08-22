@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
+
 import NavBar from "./NavBar.js";
 import GoalsView from "./GoalsView.js";
 import WelcomePage from "./WelcomePage.js";
@@ -119,7 +120,7 @@ function App() {
     } : user));
   };
 
-  
+
   const handleDeleteUser = (userId) => {
     setUserList(prevUsers => prevUsers.filter(user => user.id !== userId))
   }
