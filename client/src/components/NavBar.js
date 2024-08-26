@@ -18,19 +18,3 @@ function NavBar(){
 };
 
 export default NavBar
-
-
-            // <nav>
-            //     <NavLink
-            //         to="/"
-            //         style={{ color: "black", textDecoration: "none", padding: "15px 25px", marginRight: "15", background: "#BEBEBE",}}
-            //     >  Home  </NavLink>
-            //     <NavLink
-            //         to="/goals"
-            //         style={{ color: "black", textDecoration: "none",padding: "15px 25px", marginRight: "15", background: "#BEBEBE",}}
-                // >  Goals View  </NavLink>
-            //     <NavLink
-            //         to="/team"
-            //         style={{ color: "black", textDecoration: "none",padding: "15px 25px", marginRight: "15", background: "#BEBEBE",}}
-            //     >  Team View  </NavLink>
-            // </nav>

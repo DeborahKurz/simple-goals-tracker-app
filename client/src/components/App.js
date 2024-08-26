@@ -3,6 +3,9 @@ import { Routes, Route } from "react-router-dom";
 
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
+import Footer from '@mui/material/Box';
+import bgImgDk from '../images/backgroundimgdark.png';
+import bgImg from '../images/backgroundimg.png';
 
 import NavBar from "./NavBar.js";
 import GoalsView from "./GoalsView.js";
@@ -130,15 +133,36 @@ function App() {
   }
 
   return (
-    <Context.Provider value={{ 
+    <Box sx={{
+      margin: -1,
+      width: '100%',
+      // height: '100%',
+      padding: 1,
+      backgroundImage: `url(${bgImgDk})`,
+      backgroundPosition: 'center',
+      backgroundSize: 'cover', 
+      backgroundRepeat: 'no-repeat',
+      color: 'white'
+      }}>
+      <Context.Provider value={{ 
         userList, setUserList, handleUser, handleUpdatedUser, handleDeleteUser,
         allTasks, setAllTasks,
         allGoals, handleGoal, handleGoalsDeleteTask,
         handleTask, handleCompletedTask  
         }}>
-        <Container>
-          <Box sx={{bgcolor: 'white'}}>
-            {/* <div style={{marginLeft: "25px"}}> */}
+        <Container             
+          sx={{
+            width: '100%',
+            height: '100%',
+            padding: 1,
+            margin: 10,
+            backgroundImage: `url(${bgImg})`,
+            backgroundPosition: 'center',
+            backgroundSize: 'cover', 
+            backgroundRepeat: 'no-repeat',
+            color: 'white'
+          }}>
+          <Box>
               <NavBar />
               <Routes>
                 <Route path="/" element={<WelcomePage /> } /> 
@@ -148,13 +172,22 @@ function App() {
                 <Route path="/user/:userId" element = {<UserInfo />} />
                 <Route path="*" element={<ErrorPage />} />
               </Routes>
-            {/* </div> */}
           </Box>
-        {/* <div style={{width: "100%", height: "100px", background: "linear-Gradient(#C0C0C0, white)"}}>
-        </div> */}
         </Container>
-    </Context.Provider>
+      </Context.Provider>
+      <Footer>
+          <Box sx={{height:'8px', padding: 2, bgcolor: 'black', margin: -1, textAlign: 'center', color: '	#606060', fontSize: '12px'}}>
+            Copywrite 2024 Deborah Kurz
+          </Box>
+      </Footer>
+    </Box>
   );
 };
 
 export default App;
+
+
+        //     {/* <div style={{marginLeft: "25px"}}> */}
+        //                 {/* </div> */}
+        //                         {/* <div style={{width: "100%", height: "100px", background: "linear-Gradient(#C0C0C0, white)"}}>
+        // </div> */}
