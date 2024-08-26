@@ -4,15 +4,14 @@ import { Context } from "./App.js";
 import { Box, Paper, Typography } from "@mui/material";
 
 import ListUsers from "./ListUsers.js";
-import CompletedCount from "./CompletedCount.js";
 import CreateNewUser from "./CreateNewUser.js";
 
 function WelcomePage(){
     const { userList } = useContext(Context);
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'row' }}>
-            <Box>
+        <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', gap: "40px" }}>
+            <Box sx={{flex: 1 }}>
                 <h1>Welcome</h1>
                 <h3>Instructions:</h3>
                 <h4>Get started by creating a username (each username needs to be unique).</h4>
@@ -21,10 +20,14 @@ function WelcomePage(){
                 <h4>If you ever need to create a new user, or see who is already 'registered' as a user in your team, you can navigate back to this page by selecting "Home" in the navbar.</h4>
                 <h4>Happy Goal Crushing!</h4>
             </Box> 
-            <Paper>
-                <ListUsers />
-                <CreateNewUser />
-            </Paper>   
+            <Box sx={{flex: 1}}>
+                <Paper sx={{ paddingLeft:'15px', paddingBottom: '5px', paddingTop: '1px', bgcolor:'#141414', color:'white' }}>
+                    <ListUsers />
+                </Paper>
+                <Paper sx={{ paddingLeft:'5px', paddingBottom: '3px', paddingTop: '1px', marginTop:'10px', bgcolor:'#1a1a1a', color:'white' }}>
+                    <CreateNewUser />
+                </Paper> 
+            </Box>  
         </Box>
     )
 };

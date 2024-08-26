@@ -3,6 +3,8 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { Context } from "./App.js";
 
+import { Box } from '@mui/material';
+
 function CreateNewUser() {
   const { userList, handleUser } = useContext(Context);
 

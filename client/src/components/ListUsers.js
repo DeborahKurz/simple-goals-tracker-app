@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "./App.js";
 
+import { Box, Button, Typography } from '@mui/material';
+
 function ListUsers(){
     const navigate = useNavigate();
     const { userList } = useContext(Context);
@@ -11,19 +13,19 @@ function ListUsers(){
     };
     
     return(
-        <>
-            <h3>Your Team Includes The Following Usernames:</h3>
-            <div>
-                <ul>
+        <Box>
+            <h3 style={{textAlign:'center'}}>Your Team Includes The Following Usernames:</h3>
+            <Box sx={{ paddingRight:'80px' }}>
+                {/* <ul> */}
                     {userList?.map((user) => (
-                        <div key={user.id} >
-                            <li>{user.username}</li>
-                            <button style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }} onClick={()=> handleProfileClick(user.id)}>Edit Profile</button>
-                        </div>
+                        <Box key={user.id} sx={{display:'flex', flexDirection:'row', padding:'5px'}}>
+                            <Typography sx={{ flex: 1, textAlign:'center '}}>{user.username}</Typography>
+                            <Button variant='contained'  sx={{ width:'150px'}} onClick={()=> handleProfileClick(user.id)}>Edit Profile</Button>
+                        </Box>
                     ))}
-                </ul>
-            </div>
-        </>
+                {/* </ul> */}
+            </Box>
+        </Box>
     )
 };
 

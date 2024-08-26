@@ -138,10 +138,10 @@ function App() {
       width: '100%',
       padding: 1,
       backgroundImage: `url(${bgImgDk})`,
-      backgroundPosition: 'center',
+      // backgroundPosition: 'center',
       backgroundSize: 'cover', 
-      backgroundRepeat: 'no-repeat',
-      color: 'white'
+      // backgroundRepeat: 'no-repeat',
+      // color: 'white'
       }}>
       <Context.Provider value={{ 
         userList, setUserList, handleUser, handleUpdatedUser, handleDeleteUser,
@@ -159,7 +159,7 @@ function App() {
             backgroundPosition: 'center',
             backgroundSize: 'cover', 
             backgroundRepeat: 'no-repeat',
-            color: 'white'
+            color: 'white',
           }}>
           <Box>
               <NavBar />
