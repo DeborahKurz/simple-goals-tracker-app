@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+
 import NavBar from "./NavBar.js";
 import GoalsView from "./GoalsView.js";
 import WelcomePage from "./WelcomePage.js";
@@ -128,24 +131,28 @@ function App() {
 
   return (
     <Context.Provider value={{ 
-      userList, setUserList, handleUser, handleUpdatedUser, handleDeleteUser,
-      allTasks, setAllTasks,
-      allGoals, handleGoal, handleGoalsDeleteTask,
-      handleTask, handleCompletedTask  
-      }}>
-      <div style={{width: "100%", height: "100px", background: "linear-Gradient(#C0C0C0, white)"}}>
-        <div style={{marginLeft: "25px"}}>
-          <NavBar />
-          <Routes>
-            <Route path="/" element={<WelcomePage /> } /> 
-            <Route path="/goals" element={<GoalsView />} /> 
-            <Route path="/team" element={<TeamView />} />
-            <Route path="/subtasks/:taskId" element = {<SubtasksView />} />
-            <Route path="/user/:userId" element = {<UserInfo />} />
-            <Route path="*" element={<ErrorPage />} />
-          </Routes>
-        </div>
-      </div>
+        userList, setUserList, handleUser, handleUpdatedUser, handleDeleteUser,
+        allTasks, setAllTasks,
+        allGoals, handleGoal, handleGoalsDeleteTask,
+        handleTask, handleCompletedTask  
+        }}>
+        <Container>
+          <Box sx={{bgcolor: 'white'}}>
+            {/* <div style={{marginLeft: "25px"}}> */}
+              <NavBar />
+              <Routes>
+                <Route path="/" element={<WelcomePage /> } /> 
+                <Route path="/goals" element={<GoalsView />} /> 
+                <Route path="/team" element={<TeamView />} />
+                <Route path="/subtasks/:taskId" element = {<SubtasksView />} />
+                <Route path="/user/:userId" element = {<UserInfo />} />
+                <Route path="*" element={<ErrorPage />} />
+              </Routes>
+            {/* </div> */}
+          </Box>
+        {/* <div style={{width: "100%", height: "100px", background: "linear-Gradient(#C0C0C0, white)"}}>
+        </div> */}
+        </Container>
     </Context.Provider>
   );
 };
