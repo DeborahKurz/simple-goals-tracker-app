@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Context } from "./App.js";
 
+import { Box, Paper, Button, Input, Typography } from '@mui/material';
+
 function UserInfo(){
     const { userList, handleUpdatedUser, handleDeleteUser} = useContext(Context);
 
@@ -54,42 +56,47 @@ function UserInfo(){
     }
 
     return(
-        <div>
-            <h1>Profile: {user.username}</h1>
-            <div>
-                <h4>Username Updates For: {user.username}</h4>
-                <div style={{ display: "flex", alignItems: "center", width: "1000px", height: "60px" }}>
-                    <h5>Update Username:</h5>
-                    <input placeholder="New Username..." value = {newUsername} onChange={(e) => setNewUsername(e.target.value)}></input>
-                    <button onClick={handleUpdateClick}>Edit</button>
-                </div>
-                <div style={{ color:"red", display: "flex", alignItems: "center", width: "1000px", height: "60px" }}>
-                    <h5>Delete Username:</h5>
-                    <h5>Delete this user, their tasks, and subtasks. </h5>
-                    <h4>This is a permanent action and cannot be undone. </h4>
-                    <button onClick={handleDeleteClick}>Confirm: Delete User</button>
-                </div>
-            </div>
-            <div>
-                <h4>{user.username}'s Completed Tasks:</h4>
+        <Box>
+            <Typography sx={{fontSize: 'h3.fontSize'}}>{user.username}'s Profile</Typography>
+            <Box sx={{margin:2, marginBottom: 5}}>
+                <Typography sx={{ fontWeight:'bold', fontSize:'15px' }}>Username: {user.username}</Typography>
+                <Box>
+                    <Input sx={{ bgcolor:'white', margin:2 }} placeholder="New Username..." value = {newUsername} onChange={(e) => setNewUsername(e.target.value)}></Input>
+                    <Button variant='contained' onClick={handleUpdateClick}>Update Username</Button>
+
+                </Box>
+            </Box>
+            <Box sx={{ margin:2, marginBottom: 5 }}>
+                <Typography sx={{ fontWeight: 'bold' }}>{user.username}'s Completed Tasks:</Typography>
                 {user.tasks.length === 0 ? (
                     <h4><em>{user.username} has no completed tasks. Please check back.</em></h4>
                 ) : (
                     <ul>
                         {user.tasks.map((task)=>(
-                            <li key={task.id}>
-                                <div>Task: {task.task}</div>
-                                <ul>
-                                    {task.subtasks.map((sub)=> sub.completed === true ? (
-                                        <li key={sub.id}><em>Subtask: {sub.subtask}</em></li>
-                                    ) : null )}
-                                </ul>
-                            </li>
+                            <Paper elevation={16} sx={{ padding:1, paddingLeft:3, margin:1 }}>
+                                <Box key={task.id}>
+                                    <Typography sx={{ fontWeight: 'bold', fontFamily: 'Roboto' }}>Task: {task.task}</Typography>
+                                    <ul>
+                                            {task.subtasks.map((sub)=> sub.completed === true ? (
+                                                <Paper elevation={3} sx={{ margin:1, padding:1, paddingLeft:3 }}>
+                                                    <li key={sub.id}><em>Subtask: {sub.subtask}</em></li>
+                                                </Paper> 
+                                            ) : null )}
+                                    </ul>
+                                </Box>
+                            </Paper>
                         ))}
                     </ul>
                 )}
-            </div>
-        </div>
+            </Box>
+            <Paper elevation={6} style={{ backgroundColor:"#bf0000", color:"white", alignItems: "center", paddingLeft:'10px', paddingTop:'10px', margin:7 }}>
+                <Typography sx={{ fontWeight:'bold', fontSize:'18px' }}>Delete Username:</Typography>
+                <Typography sx={{ fontWeight:'bold', fontSize:'13px' }}>Delete this user, their tasks, and subtasks.</Typography>
+                <Typography sx={{ fontWeight:'bold', fontSize:'15px', marginTop:2, marginBottom:2 }}>THIS IS A PERMANENT ACTION AND CANNOT BE UNDONE.</Typography>
+                <Typography sx={{ fontWeight:'bold', fontSize:'13px' }}>Proceed with caution!</Typography>
+                <Button variant="contained"  sx={{bgcolor:'white', color:'red', fontWeight:'bold', marginTop:1, marginBottom:1}} onClick={handleDeleteClick}>Confirm: Delete User</Button>
+            </Paper>
+        </Box>
     )
 };
 
