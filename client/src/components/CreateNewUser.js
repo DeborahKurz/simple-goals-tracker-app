@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { Context } from "./App.js";
 
-import { Box } from '@mui/material';
+import { Button, Input, Paper, Typography } from '@mui/material';
 
 function CreateNewUser() {
   const { userList, handleUser } = useContext(Context);
@@ -43,16 +43,19 @@ function CreateNewUser() {
   return (
     <div>
       <form onSubmit={formik.handleSubmit} style={{margin:"30px"}}>
-        <label htmlFor="username">Create A New Username:</label>
-        <br></br>
-        <input
-          id="username"
-          username="username"
-          onChange={formik.handleChange}
-          value={formik.values.username}
-        />
-        <p style={{color: "red"}}> {formik.errors.username} </p>
-        <button type="submit">Create Username</button>
+        <Typography sx={{ fontWeight:'bold', textAlign:'center', margin:2 }}>Create A New Username:</Typography>
+        <Paper sx={{bgcolor:'#212121', padding:1}}>
+          <Input
+            id="username"
+            username="username"
+            onChange={formik.handleChange}
+            value={formik.values.username}
+            placeholder="Username..."
+            sx={{bgcolor:'white'}}
+          />
+         <p style={{color: "red"}}> {formik.errors.username} </p>
+          <Button variant='contained' sx={{bgcolor:'#141414'}} type="submit">Create Username</Button>
+        </Paper>
       </form>
     </div>
   )

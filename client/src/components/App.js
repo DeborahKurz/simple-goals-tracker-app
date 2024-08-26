@@ -170,7 +170,7 @@ function App() {
           }}>
           <Box>
               <NavBar />
-              <Box sx={{ flex:1, marginBottom:'10px' }}>              
+              <Box sx={{ flex:1, marginBottom:5 }}>              
                 <Routes>
                   <Route path="/" element={<WelcomePage /> } /> 
                   <Route path="/goals" element={<GoalsView />} /> 

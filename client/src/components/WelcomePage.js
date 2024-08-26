@@ -10,7 +10,7 @@ function WelcomePage(){
     const { userList } = useContext(Context);
 
     return (
-        <Box sx={{ 
+        <Box sx={{
             display: 'flex', 
             flexDirection: 'row', 
             justifyContent: 'space-between', 
@@ -25,11 +25,11 @@ function WelcomePage(){
                 <h4>If you ever need to create a new user, or see who is already 'registered' as a user in your team, you can navigate back to this page by selecting "Home" in the navbar.</h4>
                 <h4>Happy Goal Crushing!</h4>
             </Box> 
-            <Box sx={{flex: 1}}>
+            <Box sx={{flex: 1, marginTop: 2,}}>
                 <Paper sx={{ paddingLeft:'15px', paddingBottom: '5px', paddingTop: '1px', bgcolor:'#141414', color:'white' }}>
                     <ListUsers />
                 </Paper>
-                <Paper sx={{ paddingLeft:'5px', paddingBottom: '3px', paddingTop: '1px', marginTop:'10px', bgcolor:'#1a1a1a', color:'white' }}>
+                <Paper sx={{ paddingLeft:'5px', paddingBottom: '3px', paddingTop: '1px', marginTop:'10px', bgcolor:'#141414', color:'white' }}>
                     <CreateNewUser />
                 </Paper> 
             </Box>  

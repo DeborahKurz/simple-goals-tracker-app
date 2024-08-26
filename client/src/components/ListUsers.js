@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "./App.js";
 
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Paper, Typography } from '@mui/material';
 
 function ListUsers(){
     const navigate = useNavigate();
@@ -14,16 +14,14 @@ function ListUsers(){
     
     return(
         <Box>
-            <h3 style={{textAlign:'center'}}>Your Team Includes The Following Usernames:</h3>
-            <Box sx={{ paddingRight:'80px' }}>
-                {/* <ul> */}
+            <Typography sx={{ fontWeight:'bold', textAlign:'center', margin:3 }}>Your Team Includes The Following Usernames:</Typography>
+            <Box>
                     {userList?.map((user) => (
-                        <Box key={user.id} sx={{display:'flex', flexDirection:'row', padding:'5px'}}>
-                            <Typography sx={{ flex: 1, textAlign:'center '}}>{user.username}</Typography>
-                            <Button variant='contained'  sx={{ width:'150px'}} onClick={()=> handleProfileClick(user.id)}>Edit Profile</Button>
-                        </Box>
+                        <Paper key={user.id} sx={{ bgcolor:'#212121', display:'flex', flexDirection:'row', padding:'5px', margin:1}}>
+                            <Typography sx={{ flex: 2, textAlign:'center ', fontSize:'15px', fontWeight:'bold', color:'white' }}>{user.username}</Typography>
+                            <Button variant='contained'  sx={{ flex: 1, width:'150px', bgcolor:'#141414'}} onClick={()=> handleProfileClick(user.id)}>Edit Profile</Button>
+                        </Paper>
                     ))}
-                {/* </ul> */}
             </Box>
         </Box>
     )
