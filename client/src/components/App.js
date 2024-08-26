@@ -137,11 +137,15 @@ function App() {
       margin: -1,
       width: '100%',
       padding: 1,
+      display:'flex',
+      flexDirection: 'column',
+      minHeight: '100vh',
       backgroundImage: `url(${bgImgDk})`,
-      // backgroundPosition: 'center',
+      backgroundPosition: 'center',
       backgroundSize: 'cover', 
-      // backgroundRepeat: 'no-repeat',
-      // color: 'white'
+      backgroundRepeat: 'no-repeat',
+      color: 'white',
+      marginTop: 'auto'
       }}>
       <Context.Provider value={{ 
         userList, setUserList, handleUser, handleUpdatedUser, handleDeleteUser,
@@ -151,26 +155,31 @@ function App() {
         }}>
         <Container             
           sx={{
+            flex:1,
             width: '100%',
-            height: '100%',
+            height: '100vh',
             padding: 1,
-            margin: 10,
+            marginTop: 10,
             backgroundImage: `url(${bgImg})`,
             backgroundPosition: 'center',
             backgroundSize: 'cover', 
             backgroundRepeat: 'no-repeat',
             color: 'white',
+            display:'flex',
+            flexDirection: 'column',
           }}>
           <Box>
               <NavBar />
-              <Routes>
-                <Route path="/" element={<WelcomePage /> } /> 
-                <Route path="/goals" element={<GoalsView />} /> 
-                <Route path="/team" element={<TeamView />} />
-                <Route path="/subtasks/:taskId" element = {<SubtasksView />} />
-                <Route path="/user/:userId" element = {<UserInfo />} />
-                <Route path="*" element={<ErrorPage />} />
-              </Routes>
+              <Box sx={{ flex:1, marginBottom:'10px' }}>              
+                <Routes>
+                  <Route path="/" element={<WelcomePage /> } /> 
+                  <Route path="/goals" element={<GoalsView />} /> 
+                  <Route path="/team" element={<TeamView />} />
+                  <Route path="/subtasks/:taskId" element = {<SubtasksView />} />
+                  <Route path="/user/:userId" element = {<UserInfo />} />
+                  <Route path="*" element={<ErrorPage />} />
+               </Routes>
+              </Box>
           </Box>
         </Container>
       </Context.Provider>

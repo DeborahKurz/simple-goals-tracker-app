@@ -10,7 +10,12 @@ function WelcomePage(){
     const { userList } = useContext(Context);
 
     return (
-        <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', gap: "40px" }}>
+        <Box sx={{ 
+            display: 'flex', 
+            flexDirection: 'row', 
+            justifyContent: 'space-between', 
+            gap: "40px"
+            }}>
             <Box sx={{flex: 1 }}>
                 <h1>Welcome</h1>
                 <h3>Instructions:</h3>
