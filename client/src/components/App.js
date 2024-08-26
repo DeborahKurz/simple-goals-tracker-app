@@ -136,7 +136,6 @@ function App() {
     <Box sx={{
       margin: -1,
       width: '100%',
-      // height: '100%',
       padding: 1,
       backgroundImage: `url(${bgImgDk})`,
       backgroundPosition: 'center',

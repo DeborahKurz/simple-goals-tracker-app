@@ -11,9 +11,9 @@ function CompletedCount(){
         return(
             <h4>
                 Your team has completed 
-                <span style={{ color: "#3CB043" }}>  {completedTasks}  </span> 
+                <span style={{ color: "#277dfe" }}>  {completedTasks}  </span> 
                 tasks, and is currently tackling 
-                <span style={{ color: "red" }}>  {notCompletedTasks}  </span> 
+                <span style={{ color: "#FF007F" }}>  {notCompletedTasks}  </span> 
                 tasks.
             </h4>
         )
@@ -22,9 +22,9 @@ function CompletedCount(){
         return(
             <h4>
                 Your team has completed 
-                <span style={{ color: "#3CB043" }}>  0  </span> 
+                <span style={{ color: "#277dfe" }}>  0  </span> 
                 tasks, and is currently tackling 
-                <span style={{ color: "red" }}>  0  </span> 
+                <span style={{ color: "#FF007F" }}>  0  </span> 
                 tasks. Please add a task to get started.
             </h4>
         )
