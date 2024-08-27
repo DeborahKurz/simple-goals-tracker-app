@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Context } from "./App.js";
 
 import { Box, Paper, Button, Typography } from "@mui/material";
-// import bgImgLt from '../images/backgroundimglt.jpg';
 
 import AddGoal from "./AddGoal.js";
 import AddTask from "./AddTask.js";

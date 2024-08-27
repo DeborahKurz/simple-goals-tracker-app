@@ -2,6 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Context } from "./App.js";
 
+import { Box, Paper, Input, Button, Typography } from "@mui/material";
+
 import CompleteSubtask from "./CompleteSubtask";
 import EditSubtask from "./EditSubtask";
 import DeleteSubtask from "./DeleteSubtask";
@@ -85,32 +87,32 @@ function SubtasksView(){
 
     return (
         <SubtaskContext.Provider value={{ handleCompletedSubtask,handleEditSubtask, handleDeletedSubtask }}>
-            <h1>Task: {task.task}</h1>
-            <div>
-                <h4>Create A New Subtask:</h4>
-                <input
-                    placeholder="Subtask..."
-                    value={newSubtask}
-                    onChange={(e) => setNewSubtask(e.target.value)}
-                />
-                <button onClick={handleNewSubtask}>Create Subtask</button>
-            </div>
-            {subtasks.length === 0 ? (
-                <div>
-                    <h3>To get started, please add a subtask.</h3>
-                </div>
-            ) : (
-                <div>
-                    <ul>
+            <Box>
+                <Typography sx={{fontSize: 'h3.fontSize', marginBottom:2}}>{task.task}</Typography>
+                <Box sx={{ marginBottom: 5 }}>
+                    <Typography sx={{ fontWeight:'bold', fontSize:'13px' }}>Create A New Subtask:</Typography>
+                    <Input
+                        placeholder="Subtask..."
+                        value={newSubtask}
+                        onChange={(e) => setNewSubtask(e.target.value)}
+                    />
+                    <Button onClick={handleNewSubtask}>Create Subtask</Button>
+                </Box>
+                {subtasks.length === 0 ? (
+                    <Box sx={{ marginBottom: 5 }}>
+                        <Typography sx={{ marginLeft:2 }}>To get started, please add a subtask.</Typography>
+                    </Box>
+                ) : (
+                    <Box sx={{ marginBottom: 5 }}>
                         {subtasks.every((subtask) => subtask.completed === true) ? (
-                            <div>
+                            <Box>
                                 <h3 style={{ color: "green" }}>
                                     <em>Great work! You have no outstanding subtasks.</em>
                                 </h3>
-                            </div>
+                            </Box>
                         ) : null}
                         {(subtasks.map((subT) => (
-                            <div
+                            <Box
                                 key={subT.id}
                                 style={{ display: "flex", alignItems: "center", width: "1000px", height: "60px" }}
                             >
@@ -129,12 +131,13 @@ function SubtasksView(){
                                 <CompleteSubtask subtask={subT}/>
                                 <EditSubtask subtask={subT}/>
                                 <DeleteSubtask subtask={subT}/>
-                            </div>
+                            </Box>
                             ))
                         )}
-                    </ul>
-                </div>
-            )}
+                    </Box>
+                )}
+            </Box>
+            
         </SubtaskContext.Provider>
     );
 }

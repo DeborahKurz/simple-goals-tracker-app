@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { SubtaskContext } from "./SubtasksView.js";
 
+import { Box, Button } from '@mui/material';
+
 function DeleteSubtask({ subtask }){
     const { handleDeletedSubtask } = useContext(SubtaskContext);
 
@@ -27,10 +29,16 @@ function DeleteSubtask({ subtask }){
 
     return(
         <div>
-            <button
-                style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }}
+            <Button variant="contained" 
+                sx={{ 
+                    fontSize:'13px', 
+                    fontWeight:'bold', 
+                    bgcolor:"#FF007F", 
+                    color:'white', 
+                    margin: 1
+                }} 
                 onClick={() => handleDelete(subtask.id)}
-            > Delete Subtask </button>
+            > Delete Subtask </Button>
         </div>
     )
 }
