@@ -23,8 +23,11 @@ function SubtasksView(){
     useEffect(()=>{
         fetch(`http://127.0.0.1:5555/subtasks/${taskId}`)
         .then(r=>r.json())
-        .then((subtasks) => setSubtasks(subtasks))
-        .catch((error) => console.error(error))
+        .then((subtasks) => setSubtasks(Array.isArray(subtasks) ? subtasks : []))
+        .catch((error) => {
+            console.error(error)
+            setSubtasks([])
+        })
     }, []);
 
     function handleUpdatedSubtasks(subtaskObj){
@@ -85,6 +88,8 @@ function SubtasksView(){
         setSubtasks(newList)
     };
 
+    console.log(subtasks)
+
     return (
         <SubtaskContext.Provider value={{ handleCompletedSubtask,handleEditSubtask, handleDeletedSubtask }}>
             <Box>
@@ -100,11 +105,11 @@ function SubtasksView(){
                 </Box>
                 {subtasks.length === 0 ? (
                     <Box sx={{ marginBottom: 5 }}>
-                        <Typography sx={{ marginLeft:2 }}>To get started, please add a subtask.</Typography>
+                        <Typography sx={{ marginLeft:2, fontWeight:'bold' }}>To get started, please add a subtask.</Typography>
                     </Box>
                 ) : (
                     <Box sx={{ marginBottom: 5 }}>
-                        {subtasks.every((subtask) => subtask.completed === true) ? (
+                        {subtasks.every(subtask => subtask.completed === true) ? (
                             <Box>
                                 <h3 style={{ color: "green" }}>
                                     <em>Great work! You have no outstanding subtasks.</em>
@@ -137,7 +142,7 @@ function SubtasksView(){
                     </Box>
                 )}
             </Box>
-            
+
         </SubtaskContext.Provider>
     );
 }

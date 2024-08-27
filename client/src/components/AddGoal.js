@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { Context } from "./App.js";
 
-import { Box, Input, Paper, Typography, Button } from '@mui/material';
+import { Box, Input, Button } from '@mui/material';
 
 function AddGoal(){
     const { handleGoal } = useContext(Context);
