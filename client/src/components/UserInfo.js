@@ -58,7 +58,7 @@ function UserInfo(){
     return(
         <Box>
             <Typography sx={{fontSize: 'h3.fontSize'}}>{user.username}'s Profile</Typography>
-            <Box sx={{margin:2, marginBottom: 5}}>
+            <Box sx={{ margin:2, marginBottom: 5 }}>
                 <Typography sx={{ fontWeight:'bold', fontSize:'15px' }}>Username: {user.username}</Typography>
                 <Box>
                     <Input sx={{ bgcolor:'white', margin:2 }} placeholder="New Username..." value = {newUsername} onChange={(e) => setNewUsername(e.target.value)}></Input>

@@ -16,7 +16,7 @@ function WelcomePage(){
             justifyContent: 'space-between', 
             gap: "40px"
             }}>
-            <Box sx={{flex: 1 }}>
+            <Box sx={{flex: 1, marginTop:3, marginRight:5 }}>
                 <h1>Welcome</h1>
                 <h3>Instructions:</h3>
                 <h4>Get started by creating a username (each username needs to be unique).</h4>
