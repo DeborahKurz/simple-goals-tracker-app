@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { Context } from "./App.js";
 
+import { Box, Button, Typography } from '@mui/material';
+
 function CompleteTask({ task }){
     const { handleCompletedTask } = useContext(Context);
 
@@ -26,9 +28,14 @@ function CompleteTask({ task }){
     };
 
     return(
-        <div>
-            <button style={{ width: "150px", height: "54px", marginRight: "10px" }} onClick={()=> handleClick(task)}>Task Done</button>
-        </div>
+        <Box>
+            <Button variant="contained" sx={{ 
+                fontSize:'13px', 
+                fontWeight:'bold', 
+                margin:1,
+                bgcolor:'#42a5f5'
+            }} onClick={()=> handleClick(task)}>Task Done</Button>
+        </Box>
     )
 };
 

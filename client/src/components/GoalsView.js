@@ -29,7 +29,12 @@ function DisplayGoals() {
           <Typography sx={{ marginLeft:2 }}>Navigate to Team View to mark tasks as completed.</Typography>
           {allGoals.length === 0 ? (
             <Box sx={{ marginLeft:2 }}>
-              <Typography sx={{ fontWeight:'bold', fontSize:'17px', marginTop:2, marginBottom:2 }}>Please Add A Goal</Typography>
+              <Typography sx={{ 
+                fontWeight:'bold', 
+                fontSize:'17px', 
+                marginTop:2, 
+                marginBottom:2 
+                }}>Please Add A Goal</Typography>
               <AddGoal />
             </Box>
           ) : (
@@ -45,7 +50,13 @@ function DisplayGoals() {
                   marginBottom:2, 
                   bgcolor:'#F0F0F0'
                   }}>
-                  <Typography sx={{ fontWeight:'bold', fontSize:'22px', marginTop:2, marginBottom:2, marginLeft:1}}>{goal.goal}</Typography>
+                  <Typography sx={{ 
+                    fontWeight:'bold', 
+                    fontSize:'22px', 
+                    marginTop:2, 
+                    marginBottom:2, 
+                    marginLeft:1
+                    }}>{goal.goal}</Typography>
                   {goal.tasks.length > 0 ? (
                     <ListGoals goal={goal}/>
                   ) : (

@@ -5,7 +5,6 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Footer from '@mui/material/Box';
 import bgImgDk from '../images/backgroundimgdark.png';
-import bgImg from '../images/backgroundimg.png';
 
 import NavBar from "./NavBar.js";
 import GoalsView from "./GoalsView.js";

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Context } from "./App.js";
 
 import { Box, Paper, Button, Typography } from "@mui/material";
+import bgImg from '../images/backgroundimg.png';
 
 import CompleteTask from "./CompleteTask.js";
 
@@ -32,49 +33,73 @@ function TeamView(){
         </Box>
       ) : (
         <Box sx={{ marginBottom: 5 }}>
-          <Typography sx={{ marginLeft:2 }}> Please add tasks in Goals View. </Typography>
+          <Typography sx={{ marginLeft:2, marginBottom:5 }}> Please add tasks in Goals View. </Typography>
             {userList.map((user) => (
-                <Box key={user.id} sx={{ marginLeft:2 }}>
+                <Paper key={user.id} elevation={10} sx={{
+                  paddingTop:1,
+                  paddingBottom:1,
+                  paddingLeft:3,
+                  paddingRight:3, 
+                  marginLeft:2, 
+                  marginBottom:8,
+                  marginTop:3,
+                  backgroundImage: `url(${bgImg})`,
+                  backgroundPosition: 'center',
+                  backgroundSize: 'cover', 
+                  backgroundRepeat: 'no-repeat', 
+                  color:'white'
+                  }}>
                   <h2>{user.username}</h2>
+
                   {user.tasks.length === 0 ? (
-                    <Box Box sx={{ marginLeft:2 }}>
-                      <h4 style={{ color: "green" }}> <em>Nice Work! You have no outstanding tasks.</em></h4>
-                    </Box>
+                    <Paper sx={{ marginLeft:2, marginBottom:2, padding:2 }}>
+                      <Typography sx={{ color:'green', fontWeight:'bold' }}> <em>Nice Work! You have no outstanding tasks.</em></Typography>
+                    </Paper>
+                    
                   ) : (
                     user.tasks.every(task => task.completed === true) ? (
-                      <Box>
-                        <h4 style={{ color: "green" }}> <em>Nice Work! You have no outstanding tasks.</em></h4>
-                      </Box>
+                      <Paper elevation={10} sx={{ marginLeft:2, marginBottom:2, padding:2 }}>
+                        <Typography sx={{ color:'green', fontWeight:'bold' }}> <em>Nice Work! You have no outstanding tasks.</em></Typography>
+                      </Paper>
+
                     ):(
                       user.tasks.map((aTask) => (
                         aTask.completed === false ? (
-                        <Paper key={aTask.id} elevation={20} sx={{ 
+                        <Paper key={aTask.id} elevation={10} sx={{ 
                             padding:2, 
                             paddingTop:1,
-                            marginBottom:2,
+                            paddingBottom:1,
+                            marginBottom:2, 
+                            bgcolor:'#F0F0F0',
                             display:'flex',
-                            flexDirection:'row' 
+                            flexDirection:'row',
+                            alignItems:'center' 
                           }}>
-                          <li style={{ width:"500px", height: "50px"}}>{aTask.task}</li>
-                          <Button variant="outlined" sx={{fontSize:'13px', fontWeight:'bold', color:'black', margin: 1, marginLeft: 'auto', width:'200px'}} onClick={()=> handleClickGoal()}>Goal: {aTask.goal.goal}</Button>
+                          <Typography sx={{ fontWeight:'bold' }}>{aTask.task}</Typography>
+                          <Button variant="outlined" sx={{
+                            fontSize:'13px', 
+                            fontWeight:'bold', 
+                            color:'black', 
+                            margin:1, 
+                            marginLeft:'auto',
+                            width:'300px'
+                          }} onClick={()=> handleClickGoal()}>Goal: {aTask.goal.goal}</Button>
                           <CompleteTask task={aTask}/>
-                          <Button 
-                            variant="contained" 
-                            sx={{ 
-                              fontSize:'13px', 
-                              fontWeight:'bold', 
-                              margin:1,
-                              paddingLeft:4,
-                              paddingRight:4
-                            }} 
-                            onClick={()=> handleSubtaskClick(aTask.id)}>View Subtasks</Button>
+                            <Button 
+                              variant="contained" 
+                              sx={{ 
+                                fontSize:'13px', 
+                                fontWeight:'bold', 
+                                margin:1
+                              }} 
+                              onClick={()=> handleSubtaskClick(aTask.id)}>View Subtasks</Button>
                         </Paper>
                         ) : null
                       )
                     )
                   )
                 )}
-              </Box>
+              </Paper>
             ))}
         </Box>
       )}
