@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { SubtaskContext } from "./SubtasksView.js";
 
+import { Box, Button } from '@mui/material';
+
 function CompleteSubtask({ subtask }){
     const { handleCompletedSubtask } = useContext(SubtaskContext);
 
@@ -25,12 +27,16 @@ function CompleteSubtask({ subtask }){
     }
 
     return(
-        <div>
-            <button
-                style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }}
-                onClick={() => handleCompleted(subtask.id)}
-            >Completed</button>
-        </div>
+        <Box>
+            <Button variant="contained" sx={{ 
+                fontSize:'13px', 
+                fontWeight:'bold', 
+                margin:1,
+                bgcolor:'#42a5f5',
+                whiteSpace:'nowrap'
+            }}
+            onClick={() => handleCompleted(subtask.id)}>Completed</Button>
+        </Box>
     )
 };
 

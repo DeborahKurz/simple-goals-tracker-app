@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "./App.js";
 
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button } from '@mui/material';
 
 function CompleteTask({ task }){
     const { handleCompletedTask } = useContext(Context);

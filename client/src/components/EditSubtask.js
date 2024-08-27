@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
 import { SubtaskContext } from "./SubtasksView.js";
 
+import { Box, Button, Typography, Input } from '@mui/material';
+
 function EditSubtask({ subtask }){
     const { handleEditSubtask } = useContext(SubtaskContext);
     const [ newSubtask, setNewSubtask ] = useState("");
@@ -29,13 +31,21 @@ function EditSubtask({ subtask }){
     }
 
     return(
-        <div>
-            <input value={newSubtask} onChange={(e)=> setNewSubtask(e.target.value)} placeholder={"Rename Subtask..."}></input>
-            <button
-                style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }}
+        <Box>
+            <Input sx={{ 
+                bgcolor:'white', 
+                marginRight:2, 
+                paddingLeft:1 
+            }} 
+            value={newSubtask} 
+            onChange={(e)=> setNewSubtask(e.target.value)} 
+            placeholder={"Rename Subtask..."}></Input>
+            <Button
+                variant='contained' 
+                sx={{ }}
                 onClick={() => handleEdit(subtask.id)}
-            > Edit Subtask </button>
-        </div>
+            > Edit Subtask </Button>
+        </Box>
     )
 };
 

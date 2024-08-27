@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Context } from "./App.js";
 
 import { Box, Paper, Input, Button, Typography } from "@mui/material";
+import bgImg from '../images/backgroundimg.png';
 
 import CompleteSubtask from "./CompleteSubtask";
 import EditSubtask from "./EditSubtask";
@@ -91,58 +92,91 @@ function SubtasksView(){
     console.log(subtasks)
 
     return (
-        <SubtaskContext.Provider value={{ handleCompletedSubtask,handleEditSubtask, handleDeletedSubtask }}>
+        <SubtaskContext.Provider value={{ handleCompletedSubtask, handleEditSubtask, handleDeletedSubtask }}>
             <Box>
-                <Typography sx={{fontSize: 'h3.fontSize', marginBottom:2}}>{task.task}</Typography>
-                <Box sx={{ marginBottom: 5 }}>
-                    <Typography sx={{ fontWeight:'bold', fontSize:'13px' }}>Create A New Subtask:</Typography>
+                <Typography sx={{ fontSize: 'h3.fontSize', marginBottom: 2 }}>{task.task}</Typography>
+                <Box sx={{ margin: 3, marginBottom: 5 }}>
+                    <Typography sx={{ fontWeight: 'bold', fontSize: '15px', marginBottom: 1 }}>Create A New Subtask: </Typography>
                     <Input
                         placeholder="Subtask..."
                         value={newSubtask}
                         onChange={(e) => setNewSubtask(e.target.value)}
-                    />
-                    <Button onClick={handleNewSubtask}>Create Subtask</Button>
+                        sx={{ bgcolor: 'white', marginRight: 2, paddingLeft: 1 }}>
+                    </Input>
+                    <Button
+                        variant="contained"
+                        sx={{
+                            fontSize: '13px',
+                            fontWeight: 'bold',
+                            margin: 1
+                        }}
+                        onClick={handleNewSubtask}>Create Subtask</Button>
                 </Box>
                 {subtasks.length === 0 ? (
-                    <Box sx={{ marginBottom: 5 }}>
-                        <Typography sx={{ marginLeft:2, fontWeight:'bold' }}>To get started, please add a subtask.</Typography>
+                    <Box sx={{ marginBottom: 3 }}>
+                        <Paper>
+                            <Typography sx={{ marginLeft: 2, fontWeight: 'bold' }}>To get started, please add a subtask.</Typography>
+                        </Paper>
                     </Box>
                 ) : (
-                    <Box sx={{ marginBottom: 5 }}>
-                        {subtasks.every(subtask => subtask.completed === true) ? (
-                            <Box>
-                                <h3 style={{ color: "green" }}>
-                                    <em>Great work! You have no outstanding subtasks.</em>
-                                </h3>
-                            </Box>
+                    <Box sx={{ marginBottom: 3 }}>
+                        {subtasks.every(subtask => subtask.completed) ? (
+                            <Paper>
+                                <Typography sx={{ 
+                                    color: "green", 
+                                    textAlign: "center", 
+                                    padding: 2
+                                    }}><em>Great work! You have no outstanding subtasks</em></Typography>
+                            </Paper>
                         ) : null}
-                        {(subtasks.map((subT) => (
-                            <Box
-                                key={subT.id}
-                                style={{ display: "flex", alignItems: "center", width: "1000px", height: "60px" }}
-                            >
-                                <li
-                                    style={{
-                                        textDecoration: subT.completed ? 'line-through' : 'none',
-                                        width: "500px",
-                                        height: "50px",
-                                        border: "2px solid black",
-                                        marginRight: "-2px",
-                                    }}
-                                >
-                                    {subT.subtask}
-                                </li>
-
-                                <CompleteSubtask subtask={subT}/>
-                                <EditSubtask subtask={subT}/>
-                                <DeleteSubtask subtask={subT}/>
-                            </Box>
-                            ))
-                        )}
+                        {subtasks.map(subT => (
+                            <Paper key={subT.id}
+                                elevation={10}
+                                sx={{
+                                    padding:1,
+                                    paddingLeft:2,
+                                    marginLeft:2,
+                                    marginBottom:1,
+                                    marginTop:3,
+                                    backgroundImage:`url(${bgImg})`,
+                                    backgroundPosition:'center',
+                                    backgroundSize:'cover',
+                                    backgroundRepeat:'no-repeat',
+                                    color:'white',
+                                    display:'flex',
+                                    flexDirection:'column',
+                                    justifyContent:'space-between'
+                                }}>
+                                <Box sx={{ display: 'flex', flexDirection: 'row' }}>
+                                    <Typography
+                                        sx={{
+                                            textDecoration: subT.completed ? 'line-through' : 'none',
+                                            fontWeight: 'bold',
+                                            fontSize: '20px',
+                                            paddingTop: 2,
+                                            paddingBottom: 2,
+                                            overflow:'hidden',
+                                            textOverflow:'ellipsis'
+                                        }}>{subT.subtask}</Typography>
+                                    <Box
+                                        sx={{
+                                            marginLeft: 'auto',
+                                            display: 'flex',
+                                            flexDirection: 'row',
+                                            alignItems: 'center',
+                                            paddingTop: 4
+                                        }}>
+                                        {subT.completed ? null : (<CompleteSubtask subtask={subT} />)}
+                                        
+                                        <DeleteSubtask subtask={subT} />
+                                    </Box>
+                                </Box>
+                                <EditSubtask subtask={subT} />
+                            </Paper>
+                        ))}
                     </Box>
                 )}
             </Box>
-
         </SubtaskContext.Provider>
     );
 }

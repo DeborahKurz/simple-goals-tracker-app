@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { Context } from "./App.js";
 
-import { Box, Button, Typography, Input, keyframes } from '@mui/material';
+import { Box, Button, Input } from '@mui/material';
 
 function AddTask({ goalId }){
     const { userList, handleTask } = useContext(Context);
@@ -75,8 +75,8 @@ function AddTask({ goalId }){
                         onChange={formik.handleChange}
                         sx={{ bgcolor:'white', marginRight:2,  width:'140px', padding:1 }}
                     />
-                    <Button variant='contained' 
-                        type="submit"
+                    <Button type="submit"
+                        variant='contained' 
                         sx={{ whiteSpace: 'nowrap' }} 
                         >Add Task</Button>
                 </form>

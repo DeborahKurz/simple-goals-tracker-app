@@ -49,7 +49,7 @@ function TeamView(){
                   backgroundRepeat: 'no-repeat', 
                   color:'white'
                   }}>
-                  <h2>{user.username}</h2>
+                  <Typography sx={{ fontWeight:'bold', fontSize:'25px', paddingTop:2, paddingBottom:2 }}>{user.username}</Typography>
 
                   {user.tasks.length === 0 ? (
                     <Paper sx={{ marginLeft:2, marginBottom:2, padding:2 }}>
