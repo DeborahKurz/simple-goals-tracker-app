@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+import { Box, Paper, Button, Typography } from '@mui/material';
+
 import DeleteGoalTask from "./DeleteGoalTask.js";
 
 function ListGoals({ goal }){
@@ -11,23 +13,23 @@ function ListGoals({ goal }){
       };
 
     return (
-        <div>
+        <Box>
             {goal.tasks.map((aTask) => (
                     aTask.completed === false ? (
-                        <div key={aTask.id} style={{ display: "flex", alignItems: "center", width: "1000px", height: "60px" }}>
-                        <li style={{ width:"500px", height: "50px", border: "2px solid black", marginRight: "-2px" }}>{aTask.task}</li>
-                        <button style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }} onClick={()=> handleClickTeam()}>Task Owner: {aTask.user.username}</button>
+                        <Paper key={aTask.id} elevation={10} sx={{ display: "flex", alignItems: "center", paddingLeft:2, paddingRight:1, marginBottom:1 }}>
+                            <Typography sx={{}}>{aTask.task}</Typography>
+                            <Button variant="outlined" sx={{fontSize:'13px', fontWeight:'bold', color:'black', margin: 1, marginLeft: 'auto', width:'200px'}} onClick={()=> handleClickTeam()}> {aTask.user.username}</Button>
                         <DeleteGoalTask taskId={aTask.id} />
-                        </div>
+                        </Paper>
                     ) : (
-                        <div key={aTask.id} style={{ display: "flex", alignItems: "center", width: "1000px", height: "60px" }}>
-                        <li style={{ textDecoration: 'line-through', width:"500px", height: "50px", border: "2px solid black", marginRight: "-2px" }}>Completed: {aTask.task}</li>
-                        <button style={{ width: "150px", height: "54px", background: "white", marginRight: "10px" }} onClick={()=> handleClickTeam()}>Task Owner: {aTask.user.username}</button>
-                        <DeleteGoalTask taskId={aTask.id} />
-                        </div>
+                        <Paper key={aTask.id} elevation={10} sx={{ display: "flex", alignItems: "center", paddingLeft:2, paddingRight:1, marginBottom:1 }}>
+                            <Typography sx={{ textDecoration: 'line-through'}}>Completed: {aTask.task}</Typography>
+                            <Button variant="outlined" sx={{fontSize:'13px', fontWeight:'bold', color:'black', margin: 1, marginLeft: 'auto', width:'200px'}} onClick={()=> handleClickTeam()}>{aTask.user.username}</Button>
+                            <DeleteGoalTask taskId={aTask.id} />
+                        </Paper>
                     )
             ))}
-        </div>
+        </Box>
     )
 };
 

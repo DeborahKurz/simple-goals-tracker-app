@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { Context } from "./App.js";
 
+import { Box, Button } from '@mui/material';
+
 function DeleteTask({ taskId }) {
   const { handleGoalsDeleteTask } = useContext(Context);
 
@@ -27,7 +29,7 @@ function DeleteTask({ taskId }) {
     }
 
     return (
-        <button style={{ width: "150px", height: "54px", marginRight: "10px" }} onClick={()=> handleDeleteTask(taskId)}>Delete Task</button>
+        <Button variant="contained" sx={{ fontSize:'13px', fontWeight:'bold', bgcolor:"#FF007F", color:'white', margin: 1 }} onClick={()=> handleDeleteTask(taskId)}>Delete Task</Button>
     )
 }
 export default DeleteTask

@@ -3,6 +3,8 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { Context } from "./App.js";
 
+import { Box, Input, Paper, Typography, Button } from '@mui/material';
+
 function AddGoal(){
     const { handleGoal } = useContext(Context);
 
@@ -33,23 +35,24 @@ function AddGoal(){
     })
 
     return(
-        <div>
+        <Box>
             <form onSubmit={formik.handleSubmit} style={{ display: "flex", alignItems: "center", width: "1000px", height: "60px", marginRight: "10px" }}>
-                <input 
+                <Input 
                     id="goal"
                     name="goal"
                     type="text" 
                     value={formik.values.goal}
                     placeholder = "Add A New Goal"
                     onChange={formik.handleChange}
+                    sx={{ bgcolor:'white', margin:2 }}
                 />
                 <br></br>
-                <button type="submit">Add My Goal</button>
+                <Button type="submit" variant='contained' sx={{ }}>Add My Goal</Button>
                 <br></br>
                 <p style={{ color: "red" }}>{formik.errors.goal}</p>
                 <br></br>
             </form>
-        </div>
+        </Box>
     )
 };
 

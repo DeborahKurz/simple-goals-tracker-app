@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Context } from "./App.js";
 
+import { Box, Paper, Button, Typography } from "@mui/material";
+// import bgImgLt from '../images/backgroundimglt.jpg';
+
 import AddGoal from "./AddGoal.js";
 import AddTask from "./AddTask.js";
 import ListGoals from "./ListGoals.js";
@@ -15,44 +18,55 @@ function DisplayGoals() {
   }
 
   return (
-    <div>
-      <h1> Goals View </h1>
+    <Box>
+      <Typography sx={{fontSize: 'h3.fontSize'}}> Goals View </Typography>
       {userList.length === 0 ? (
-        <div>
-          <h3>To get started, please create a username.</h3>
-          <button onClick={handleClickUser}>Take Me To 'Create Username'</button>
-        </div>
+        <Box sx={{ marginBottom: 5 }}>
+          <Typography sx={{ fontWeight:'bold', fontSize:'13px' }}>To get started, please create a username.</Typography>
+          <Button onClick={handleClickUser}>Take Me To 'Create Username'</Button>
+        </Box>
       ) : (
-        <div>
-          <h5>Navigate to Team View to mark tasks as completed.</h5>
+        <Box sx={{ marginBottom: 5 }}>
+          <Typography sx={{ marginLeft:2 }}>Navigate to Team View to mark tasks as completed.</Typography>
           {allGoals.length === 0 ? (
-            <div>
-              <h3>Please Add A Goal</h3>
+            <Box sx={{ marginLeft:2 }}>
+              <Typography sx={{ fontWeight:'bold', fontSize:'17px', marginTop:2, marginBottom:2 }}>Please Add A Goal</Typography>
               <AddGoal />
-            </div>
+            </Box>
           ) : (
-            <div>
-              <AddGoal />
-              <ul>
+            <Box sx={{ marginLeft:2 }}>
+              <Box>
+                <AddGoal />
+              </Box>
               {allGoals.map((goal) => (
-                <div key={goal.id}>
-                  <h2>{goal.goal}</h2>
+                <Paper key={goal.id} sx={{ 
+                  padding:2, 
+                  paddingTop:1,
+                  paddingBottom:1,
+                  marginBottom:2, 
+                  bgcolor:'#F0F0F0'
+                  }}>
+                  <Typography sx={{ fontWeight:'bold', fontSize:'22px', marginTop:2, marginBottom:2, marginLeft:1}}>{goal.goal}</Typography>
                   {goal.tasks.length > 0 ? (
                     <ListGoals goal={goal}/>
                   ) : (
-                    <div>
-                      <h4> No tasks are assigned to this goal. Please add a task. </h4>
-                    </div>
+                    <Paper elevation={20} sx={{ 
+                      padding:2, 
+                      paddingTop:1,
+                      marginBottom:2, 
+                      }}>
+                      <Typography sx={{ margin:2, fontWeight:'bold' }}>Please add a task.</Typography>
+                    </Paper>
                   )}
                   <AddTask goalId={goal.id} />
-                </div>
+                </Paper>
               ))}
-              </ul>
-            </div>
+
+            </Box>
           )}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   )
 };
 
