@@ -29,7 +29,13 @@ function DeleteTask({ taskId }) {
     }
 
     return (
-        <Button variant="contained" sx={{ fontSize:'13px', fontWeight:'bold', bgcolor:"#FF007F", color:'white', margin: 1 }} onClick={()=> handleDeleteTask(taskId)}>Delete Task</Button>
+        <Button variant="contained" sx={{ 
+          fontSize:'13px', 
+          fontWeight:'bold', 
+          bgcolor:"#FF007F", 
+          color:'white', 
+          margin: 1
+        }} onClick={()=> handleDeleteTask(taskId)}>Delete Task</Button>
     )
 }
 export default DeleteTask

@@ -19,7 +19,7 @@ function DisplayGoals() {
 
   return (
     <Box>
-      <Typography sx={{fontSize: 'h3.fontSize'}}> Goals View </Typography>
+      <Typography sx={{fontSize: 'h3.fontSize', marginBottom:2}}> Goals View </Typography>
       {userList.length === 0 ? (
         <Box sx={{ marginBottom: 5 }}>
           <Typography sx={{ fontWeight:'bold', fontSize:'13px' }}>To get started, please create a username.</Typography>

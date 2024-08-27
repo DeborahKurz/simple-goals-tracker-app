@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { Context } from "./App.js";
 
-import { Paper, Box, Typography, Input } from '@mui/material';
+import { Box, Button, Typography, Input, keyframes } from '@mui/material';
 
 function AddTask({ goalId }){
     const { userList, handleTask } = useContext(Context);
@@ -49,34 +49,43 @@ function AddTask({ goalId }){
     })
 
     return(
-        <Box style={{ display: "flex", alignItems: "center", width: "1000px", height: "60px" }}>
-            <form onSubmit={formik.handleSubmit}>
-                <input 
-                    id="task"
-                    name="task"
-                    type="text" 
-                    value={formik.values.task}
-                    placeholder = "New Task"
-                    onChange={formik.handleChange}
-                    style={{ width: "490px", marginRight: "10px" }}
-                />
-                <input 
-                    id="user"
-                    name="user"
-                    type="text" 
-                    value={formik.values.user}
-                    placeholder = "User"
-                    onChange={formik.handleChange}
-                    style= {{ width: "130px", marginRight: "15px" }}
-                />
-                <button style={{ width: "150px" }} type="submit">Add Task</button>
-                <br />
-            </form>
-            <div style={{ marginLeft: "10px" }}>
+        <Box>
+            <Box style={{ 
+                display: "flex", 
+                alignItems: "center", 
+                width: "100%", 
+                marginLeft: 3
+                }}>
+                <form onSubmit={formik.handleSubmit} style={{display:'flex', flexGrow:1, marginTop:5}}>
+                    <Input 
+                        id="task"
+                        name="task"
+                        type="text" 
+                        value={formik.values.task}
+                        placeholder = "New Task"
+                        onChange={formik.handleChange}
+                        sx={{ bgcolor:'white', marginRight:2,  width:'160px', padding:1 }}
+                    />
+                    <Input 
+                        id="user"
+                        name="user"
+                        type="text" 
+                        value={formik.values.user}
+                        placeholder = "User"
+                        onChange={formik.handleChange}
+                        sx={{ bgcolor:'white', marginRight:2,  width:'140px', padding:1 }}
+                    />
+                    <Button variant='contained' 
+                        type="submit"
+                        sx={{ whiteSpace: 'nowrap' }} 
+                        >Add Task</Button>
+                </form>
+            </Box>
+            <Box style={{ marginLeft: "10px" }}>
                 <p style={{ color: "red" }}>{formik.errors.task}</p>
                 <p style={{ color: "red" }}>{formik.errors.user}</p>
-            </div>
-        </Box>
+            </Box>
+        </Box>     
     )
 };
 

@@ -35,19 +35,19 @@ function AddGoal(){
     })
 
     return(
-        <Box>
+        <Box sx={{ marginBottom:3 }}>
             <form onSubmit={formik.handleSubmit} style={{ display: "flex", alignItems: "center", width: "1000px", height: "60px", marginRight: "10px" }}>
                 <Input 
                     id="goal"
                     name="goal"
                     type="text" 
                     value={formik.values.goal}
-                    placeholder = "Add A New Goal"
+                    placeholder = " New Goal"
                     onChange={formik.handleChange}
-                    sx={{ bgcolor:'white', margin:2 }}
+                    sx={{ bgcolor:'white' }}
                 />
                 <br></br>
-                <Button type="submit" variant='contained' sx={{ }}>Add My Goal</Button>
+                <Button type="submit" variant='contained' sx={{ marginLeft:2 }}>Add My Goal</Button>
                 <br></br>
                 <p style={{ color: "red" }}>{formik.errors.goal}</p>
                 <br></br>
