@@ -3,7 +3,8 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { Context } from "./App.js";
 
-import { Button, Input, Paper, Typography } from '@mui/material';
+import { Box, Button, Input, Paper, Typography } from '@mui/material';
+import bgImg from '../images/backgroundimg.png';
 
 function CreateNewUser() {
   const { userList, handleUser } = useContext(Context);
@@ -41,23 +42,32 @@ function CreateNewUser() {
   });
 
   return (
-    <div>
+    <Box>
       <form onSubmit={formik.handleSubmit} style={{margin:"30px"}}>
         <Typography sx={{ fontWeight:'bold', textAlign:'center', margin:2 }}>Create A New Username:</Typography>
-        <Paper sx={{bgcolor:'#212121', padding:1}}>
+        <Paper sx={{
+          padding:2,
+          backgroundImage: `url(${bgImg})`,
+          backgroundPosition: 'center',
+          backgroundSize: 'cover', 
+          backgroundRepeat: 'no-repeat',
+          display:'flex',
+          flexDirection:'row',
+          alignItems:'center'
+          }}>
           <Input
             id="username"
             username="username"
             onChange={formik.handleChange}
             value={formik.values.username}
             placeholder="Username..."
-            sx={{bgcolor:'white'}}
+            sx={{ bgcolor:'white', width:'180px', marginRight:2, marginLeft:2 }}
           />
          <p style={{color: "red"}}> {formik.errors.username} </p>
-          <Button variant='contained' sx={{bgcolor:'#141414'}} type="submit">Create Username</Button>
+          <Button variant='contained' sx={{ marginRight:2, marginLeft:'auto' }} type="submit">Create Username</Button>
         </Paper>
       </form>
-    </div>
+    </Box>
   )
 }
 

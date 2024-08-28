@@ -26,10 +26,24 @@ function WelcomePage(){
                 <Typography sx={{ fontWeight:'bold', fontSize:'16px', marginTop:2, marginBottom:2 }}>Happy Goal Crushing!</Typography>
             </Box> 
             <Box sx={{flex: 1, marginTop: 2,}}>
-                <Paper sx={{ paddingLeft:'15px', paddingBottom: '5px', paddingTop: '1px', bgcolor:'#141414', color:'white' }}>
+                <Paper sx={{ 
+                    paddingLeft:'15px', 
+                    paddingBottom: '5px', 
+                    paddingTop: 
+                    '1px', 
+                    bgcolor:'#141414', 
+                    color:'white' 
+                    }}>
                     <ListUsers />
                 </Paper>
-                <Paper sx={{ paddingLeft:'5px', paddingBottom: '3px', paddingTop: '1px', marginTop:'10px', bgcolor:'#141414', color:'white' }}>
+                <Paper sx={{ 
+                    paddingLeft:'5px', 
+                    paddingBottom: '3px', 
+                    paddingTop: '1px', 
+                    marginTop:'10px', 
+                    bgcolor:'#141414', 
+                    color:'white' 
+                    }}>
                     <CreateNewUser />
                 </Paper> 
             </Box>  
