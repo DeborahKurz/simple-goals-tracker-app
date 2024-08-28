@@ -22,71 +22,71 @@ def delete_all_data():
         db.session.rollback()
         print(f"Error deleteing data from database: {e}")
 
-#Uncomment the rest of this funciton to seed the database:
+#Uncomment the rest of this function to seed the database:
 
-def create_users(num_users):
-    users = []
-    for _ in range(num_users):
-        username = fake.first_name()
-        user = User(username=username)
-        users.append(user)
-    return users
+# def create_users(num_users):
+#     users = []
+#     for _ in range(num_users):
+#         username = fake.first_name()
+#         user = User(username=username)
+#         users.append(user)
+#     return users
 
 
-def create_goals(num_goals):
-    goals = []
+# def create_goals(num_goals):
+#     goals = []
 
-    if not User.query.first():
-        fake_user = User(username='fake_user')
-        db.session.add(fake_user)
-        db.session.commit()
-    else:
-        fake_user = None
+#     if not User.query.first():
+#         fake_user = User(username='fake_user')
+#         db.session.add(fake_user)
+#         db.session.commit()
+#     else:
+#         fake_user = None
 
-    users = User.query.all()
+#     users = User.query.all()
     
-    for _ in range(num_goals):
+#     for _ in range(num_goals):
         
-        goal = Goal(goal = fake.text(max_nb_chars=25))
-        goals.append(goal)
+#         goal = Goal(goal = fake.text(max_nb_chars=25))
+#         goals.append(goal)
 
-    return goals
-
-
-def create_tasks(num_tasks):
-    tasks = []
-    fake = Faker()
-
-    goals = Goal.query.all()
-    users = User.query.all()
-
-    for _ in range(num_tasks):
-        goal = rc(goals)
-        user = rc(users)
-        is_completed = fake.boolean(chance_of_getting_true=30)
-        task_text = fake.text(max_nb_chars=25)
-
-        task = Task(task=task_text, completed=is_completed, goals_id=goal.id, users_id=user.id)
-        tasks.append(task)
-
-    return tasks
+#     return goals
 
 
-def create_subtasks(num_subtasks):
-    subtasks = []
-    fake = Faker()
+# def create_tasks(num_tasks):
+#     tasks = []
+#     fake = Faker()
 
-    tasks = Task.query.all()
+#     goals = Goal.query.all()
+#     users = User.query.all()
 
-    for _ in range(num_subtasks):
-        task = rc(tasks)
-        is_completed = fake.boolean(chance_of_getting_true=30)
-        subtask_text = fake.text(max_nb_chars=30)
+#     for _ in range(num_tasks):
+#         goal = rc(goals)
+#         user = rc(users)
+#         is_completed = fake.boolean(chance_of_getting_true=30)
+#         task_text = fake.text(max_nb_chars=25)
 
-        subtask = Subtask(subtask=subtask_text, completed=is_completed, task_id=task.id)
-        subtasks.append(subtask)
+#         task = Task(task=task_text, completed=is_completed, goals_id=goal.id, users_id=user.id)
+#         tasks.append(task)
+
+#     return tasks
+
+
+# def create_subtasks(num_subtasks):
+#     subtasks = []
+#     fake = Faker()
+
+#     tasks = Task.query.all()
+
+#     for _ in range(num_subtasks):
+#         task = rc(tasks)
+#         is_completed = fake.boolean(chance_of_getting_true=30)
+#         subtask_text = fake.text(max_nb_chars=30)
+
+#         subtask = Subtask(subtask=subtask_text, completed=is_completed, task_id=task.id)
+#         subtasks.append(subtask)
     
-    return subtasks
+#     return subtasks
 
 
 if __name__ == '__main__':
@@ -97,30 +97,30 @@ if __name__ == '__main__':
 
     #Uncomment everything below to seed the database:
 
-        print("Starting seed...")
+        # print("Starting seed...")
         
-        num_users = 5 
-        users_to_create = create_users(num_users)
-        db.session.add_all(users_to_create)
-        db.session.commit()
-        print(f"Seeded {num_users} users successfully.")
+        # num_users = 5 
+        # users_to_create = create_users(num_users)
+        # db.session.add_all(users_to_create)
+        # db.session.commit()
+        # print(f"Seeded {num_users} users successfully.")
 
-        num_goals = 10
-        goals_to_create = create_goals(num_goals)
-        db.session.add_all(goals_to_create)
-        db.session.commit()
-        print(f"Seeded {num_goals} goals successfully.")
+        # num_goals = 10
+        # goals_to_create = create_goals(num_goals)
+        # db.session.add_all(goals_to_create)
+        # db.session.commit()
+        # print(f"Seeded {num_goals} goals successfully.")
 
-        num_tasks = 30
-        tasks_to_create = create_tasks(num_tasks)
-        db.session.add_all(tasks_to_create)
-        db.session.commit()
-        print(f"Seeded {num_tasks} tasks successfully.")
+        # num_tasks = 30
+        # tasks_to_create = create_tasks(num_tasks)
+        # db.session.add_all(tasks_to_create)
+        # db.session.commit()
+        # print(f"Seeded {num_tasks} tasks successfully.")
 
-        num_subtasks = 100
-        subtasks_to_create = create_subtasks(num_subtasks)
-        db.session.add_all(subtasks_to_create)
-        db.session.commit()
-        print(f"Seeded {num_subtasks} sub tasks successfully.")
+        # num_subtasks = 100
+        # subtasks_to_create = create_subtasks(num_subtasks)
+        # db.session.add_all(subtasks_to_create)
+        # db.session.commit()
+        # print(f"Seeded {num_subtasks} sub tasks successfully.")
 
-        print("Seed completed.")
+        # print("Seed completed.")
