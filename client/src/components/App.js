@@ -21,8 +21,6 @@ function App() {
   const [allGoals, setAllGoals] = useState([]);
   const [allTasks, setAllTasks] = useState([]);
 
-
-
   useEffect(()=>{
     fetch("http://127.0.0.1:5555/")
     .then(r=>r.json())
@@ -76,8 +74,8 @@ function App() {
 
 
   const handleTask = (task) => {
-    const updatedTasks = allTasks.length > 0 ? [...allTasks, task] : [task];
-    setAllTasks(updatedTasks);
+    // const updatedTasks = allTasks.length > 0 ? [...allTasks, task] : [task];
+    // setAllTasks(updatedTasks);
 
     const updatedGoals = allGoals.map((goal) => {
       if(goal.id === task.goals_id) {
@@ -131,8 +129,74 @@ function App() {
 
   const handleDeleteUser = (userId) => {
     setUserList(prevUsers => prevUsers.filter(user => user.id !== userId))
-  }
-  
+  };
+
+  const handleNewSubtask = (subtask) => {;
+    const updatedGoals = allGoals.map((goal) => {
+      const updatedTasks = goal.tasks.map((task) => {
+        if (task.id === subtask.task_id){
+          return {
+            ...task,
+            subtasks: [...task.subtasks, subtask]
+          }
+        }
+        return task;
+      })
+
+      return {
+        ...goal,
+        tasks: updatedTasks
+      }
+    });
+    setAllGoals(updatedGoals);
+
+    const updatedUsers = userList.map((user) => {
+      const updatedTasks = user.tasks.map((task) => {
+        if (task.id === subtask.task_id){
+          return {
+            ...task,
+            subtasks: [...task.subtasks, subtask]
+          }
+        }
+        return task;
+      });
+
+      return {
+        ...user,
+        tasks: updatedTasks
+      };
+    });
+    setUserList(updatedUsers);
+  };
+
+  const handleCompletedSubtask = (subtaskObj) => {
+    // setAllTasks(prevTasks => prevTasks.map(task => task.id === taskObj.id ? { 
+    //   ...task, 
+    //   completed: true 
+    // } : task));
+
+    setAllGoals(prevGoals => prevGoals.map(goal => ({
+      ...goal,
+      tasks: goal.tasks.map(task => task.id === subtaskObj.task_id ? { ...task.subtask, completed: true } : task)
+    })));
+
+    setUserList(prevUsers => prevUsers.map(user => ({
+      ...user,
+      tasks: user.tasks.map(task => task.id === subtaskObj.id ? {...task.subtask, completed: true } : task)
+    })));
+  };
+
+  const handleUpdatedSubtasks = (subtask) => {
+    setAllGoals(prevGoals => prevGoals.map(goal => ({
+      ...goal,
+      tasks: goal.tasks.map(task => task.id === subtask.task_id ? {...task, subtask: subtask } : task)
+    })));
+
+    setUserList(prevUsers => prevUsers.map(user => ({
+      ...user,
+      tasks: user.tasks.map(task => task.id === subtask.id ? {...task, subtask: subtask } : task)
+    })));
+  };
 
   return (
     <Box sx={{
@@ -161,7 +225,10 @@ function App() {
         handleGoal, 
         handleGoalsDeleteTask,
         handleTask, 
-        handleCompletedTask  
+        handleCompletedTask,
+        handleNewSubtask,
+        handleCompletedSubtask,
+        handleUpdatedSubtasks  
         }}>
         <Container             
           sx={{

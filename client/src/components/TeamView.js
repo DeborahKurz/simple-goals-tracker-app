@@ -21,9 +21,7 @@ function TeamView(){
 
   function handleSubtaskClick(task){
     const usersId = task.users_id
-    console.log("usersId: ", usersId)
     navigate(`/users/${usersId}/tasks/${task.id}`)
-    // navigate(`/subtasks/${task}`)
   };
 
   return(
