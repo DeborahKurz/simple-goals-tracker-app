@@ -40,5 +40,6 @@ function DeleteTask({ taskId }) {
           onClick={()=> handleDeleteTask(taskId)}
         >Delete Task</Button>
     )
-}
+};
+
 export default DeleteTask
