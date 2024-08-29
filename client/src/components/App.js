@@ -19,7 +19,7 @@ export const Context = React.createContext();
 function App() {
   const [userList, setUserList] = useState([]);
   const [allGoals, setAllGoals] = useState([]);
-  const [allTasks, setAllTasks] = useState([]);
+  const allTasks = userList.flatMap(user => user.tasks);
 
   useEffect(()=>{
     fetch("http://127.0.0.1:5555/")
@@ -31,11 +31,6 @@ function App() {
     .then(r=>r.json())
     .then((goals) => {setAllGoals(goals)})
     .catch((error) => console.error(error));
-
-    // fetch("http://127.0.0.1:5555/tasks")
-    // .then(r=>r.json())
-    // .then((tasks) => {setAllTasks(tasks)})
-    // .catch((error) => console.error(error));
   }, []);
 
 
@@ -46,19 +41,18 @@ function App() {
 
   const handleGoal = (goal) => {
     setAllGoals([...allGoals, goal]);
-    if(allTasks.length === 0) {
-      setAllTasks(goal.tasks);
-    }else{
-      const updatedTasks = [...allTasks, ...goal.tasks];
-      setAllTasks(updatedTasks);
-    }
+    // if(allTasks.length === 0) {
+    //   setAllTasks(goal.tasks);
+    // }else{
+    //   const updatedTasks = [...allTasks, ...goal.tasks];
+    //   setAllTasks(updatedTasks);
+    // }
   };
 
 
   const handleGoalsDeleteTask = (taskId) => {
-    const updatedTasks = allTasks.filter(task => task.id != taskId);
-    setAllTasks(updatedTasks);
-
+    // const updatedTasks = allTasks.filter(task => task.id != taskId);
+    // setAllTasks(updatedTasks);
     const updatedGoals = allGoals.map(goal => ({
       ...goal,
       tasks: goal.tasks.filter(task => task.id != taskId)
@@ -76,7 +70,6 @@ function App() {
   const handleTask = (task) => {
     // const updatedTasks = allTasks.length > 0 ? [...allTasks, task] : [task];
     // setAllTasks(updatedTasks);
-
     const updatedGoals = allGoals.map((goal) => {
       if(goal.id === task.goals_id) {
         return {
@@ -102,11 +95,10 @@ function App() {
 
 
   const handleCompletedTask = (taskObj) => {
-    setAllTasks(prevTasks => prevTasks.map(task => task.id === taskObj.id ? { 
-      ...task, 
-      completed: true 
-    } : task));
-
+    // setAllTasks(prevTasks => prevTasks.map(task => task.id === taskObj.id ? { 
+    //   ...task, 
+    //   completed: true 
+    // } : task));
     setAllGoals(prevGoals => prevGoals.map(goal => ({
       ...goal,
       tasks: goal.tasks.map(task => task.id === taskObj.id ? {...task, completed: true } : task)
@@ -253,7 +245,7 @@ function App() {
       <Context.Provider value={{ 
         userList, setUserList, handleUser, handleUpdatedUser, handleDeleteUser,
         allGoals, handleGoal, handleGoalsDeleteTask,
-        allTasks, setAllTasks, handleTask, handleCompletedTask,
+        allTasks, handleTask, handleCompletedTask,
         handleNewSubtask, handleCompletedSubtask, handleEditSubtask, handleDeletedSubtask  
         }}>
         <Container             

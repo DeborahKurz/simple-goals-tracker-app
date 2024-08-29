@@ -2,9 +2,7 @@ import React, { useContext } from "react";
 import { Context } from "./App.js";
 
 function CompletedCount(){
-    const { userList } = useContext(Context);
-
-    const allTasks = userList.flatMap(user => user.tasks);
+    const { allTasks } = useContext(Context);
 
     if(allTasks.length > 0){
         const completedTasks = allTasks.filter(task => task.completed).length;
