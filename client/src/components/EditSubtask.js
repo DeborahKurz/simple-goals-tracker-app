@@ -1,34 +1,46 @@
-import React, { useState, useContext } from "react";
-import { SubtaskContext } from "./SubtasksView.js";
+import React, { useContext } from "react";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import { Context } from "./App.js";
 
-import { Box, Button, Typography, Input } from '@mui/material';
+import { Box, Button, Input } from '@mui/material';
 
 function EditSubtask({ subtask }){
-    const { handleEditSubtask } = useContext(SubtaskContext);
-    const [ newSubtask, setNewSubtask ] = useState("");
+    const { handleEditSubtask } = useContext(Context);
 
-    function handleEdit(subId){
-        const url = `http://localhost:5555/subtasksid/${subId}`
+    const formschema = yup.object().shape({
+        subtask: yup.string().required("Please type your subtask changes.").max(200),
+    })
 
-        const configObj = {
-            method: 'PATCH',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(
-                {
-                    subtask: newSubtask,
-                    completed: subtask.completed,
-                    task_id: subtask.task_id
-                }
-            )
+    const formik = useFormik({
+        initialValues: {
+            id: subtask.id,
+            subtask: "",
+            completed: subtask.completed,
+            task_id: subtask.task_id
+        },
+        validationSchema: formschema,
+        onSubmit: (values, { resetForm }) => {
+            const dataToSend = {
+                subtask: values.subtask,
+                completed: subtask.completed,
+                task_id: subtask.task_id
+            }
+            const configObj = {
+                method: 'PATCH',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(dataToSend)
+            }
+            const url = `http://localhost:5555/subtasksid/${subtask.id}`;
+            fetch(url, configObj)
+            .then(r=>r.json())
+            .then(subtaskObj=>{
+                handleEditSubtask(subtaskObj);
+                resetForm({ subtask:"" });
+            })
+            .catch(error => console.error('Error:', error));
         }
-
-        fetch(url, configObj)
-        .then(r=>r.json())
-        .then(subtaskObj=>{
-            handleEditSubtask(subtaskObj);
-            setNewSubtask("");
-        })
-    }
+    })
 
     return(
         <Box>
@@ -37,13 +49,14 @@ function EditSubtask({ subtask }){
                 marginRight:2, 
                 paddingLeft:1 
             }} 
-            value={newSubtask} 
-            onChange={(e)=> setNewSubtask(e.target.value)} 
+            name="subtask"
+            value={formik.values.subtask} 
+            onChange={formik.handleChange} 
             placeholder={"Rename Subtask..."}></Input>
             <Button
                 variant='contained' 
-                sx={{ }}
-                onClick={() => handleEdit(subtask.id)}
+                sx={{ whiteSpace: 'nowrap' }} 
+                onClick={formik.handleSubmit}
             > Edit Subtask </Button>
         </Box>
     )

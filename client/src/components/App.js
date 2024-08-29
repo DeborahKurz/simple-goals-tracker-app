@@ -187,16 +187,28 @@ function App() {
     })));
   }
 
-  const handleUpdatedSubtasks = (subtask) => {
-    setAllGoals(prevGoals => prevGoals.map(goal => ({
-      ...goal,
-      tasks: goal.tasks.map(task => task.id === subtask.task_id ? {...task, subtask: subtask } : task)
-    })));
+  const handleEditSubtask = (editedSubtask) => {
+    const updatedGoals = allGoals.map((goal) => ({
+        ...goal,
+        tasks: goal.tasks.map((task) => ({
+            ...task,
+            subtasks: task.subtasks.map(subtask =>
+                subtask.id === editedSubtask.id ? editedSubtask : subtask
+            )
+        }))
+    }));
+    setAllGoals(updatedGoals);
 
-    setUserList(prevUsers => prevUsers.map(user => ({
-      ...user,
-      tasks: user.tasks.map(task => task.id === subtask.id ? {...task, subtask: subtask } : task)
-    })));
+    const updatedUsers = userList.map((user) => ({
+        ...user,
+        tasks: user.tasks.map((task) => ({
+            ...task,
+            subtasks: task.subtasks.map(subtask =>
+                subtask.id === editedSubtask.id ? editedSubtask : subtask
+            )
+        }))
+    }));
+    setUserList(updatedUsers);
   };
 
   return (
@@ -215,21 +227,10 @@ function App() {
       marginTop: 'auto'
       }}>
       <Context.Provider value={{ 
-        userList, 
-        setUserList, 
-        handleUser, 
-        handleUpdatedUser, 
-        handleDeleteUser,
-        allTasks, 
-        setAllTasks,
-        allGoals, 
-        handleGoal, 
-        handleGoalsDeleteTask,
-        handleTask, 
-        handleCompletedTask,
-        handleNewSubtask,
-        handleCompletedSubtask,
-        handleUpdatedSubtasks  
+        userList, setUserList, handleUser, handleUpdatedUser, handleDeleteUser,
+        allGoals, handleGoal, handleGoalsDeleteTask,
+        allTasks, setAllTasks, handleTask, handleCompletedTask,
+        handleNewSubtask, handleCompletedSubtask, handleEditSubtask  
         }}>
         <Container             
           sx={{

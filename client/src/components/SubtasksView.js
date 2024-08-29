@@ -85,7 +85,7 @@ function SubtasksView(){
                                     {/* <DeleteSubtask subtask={subT} /> */}
                                 </Box>
                             </Box>
-                            {/* <EditSubtask subtask={subT} /> */}
+                            <EditSubtask subtask={subT} />
                         </Paper>
                     ))}
                 </Box>
