@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "./App.js";
 
-import { Box, Button } from '@mui/material';
+import { Button } from '@mui/material';
 
 function DeleteTask({ taskId }) {
   const { handleGoalsDeleteTask } = useContext(Context);
@@ -37,7 +37,8 @@ function DeleteTask({ taskId }) {
             color:'white', 
             margin: 1
           }} 
-          onClick={()=> handleDeleteTask(taskId)}>Delete Task</Button>
+          onClick={()=> handleDeleteTask(taskId)}
+        >Delete Task</Button>
     )
 }
 export default DeleteTask

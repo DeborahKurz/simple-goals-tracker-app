@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { SubtaskContext } from "./SubtasksView.js";
+import { Context } from "./App.js";
 
-import { Box, Button } from '@mui/material';
+import { Button } from '@mui/material';
 
 function DeleteSubtask({ subtask }){
-    const { handleDeletedSubtask } = useContext(SubtaskContext);
+    const { handleDeletedSubtask } = useContext(Context);
 
     function handleDelete(subId){
         const url = `http://localhost:5555/subtasksid/${subId}`
@@ -17,19 +17,17 @@ function DeleteSubtask({ subtask }){
         fetch(url, configObj)
         .then(r=>{
             if (!r.ok) {
-              throw new Error('Failed to delete task.');
+              throw new Error('Failed to delete subtask.');
             }
-            console.log('Task deleted successfully.');
             handleDeletedSubtask(subId)
         })
         .catch(error => {
-            console.error('Error deleting task:', error);
+            console.error('Error deleting subtask:', error);
           });
     };
 
     return(
-        <div>
-            <Button variant="contained" 
+         <Button variant="contained" 
                 sx={{ 
                     fontSize:'13px', 
                     fontWeight:'bold', 
@@ -39,8 +37,7 @@ function DeleteSubtask({ subtask }){
                     whiteSpace:'nowrap'
                 }} 
                 onClick={() => handleDelete(subtask.id)}
-            > Delete Subtask </Button>
-        </div>
+        > Delete Subtask </Button>
     )
 }
 

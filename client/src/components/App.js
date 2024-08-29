@@ -131,6 +131,7 @@ function App() {
     setUserList(prevUsers => prevUsers.filter(user => user.id !== userId))
   };
 
+
   const handleNewSubtask = (subtask) => {;
     const updatedGoals = allGoals.map((goal) => {
       const updatedTasks = goal.tasks.map((task) => {
@@ -169,6 +170,7 @@ function App() {
     setUserList(updatedUsers);
   };
 
+
   const handleCompletedSubtask = (subtaskObj) => {
     setAllGoals(prevGoals => prevGoals.map(goal => ({
       ...goal,
@@ -186,6 +188,7 @@ function App() {
       }))
     })));
   }
+
 
   const handleEditSubtask = (editedSubtask) => {
     const updatedGoals = allGoals.map((goal) => ({
@@ -211,6 +214,27 @@ function App() {
     setUserList(updatedUsers);
   };
 
+
+  const handleDeletedSubtask = (subId) => {
+    setAllGoals(prevGoals => prevGoals.map(goal => ({
+      ...goal,
+      tasks: goal.tasks.map((task) => ({
+        ...task,
+        subtasks: task.subtasks.filter(subtask => subtask.id !== subId)
+      }))
+    })));
+
+    setUserList(prevUsers => prevUsers.map(user => ({
+      ...user,
+      tasks: user.tasks.map((task) => ({
+        ...task,
+        subtasks: task.subtasks.filter(subtask => subtask.id !== subId)
+      }))
+    })));
+  }
+
+
+
   return (
     <Box sx={{
       margin: -1,
@@ -230,7 +254,7 @@ function App() {
         userList, setUserList, handleUser, handleUpdatedUser, handleDeleteUser,
         allGoals, handleGoal, handleGoalsDeleteTask,
         allTasks, setAllTasks, handleTask, handleCompletedTask,
-        handleNewSubtask, handleCompletedSubtask, handleEditSubtask  
+        handleNewSubtask, handleCompletedSubtask, handleEditSubtask, handleDeletedSubtask  
         }}>
         <Container             
           sx={{

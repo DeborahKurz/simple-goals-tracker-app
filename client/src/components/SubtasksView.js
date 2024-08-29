@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Context } from "./App.js";
 
-import { Box, Paper, Input, Button, Typography } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 import bgImg from '../images/backgroundimg.png';
 
 import AddSubtask from "./AddSubtask";
@@ -81,8 +81,7 @@ function SubtasksView(){
                                         paddingTop: 4
                                     }}>
                                     {subT.completed ? null : (<CompleteSubtask subtask={subT} />)}
-                                    
-                                    {/* <DeleteSubtask subtask={subT} /> */}
+                                    <DeleteSubtask subtask={subT} />
                                 </Box>
                             </Box>
                             <EditSubtask subtask={subT} />
