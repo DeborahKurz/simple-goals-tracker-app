@@ -20,12 +20,7 @@ function SubtasksView(){
 
     const task = userList.find((u) => u.id === parseInt(userId)).tasks.find((t) => t.id === parseInt(taskId, 10));
     const subtasks = task.subtasks
-    console.log(subtasks)
-
-
-
-
-
+   
     return (
         <Box>
             <Typography sx={{ fontSize: 'h3.fontSize', marginBottom: 2 }}>{task.task}</Typography>

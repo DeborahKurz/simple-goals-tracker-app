@@ -170,21 +170,22 @@ function App() {
   };
 
   const handleCompletedSubtask = (subtaskObj) => {
-    // setAllTasks(prevTasks => prevTasks.map(task => task.id === taskObj.id ? { 
-    //   ...task, 
-    //   completed: true 
-    // } : task));
-
     setAllGoals(prevGoals => prevGoals.map(goal => ({
       ...goal,
-      tasks: goal.tasks.map(task => task.id === subtaskObj.task_id ? { ...task.subtask, completed: true } : task)
+      tasks: goal.tasks.map((task) => ({
+        ...task,
+        subtasks: task.subtasks.map(subtask => subtask.id === subtaskObj.id ? { ...subtask, completed: true } : subtask)
+      }))
     })));
 
     setUserList(prevUsers => prevUsers.map(user => ({
       ...user,
-      tasks: user.tasks.map(task => task.id === subtaskObj.id ? {...task.subtask, completed: true } : task)
+      tasks: user.tasks.map((task) => ({
+        ...task,
+        subtasks: task.subtasks.map(subtask => subtask.id === subtaskObj.id ? {...subtask, completed: true} : subtask)
+      }))
     })));
-  };
+  }
 
   const handleUpdatedSubtasks = (subtask) => {
     setAllGoals(prevGoals => prevGoals.map(goal => ({
