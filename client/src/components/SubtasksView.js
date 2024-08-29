@@ -14,21 +14,15 @@ export const SubtaskContext = React.createContext();
 
 function SubtasksView(){
     const { userId, taskId } = useParams();
-    console.log("userId: ", userId)
-    console.log("taskId: ", taskId)
-    // allTasks isn't needed
-    // subtaskview don't need use effect task.subtasks
-
     const { userList } = useContext(Context);
-    console.log("SubtasksView userList: ", userList)
 
     const [subtasks, setSubtasks] = useState([]);
     const [newSubtask, setNewSubtask] = useState("");
 
 
-    // const task = allTasks.find((t) => t.id === parseInt(taskId, 10));
     const task = userList.find((u) => u.id === parseInt(userId)).tasks.find((t) => t.id === parseInt(taskId, 10));
-    console.log("userList ", userList)
+    const subtaskList = task.subtasks
+    console.log(subtaskList)
 
     // if (!userList || !userList.find((u) => u.id === parseInt(userId))){
     //     return <ErrorPage />;
@@ -69,7 +63,7 @@ function SubtasksView(){
         .then(r=>r.json())
         .then(subtaskObj=>{
             handleUpdatedSubtasks(subtaskObj)
-            setNewSubtask("")
+            // setNewSubtask("")
         });
     };
 
@@ -103,8 +97,7 @@ function SubtasksView(){
         })
         setSubtasks(newList)
     };
-
-    console.log(subtasks)
+    
 
     return (
         <SubtaskContext.Provider value={{ handleCompletedSubtask, handleEditSubtask, handleDeletedSubtask }}>
