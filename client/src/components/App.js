@@ -132,8 +132,7 @@ function App() {
   const handleDeleteUser = (userId) => {
     setUserList(prevUsers => prevUsers.filter(user => user.id !== userId))
   }
-
-  console.log("userList: ", userList)
+  
 
   return (
     <Box sx={{
