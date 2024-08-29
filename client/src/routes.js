@@ -22,15 +22,15 @@ const routes = [
                 element: <GoalsRoute />,
             },
             {
-                path: "/team",
+                path: "/users",
                 element: <TeamView />,
             },
             {
-                path: "/subtasks/:taskId",
+                path: "/users/:userId/tasks/:taskId",
                 element: <SubtasksView />
             },
             {
-                path: "/user/:userId",
+                path: "/users/:userId",
                 element: <UserInfo />
             }
         ]

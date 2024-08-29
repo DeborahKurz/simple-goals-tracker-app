@@ -19,8 +19,11 @@ function TeamView(){
     navigate("/goals");
   };
 
-  function handleSubtaskClick(taskId){
-    navigate(`/subtasks/${taskId}`)
+  function handleSubtaskClick(task){
+    const usersId = task.users_id
+    console.log("usersId: ", usersId)
+    navigate(`/users/${usersId}/tasks/${task.id}`)
+    // navigate(`/subtasks/${task}`)
   };
 
   return(
@@ -92,7 +95,7 @@ function TeamView(){
                                 fontWeight:'bold', 
                                 margin:1
                               }} 
-                              onClick={()=> handleSubtaskClick(aTask.id)}>View Subtasks</Button>
+                              onClick={()=> handleSubtaskClick(aTask)}>View Subtasks</Button>
                         </Paper>
                         ) : null
                       )

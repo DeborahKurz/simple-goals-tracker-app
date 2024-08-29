@@ -73,17 +73,13 @@ function UserInfo(){
                 ) : (
                     <ul>
                         {user.tasks.map((task)=>(
-                            <Paper elevation={16} sx={{ padding:1, paddingLeft:3, margin:1 }}>
-                                <Box key={task.id}>
-                                    <Typography sx={{ fontWeight: 'bold', fontFamily: 'Roboto' }}>Task: {task.task}</Typography>
-                                    <ul>
-                                            {task.subtasks.map((sub)=> sub.completed === true ? (
-                                                <Paper elevation={3} sx={{ margin:1, padding:1, paddingLeft:3 }}>
-                                                    <li key={sub.id}><em>Subtask: {sub.subtask}</em></li>
-                                                </Paper> 
-                                            ) : null )}
-                                    </ul>
-                                </Box>
+                            <Paper key={task.id} elevation={16} sx={{ padding:1, paddingLeft:3, margin:1 }}>
+                                <Typography sx={{ fontWeight: 'bold', fontFamily: 'Roboto' }}>Task: {task.task}</Typography>
+                                {task.subtasks.map((sub)=> sub.completed === true ? (
+                                    <Paper elevation={3} sx={{ margin:1, padding:1, paddingLeft:3 }}>
+                                        <li key={sub.id}><em>Subtask: {sub.subtask}</em></li>
+                                    </Paper> 
+                                ) : null )}
                             </Paper>
                         ))}
                     </ul>

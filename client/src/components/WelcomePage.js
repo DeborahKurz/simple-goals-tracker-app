@@ -18,14 +18,14 @@ function WelcomePage(){
             }}>
             <Box sx={{flex: 1, marginTop:3, marginRight:5 }}>
                 <Typography sx={{fontSize: 'h2.fontSize'}}>Welcome</Typography>
-                <Typography sx={{ fontWeight:'bold', fontSize:'17px', marginTop:2, marginBottom:2 }}>Instructions:</Typography>
+                <Typography sx={{ fontWeight:'bold', fontSize:'20px', marginTop:2, marginBottom:2 }}>Instructions:</Typography>
                 <h4>Get started by creating a username (each username needs to be unique).</h4>
-                <h4>Then navigate to the "Goals View" using the navigation bar above. Here you will be able to see all the goals you and your team are working towards, and you can create new goals and tasks.</h4> 
+                <h4>Then navigate to "Goals" using the navigation bar above. Here you will be able to see all the goals you and your team are working towards, and you can create new goals and tasks.</h4> 
                 <h4>You can also navigate to "Team View" using the navigation bar above. There you will find each user listed in alphabetical order with the tasks they are in charge of (for easy viewing).</h4> 
                 <h4>If you ever need to create a new user, or see who is already 'registered' as a user in your team, you can navigate back to this page by selecting "Home" in the navbar.</h4>
                 <Typography sx={{ fontWeight:'bold', fontSize:'16px', marginTop:2, marginBottom:2 }}>Happy Goal Crushing!</Typography>
             </Box> 
-            <Box sx={{flex: 1, marginTop: 2,}}>
+            <Box sx={{ flex: 1, marginTop: 2}}>
                 <Paper sx={{ 
                     paddingLeft:'15px', 
                     paddingBottom: '5px', 

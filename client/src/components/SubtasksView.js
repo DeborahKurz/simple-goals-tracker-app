@@ -8,28 +8,43 @@ import bgImg from '../images/backgroundimg.png';
 import CompleteSubtask from "./CompleteSubtask";
 import EditSubtask from "./EditSubtask";
 import DeleteSubtask from "./DeleteSubtask";
+import ErrorPage from "./ErrorPage";
 
 export const SubtaskContext = React.createContext();
 
 function SubtasksView(){
-    const { allTasks } = useContext(Context);
+    const { userId, taskId } = useParams();
+    console.log("userId: ", userId)
+    console.log("taskId: ", taskId)
+    // allTasks isn't needed
+    // subtaskview don't need use effect task.subtasks
+
+    const { userList } = useContext(Context);
+    console.log("SubtasksView userList: ", userList)
 
     const [subtasks, setSubtasks] = useState([]);
     const [newSubtask, setNewSubtask] = useState("");
 
-    const { taskId } = useParams();
 
-    const task = allTasks.find((t) => t.id === parseInt(taskId, 10));
+    // const task = allTasks.find((t) => t.id === parseInt(taskId, 10));
+    const task = userList.find((u) => u.id === parseInt(userId)).tasks.find((t) => t.id === parseInt(taskId, 10));
+    console.log("userList ", userList)
 
-    useEffect(()=>{
-        fetch(`http://127.0.0.1:5555/subtasks/${taskId}`)
-        .then(r=>r.json())
-        .then((subtasks) => setSubtasks(Array.isArray(subtasks) ? subtasks : []))
-        .catch((error) => {
-            console.error(error)
-            setSubtasks([])
-        })
-    }, []);
+    // if (!userList || !userList.find((u) => u.id === parseInt(userId))){
+    //     return <ErrorPage />;
+    // }
+
+    // useEffect(()=>{
+    //     //    /tasks/taskId/subtasks
+    //     //    Really use task.subtasks instead of fetching
+    //     fetch(`http://127.0.0.1:5555/subtasks/${taskId}`)
+    //     .then(r=>r.json())
+    //     .then((subtasks) => setSubtasks(Array.isArray(subtasks) ? subtasks : []))
+    //     .catch((error) => {
+    //         console.error(error)
+    //         setSubtasks([])
+    //     })
+    // }, []);
 
     function handleUpdatedSubtasks(subtaskObj){
         const newList = [...subtasks, subtaskObj];
@@ -115,7 +130,7 @@ function SubtasksView(){
                 {subtasks.length === 0 ? (
                     <Box sx={{ marginBottom: 3 }}>
                         <Paper>
-                            <Typography sx={{ marginLeft: 2, fontWeight: 'bold' }}>To get started, please add a subtask.</Typography>
+                            <Typography sx={{ marginLeft: 2, padding:2, fontWeight: 'bold' }}>To get started, please add a subtask.</Typography>
                         </Paper>
                     </Box>
                 ) : (

@@ -10,7 +10,7 @@ function ListUsers(){
     const { userList } = useContext(Context);
 
     function handleProfileClick(userId){
-        navigate(`/user/${userId}`);
+        navigate(`/users/${userId}`);
     };
     
     return(
@@ -21,25 +21,25 @@ function ListUsers(){
                 textAlign:'center', 
                 margin:3 
             }}>Usernames In Your Team:</Typography>
-            <Box>
-                    {userList?.map((user) => (
-                        <Paper key={user.id} sx={{ 
-                            // bgcolor:'#212121', 
-                            display:'flex', 
-                            flexDirection:'row', 
-                            padding:'5px', 
-                            margin:1, 
-                            backgroundImage: `url(${bgImg})`,
-                            backgroundPosition: 'center',
-                            backgroundSize: 'cover', 
-                            backgroundRepeat: 'no-repeat',
-                            alignItems:'center'
-                            // bgcolor:"#277dfe" 
-                            }}>
-                            <Typography sx={{ flex: 2, textAlign:'center ', fontSize:'18px', fontWeight:'bold', color:'white' }}>{user.username}</Typography>
-                            <Button variant='contained' sx={{ flex: 1, width:'150px', bgcolor:'#277dfe', marginRight:3}} onClick={()=> handleProfileClick(user.id)}>Edit Profile</Button>
-                        </Paper>
-                    ))}
+            <Box sx={{marginRight:2}}>
+                {userList?.map((user) => (
+                    <Paper key={user.id} sx={{ 
+                        // bgcolor:'#212121', 
+                        display:'flex', 
+                        flexDirection:'row', 
+                        padding:'5px', 
+                        margin:1, 
+                        backgroundImage: `url(${bgImg})`,
+                        backgroundPosition: 'center',
+                        backgroundSize: 'cover', 
+                        backgroundRepeat: 'no-repeat',
+                        alignItems:'center'
+                        // bgcolor:"#277dfe" 
+                        }}>
+                        <Typography sx={{ flex: 2, textAlign:'center ', fontSize:'18px', fontWeight:'bold', color:'white' }}>{user.username}</Typography>
+                        <Button variant='contained' sx={{ flex: 1, width:'150px', bgcolor:'#277dfe', marginRight:3}} onClick={()=> handleProfileClick(user.id)}>Edit Profile</Button>
+                    </Paper>
+                ))}
             </Box>
         </Box>
     )

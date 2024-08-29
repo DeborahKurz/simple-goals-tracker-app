@@ -21,6 +21,8 @@ function App() {
   const [allGoals, setAllGoals] = useState([]);
   const [allTasks, setAllTasks] = useState([]);
 
+
+
   useEffect(()=>{
     fetch("http://127.0.0.1:5555/")
     .then(r=>r.json())
@@ -32,10 +34,10 @@ function App() {
     .then((goals) => {setAllGoals(goals)})
     .catch((error) => console.error(error));
 
-    fetch("http://127.0.0.1:5555/tasks")
-    .then(r=>r.json())
-    .then((tasks) => {setAllTasks(tasks)})
-    .catch((error) => console.error(error));
+    // fetch("http://127.0.0.1:5555/tasks")
+    // .then(r=>r.json())
+    // .then((tasks) => {setAllTasks(tasks)})
+    // .catch((error) => console.error(error));
   }, []);
 
 
@@ -131,6 +133,8 @@ function App() {
     setUserList(prevUsers => prevUsers.filter(user => user.id !== userId))
   }
 
+  console.log("userList: ", userList)
+
   return (
     <Box sx={{
       margin: -1,
@@ -147,10 +151,18 @@ function App() {
       marginTop: 'auto'
       }}>
       <Context.Provider value={{ 
-        userList, setUserList, handleUser, handleUpdatedUser, handleDeleteUser,
-        allTasks, setAllTasks,
-        allGoals, handleGoal, handleGoalsDeleteTask,
-        handleTask, handleCompletedTask  
+        userList, 
+        setUserList, 
+        handleUser, 
+        handleUpdatedUser, 
+        handleDeleteUser,
+        allTasks, 
+        setAllTasks,
+        allGoals, 
+        handleGoal, 
+        handleGoalsDeleteTask,
+        handleTask, 
+        handleCompletedTask  
         }}>
         <Container             
           sx={{
@@ -169,9 +181,9 @@ function App() {
                 <Routes>
                   <Route path="/" element={<WelcomePage /> } /> 
                   <Route path="/goals" element={<GoalsView />} /> 
-                  <Route path="/team" element={<TeamView />} />
-                  <Route path="/subtasks/:taskId" element = {<SubtasksView />} />
-                  <Route path="/user/:userId" element = {<UserInfo />} />
+                  <Route path="/users" element={<TeamView />} />
+                  <Route path="/users/:userId/tasks/:taskId" element = {<SubtasksView />} />
+                  <Route path="/users/:userId" element = {<UserInfo />} />
                   <Route path="*" element={<ErrorPage />} />
                </Routes>
               </Box>
@@ -188,9 +200,3 @@ function App() {
 };
 
 export default App;
-
-
-        //     {/* <div style={{marginLeft: "25px"}}> */}
-        //                 {/* </div> */}
-        //                         {/* <div style={{width: "100%", height: "100px", background: "linear-Gradient(#C0C0C0, white)"}}>
-        // </div> */}

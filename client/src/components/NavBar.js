@@ -9,6 +9,7 @@ import CompletedCount from "./CompletedCount.js";
 
 function NavBar(){
     const { userList } = useContext(Context);
+    // console.log("Navbar userList: ", userList)
 
     return(
         <AppBar sx={{ bgcolor: "black", display:'flex', flexDirection: 'row', height:'80px' }}>
@@ -17,7 +18,7 @@ function NavBar(){
                 <Button sx={{color:"white", width:'150px', '&:hover':{bgcolor:'#343434'}}} component={NavLink} to="/">Home</Button>
                 <Typography></Typography>
                 <Button sx={{color:"white", width:'150px', '&:hover':{bgcolor:'#343434'}}} component={NavLink} to="/goals">Goals</Button>
-                <Button sx={{color:"white", width:'150px', '&:hover':{bgcolor:'#343434'}}} component={NavLink} to="/team">Team View</Button>
+                <Button sx={{color:"white", width:'150px', '&:hover':{bgcolor:'#343434'}}} component={NavLink} to="/users">Team View</Button>
                 {userList.length === 0 ? (
                     <div>
                         <Box sx={{ marginLeft: 'auto', textAlign:'center' }}>
@@ -26,10 +27,9 @@ function NavBar(){
                         </Box>
                     </div>
                 ) : (
-                    <Box sx={{ marginLeft: 'auto', textAlign:'center'}}>
+                    <Box sx={{ marginLeft: 'auto', textAlign:'center' }}>
                         <CompletedCount />
                     </Box>
-
                 )}
             </Toolbar>
         </AppBar>
