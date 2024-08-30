@@ -41,18 +41,10 @@ function App() {
 
   const handleGoal = (goal) => {
     setAllGoals([...allGoals, goal]);
-    // if(allTasks.length === 0) {
-    //   setAllTasks(goal.tasks);
-    // }else{
-    //   const updatedTasks = [...allTasks, ...goal.tasks];
-    //   setAllTasks(updatedTasks);
-    // }
   };
 
 
   const handleGoalsDeleteTask = (taskId) => {
-    // const updatedTasks = allTasks.filter(task => task.id != taskId);
-    // setAllTasks(updatedTasks);
     const updatedGoals = allGoals.map(goal => ({
       ...goal,
       tasks: goal.tasks.filter(task => task.id != taskId)
@@ -68,8 +60,6 @@ function App() {
 
 
   const handleTask = (task) => {
-    // const updatedTasks = allTasks.length > 0 ? [...allTasks, task] : [task];
-    // setAllTasks(updatedTasks);
     const updatedGoals = allGoals.map((goal) => {
       if(goal.id === task.goals_id) {
         return {
@@ -95,10 +85,6 @@ function App() {
 
 
   const handleCompletedTask = (taskObj) => {
-    // setAllTasks(prevTasks => prevTasks.map(task => task.id === taskObj.id ? { 
-    //   ...task, 
-    //   completed: true 
-    // } : task));
     setAllGoals(prevGoals => prevGoals.map(goal => ({
       ...goal,
       tasks: goal.tasks.map(task => task.id === taskObj.id ? {...task, completed: true } : task)
