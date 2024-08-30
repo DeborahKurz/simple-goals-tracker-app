@@ -9,7 +9,7 @@ function ListGoals({ goal }){
     const navigate = useNavigate();
 
     function handleClickTeam(){
-        navigate("/team");
+        navigate("/users");
       };
 
     return (

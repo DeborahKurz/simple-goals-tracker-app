@@ -1,29 +1,36 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
+import { useFormik } from "formik";
+import * as yup from "yup";
+import { Context } from "./App.js";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { Context } from "./App.js";
+
+import EditUsername from "./EditUsername.js";
 
 import { Box, Paper, Button, Input, Typography } from '@mui/material';
 
 function UserInfo(){
-    const { userList, handleUpdatedUser, handleDeleteUser} = useContext(Context);
-
-    const [newUsername, setNewUsername] = useState("");
-    const [tasks, setTasks] = useState([]);
+    const { userList, handleUpdatedUser, handleDeleteUser, allTasks } = useContext(Context);
+    const { userId } = useParams()
     const navigate = useNavigate();
 
-    const { userId } = useParams()
-    const user = userList.find((u) => u.id === parseInt(userId, 10));
+    const [newUsername, setNewUsername] = useState("");
+    // const [tasks, setTasks] = useState([]);
+    
+    // const task = userList.find((u) => u.id === parseInt(userId)).tasks.find((t) => t.id === parseInt(taskId, 10));
+    const user = userList.find((u) => u.id === parseInt(userId))
+    // const user = userList.find((u) => u.id === parseInt(userId, 10));
+    const tasks = allTasks.map((t)=> t.users_id === userId)
 
 
-    useEffect(()=>{
-        fetch(`http://127.0.0.1:5555//usertasks/${userId}`)
-        .then(r=>r.json())
-        .then((tasks)=>setTasks(tasks))
-    }, []);
+    // useEffect(()=>{
+    //     fetch(`http://127.0.0.1:5555//usertasks/${userId}`)
+    //     .then(r=>r.json())
+    //     .then((tasks)=>setTasks(tasks))
+    // }, []);
 
     function handleUpdateClick(){
-        const url = `http://localhost:5555/${user.id}`
+        const url = `http://localhost:5555/${userId}`
 
         const configObj = {
             method: 'PATCH',
@@ -60,11 +67,7 @@ function UserInfo(){
             <Typography sx={{fontSize: 'h3.fontSize'}}>{user.username}'s Profile</Typography>
             <Box sx={{ margin:2, marginBottom: 5 }}>
                 <Typography sx={{ fontWeight:'bold', fontSize:'15px' }}>Username: {user.username}</Typography>
-                <Box>
-                    <Input sx={{ bgcolor:'white', margin:2 }} placeholder="New Username..." value = {newUsername} onChange={(e) => setNewUsername(e.target.value)}></Input>
-                    <Button variant='contained' onClick={handleUpdateClick}>Update Username</Button>
-
-                </Box>
+                <EditUsername user={user}/>
             </Box>
             <Box sx={{ margin:2, marginBottom: 5 }}>
                 <Typography sx={{ fontWeight: 'bold' }}>{user.username}'s Completed Tasks:</Typography>

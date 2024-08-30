@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { Context } from "./App.js";
 
@@ -15,8 +15,7 @@ export const SubtaskContext = React.createContext();
 
 function SubtasksView(){
     const { userId, taskId } = useParams();
-    const { userList, handleUpdatedSubtasks, handleNewSubtasks } = useContext(Context);
-    const [newSubtask, setNewSubtask] = useState("");
+    const { userList } = useContext(Context);
 
     const task = userList.find((u) => u.id === parseInt(userId)).tasks.find((t) => t.id === parseInt(taskId, 10));
     const subtasks = task.subtasks
