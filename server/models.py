@@ -85,5 +85,11 @@ class Subtask(db.Model, SerializerMixin):
 
     serialize_rules = ('-task.subtasks',)
 
+    @validates('subtask')
+    def validate_subtask(self,key,subtask):
+        if not subtask:
+            raise ValueError("Failed subtask validation")
+        return subtask
+
     def __repr__(self):
         return f'<Subtask {self.id}, {self.subtask}, {self.completed}, {self.task_id} >'
