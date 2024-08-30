@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 import EditUsername from "./EditUsername.js";
+import DeleteUser from "./DeleteUser.js";
 
 import { Box, Paper, Button, Input, Typography } from '@mui/material';
 
@@ -50,17 +51,6 @@ function UserInfo(){
         })
     };
 
-    function handleDeleteClick(){
-        const url = `http://localhost:5555/${user.id}`
-        const configObj = {
-            method: 'DELETE'
-        };
-        fetch(url, configObj)
-        .then(()=>{
-            handleDeleteUser(user.id);
-            navigate('/');
-        });
-    }
 
     return(
         <Box>
@@ -93,7 +83,7 @@ function UserInfo(){
                 <Typography sx={{ fontWeight:'bold', fontSize:'13px' }}>Delete this user, their tasks, and subtasks.</Typography>
                 <Typography sx={{ fontWeight:'bold', fontSize:'15px', marginTop:2, marginBottom:2 }}>THIS IS A PERMANENT ACTION AND CANNOT BE UNDONE.</Typography>
                 <Typography sx={{ fontWeight:'bold', fontSize:'13px' }}>Proceed with caution!</Typography>
-                <Button variant="contained"  sx={{bgcolor:'white', color:'red', fontWeight:'bold', marginTop:1, marginBottom:1, whiteSpace: 'nowrap'}} onClick={handleDeleteClick}>Confirm: Delete User</Button>
+                <DeleteUser User user={user}/>
             </Paper>
         </Box>
     )
