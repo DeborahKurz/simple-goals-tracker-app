@@ -64,7 +64,7 @@ function CreateNewUser() {
             sx={{ bgcolor:'white', width:'180px', marginRight:2, marginLeft:2 }}
           />
          <p style={{color: "red"}}> {formik.errors.username} </p>
-          <Button variant='contained' sx={{ marginRight:2, marginLeft:'auto' }} type="submit">Create Username</Button>
+          <Button variant='contained' sx={{ marginRight:2, marginLeft:'auto', whiteSpace: 'nowrap' }} type="submit">Create Username</Button>
         </Paper>
       </form>
     </Box>

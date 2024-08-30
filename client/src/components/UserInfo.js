@@ -90,7 +90,7 @@ function UserInfo(){
                 <Typography sx={{ fontWeight:'bold', fontSize:'13px' }}>Delete this user, their tasks, and subtasks.</Typography>
                 <Typography sx={{ fontWeight:'bold', fontSize:'15px', marginTop:2, marginBottom:2 }}>THIS IS A PERMANENT ACTION AND CANNOT BE UNDONE.</Typography>
                 <Typography sx={{ fontWeight:'bold', fontSize:'13px' }}>Proceed with caution!</Typography>
-                <Button variant="contained"  sx={{bgcolor:'white', color:'red', fontWeight:'bold', marginTop:1, marginBottom:1}} onClick={handleDeleteClick}>Confirm: Delete User</Button>
+                <Button variant="contained"  sx={{bgcolor:'white', color:'red', fontWeight:'bold', marginTop:1, marginBottom:1, whiteSpace: 'nowrap'}} onClick={handleDeleteClick}>Confirm: Delete User</Button>
             </Paper>
         </Box>
     )

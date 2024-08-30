@@ -9,7 +9,6 @@ import CompletedCount from "./CompletedCount.js";
 
 function NavBar(){
     const { userList } = useContext(Context);
-    // console.log("Navbar userList: ", userList)
 
     return(
         <AppBar sx={{ bgcolor: "black", display:'flex', flexDirection: 'row', height:'80px' }}>

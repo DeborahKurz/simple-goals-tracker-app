@@ -34,7 +34,8 @@ function CompleteSubtask({ subtask }){
                 fontSize:'13px', 
                 fontWeight:'bold', 
                 margin:1,
-                bgcolor:'#42a5f5'
+                bgcolor:'#42a5f5',
+                whiteSpace: 'nowrap'
             }} onClick={()=> handleClick(subtask)}>Task Done</Button>
         </Box>
     )

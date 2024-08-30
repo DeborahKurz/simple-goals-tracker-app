@@ -33,7 +33,8 @@ function CompleteTask({ task }){
                 fontSize:'13px', 
                 fontWeight:'bold', 
                 margin:1,
-                bgcolor:'#42a5f5'
+                bgcolor:'#42a5f5',
+                whiteSpace: 'nowrap'
             }} onClick={()=> handleClick(task)}>Task Done</Button>
         </Box>
     )

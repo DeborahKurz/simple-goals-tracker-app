@@ -35,7 +35,8 @@ function DeleteTask({ taskId }) {
             fontWeight:'bold', 
             bgcolor:"#FF007F", 
             color:'white', 
-            margin: 1
+            margin: 1,
+            whiteSpace: 'nowrap'
           }} 
           onClick={()=> handleDeleteTask(taskId)}
         >Delete Task</Button>

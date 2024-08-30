@@ -275,8 +275,16 @@ function App() {
         </Container>
       </Context.Provider>
       <Footer>
-          <Box sx={{height:'8px', padding: 2, bgcolor: 'black', margin: -1, textAlign: 'center', color: '	#606060', fontSize: '12px'}}>
-            Copywrite 2024 Deborah Kurz
+          <Box 
+            sx={{
+              height:'8px', 
+              padding: 2, 
+              bgcolor: 'black', 
+              margin: -1, 
+              textAlign: 'center', 
+              color: '	#606060', 
+              fontSize: '12px'
+            }}>Copywrite 2024 Deborah Kurz
           </Box>
       </Footer>
     </Box>
