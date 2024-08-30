@@ -1,56 +1,17 @@
-import React, { useState, useContext } from "react";
-import { useFormik } from "formik";
-import * as yup from "yup";
+import React, { useContext } from "react";
 import { Context } from "./App.js";
 import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 import EditUsername from "./EditUsername.js";
 import DeleteUser from "./DeleteUser.js";
 
-import { Box, Paper, Button, Input, Typography } from '@mui/material';
+import { Box, Paper, Typography } from '@mui/material';
 
 function UserInfo(){
-    const { userList, handleUpdatedUser, handleDeleteUser, allTasks } = useContext(Context);
+    const { userList } = useContext(Context);
     const { userId } = useParams()
-    const navigate = useNavigate();
 
-    const [newUsername, setNewUsername] = useState("");
-    // const [tasks, setTasks] = useState([]);
-    
-    // const task = userList.find((u) => u.id === parseInt(userId)).tasks.find((t) => t.id === parseInt(taskId, 10));
     const user = userList.find((u) => u.id === parseInt(userId))
-    // const user = userList.find((u) => u.id === parseInt(userId, 10));
-    const tasks = allTasks.map((t)=> t.users_id === userId)
-
-
-    // useEffect(()=>{
-    //     fetch(`http://127.0.0.1:5555//usertasks/${userId}`)
-    //     .then(r=>r.json())
-    //     .then((tasks)=>setTasks(tasks))
-    // }, []);
-
-    function handleUpdateClick(){
-        const url = `http://localhost:5555/${userId}`
-
-        const configObj = {
-            method: 'PATCH',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(
-                {
-                    username: newUsername
-                }
-            )
-        };
-
-        fetch(url, configObj)
-        .then(r=>r.json())
-        .then(userObj=>{
-            handleUpdatedUser(userObj)
-            setNewUsername("")
-        })
-    };
-
 
     return(
         <Box>
@@ -83,7 +44,7 @@ function UserInfo(){
                 <Typography sx={{ fontWeight:'bold', fontSize:'13px' }}>Delete this user, their tasks, and subtasks.</Typography>
                 <Typography sx={{ fontWeight:'bold', fontSize:'15px', marginTop:2, marginBottom:2 }}>THIS IS A PERMANENT ACTION AND CANNOT BE UNDONE.</Typography>
                 <Typography sx={{ fontWeight:'bold', fontSize:'13px' }}>Proceed with caution!</Typography>
-                <DeleteUser User user={user}/>
+                <DeleteUser user={user}/>
             </Paper>
         </Box>
     )
