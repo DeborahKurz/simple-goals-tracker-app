@@ -9,7 +9,6 @@ import AddSubtask from "./AddSubtask";
 import CompleteSubtask from "./CompleteSubtask";
 import EditSubtask from "./EditSubtask";
 import DeleteSubtask from "./DeleteSubtask";
-import ErrorPage from "./ErrorPage";
 
 export const SubtaskContext = React.createContext();
 

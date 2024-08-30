@@ -36,7 +36,7 @@ function App() {
 
   const handleUser = (user) => { 
     setUserList([...userList, user]);
-  }
+  };
 
 
   const handleGoal = (goal) => {
@@ -165,7 +165,7 @@ function App() {
         subtasks: task.subtasks.map(subtask => subtask.id === subtaskObj.id ? {...subtask, completed: true} : subtask)
       }))
     })));
-  }
+  };
 
 
   const handleEditSubtask = (editedSubtask) => {
@@ -209,8 +209,7 @@ function App() {
         subtasks: task.subtasks.filter(subtask => subtask.id !== subId)
       }))
     })));
-  }
-
+  };
 
 
   return (

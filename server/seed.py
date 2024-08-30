@@ -22,7 +22,7 @@ def delete_all_data():
         db.session.rollback()
         print(f"Error deleteing data from database: {e}")
 
-#Uncomment the rest of this function to seed the database:
+### Uncomment the rest of this function to seed the database:
 
 # def create_users(num_users):
 #     users = []
@@ -88,6 +88,8 @@ def delete_all_data():
     
 #     return subtasks
 
+### Uncomment ABOVE 
+
 
 if __name__ == '__main__':
     fake = Faker()
@@ -95,7 +97,7 @@ if __name__ == '__main__':
         delete_all_data()
         print("Existing Data Deleted From Database")
 
-    #Uncomment everything below to seed the database:
+    ### Uncomment everything below to seed the database:
 
         # print("Starting seed...")
         
