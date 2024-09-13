@@ -7,6 +7,7 @@ import { Box, Paper, Button, Typography } from "@mui/material";
 import AddGoal from "./AddGoal.js";
 import AddTask from "./AddTask.js";
 import ListGoals from "./ListGoals.js";
+import DeleteGoal from "./DeleteGoal.js";
 
 function DisplayGoals() {
   const navigate = useNavigate();
@@ -50,13 +51,20 @@ function DisplayGoals() {
                   marginBottom:2, 
                   bgcolor:'#F0F0F0'
                   }}>
-                  <Typography sx={{ 
-                    fontWeight:'bold', 
-                    fontSize:'22px', 
-                    marginTop:2, 
-                    marginBottom:2, 
-                    marginLeft:1
-                    }}>{goal.goal}</Typography>
+                  <Box sx={{
+                    display:'flex',
+                    flexDirection:'row',
+                    justifyContent:'space-between'
+                  }}>
+                    <Typography sx={{ 
+                      fontWeight:'bold', 
+                      fontSize:'22px', 
+                      marginTop:2, 
+                      marginBottom:2, 
+                      marginLeft:1
+                      }}>{goal.goal}</Typography>
+                    <DeleteGoal goalId={goal.id} />
+                  </Box>
                   {goal.tasks.length > 0 ? (
                     <ListGoals goal={goal}/>
                   ) : (

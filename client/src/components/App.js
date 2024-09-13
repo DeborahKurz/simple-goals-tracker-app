@@ -211,6 +211,9 @@ function App() {
     })));
   };
 
+  const handleDeletedGoal = (goalId) => {
+    setAllGoals(prevGoals => prevGoals.filter(goal => goal.id !== goalId))
+  };
 
   return (
     <Box sx={{
@@ -229,7 +232,7 @@ function App() {
       }}>
       <Context.Provider value={{ 
         userList, setUserList, handleUser, handleUpdatedUser, handleDeleteUser,
-        allGoals, handleGoal, handleGoalsDeleteTask,
+        allGoals, handleGoal, handleDeletedGoal, handleGoalsDeleteTask,
         allTasks, handleTask, handleCompletedTask,
         handleNewSubtask, handleCompletedSubtask, handleEditSubtask, handleDeletedSubtask  
         }}>
