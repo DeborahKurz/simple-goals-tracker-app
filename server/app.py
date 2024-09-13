@@ -107,6 +107,32 @@ class GoalResource(Resource):
 api.add_resource(GoalResource, '/goals')
 
 
+class GoalByIdResource(Resource):
+    def delete(self,id):
+        goal = Goal.query.filter_by(id=id).first()
+        if goal:
+            db.session.delete(goal)
+            db.session.commit()
+            
+            response_dict = {"message": "Goal successfully deleted."}
+            response = make_response(
+                response_dict,
+                204
+            )
+            return response
+        else:
+            response_dict = {
+                {"error": "No goal found."}
+            }
+
+            response = make_response(
+                jsonify(response_dict),
+                404
+            )
+            return response
+api.add_resource(GoalByIdResource, '/goalid/<int:id>')
+
+
 class TaskResource(Resource):
     def get(self):
         try:
